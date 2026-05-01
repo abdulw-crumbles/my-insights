@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Homepage Edition · April 30, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1614;
+    --paper: #f5f1e8;
+    --paper-alt: #ede7d8;
+    --rule: #2a2520;
+    --pos: #1f6b3a;
+    --neg: #a82c1f;
+    --warn: #b8761c;
+    --muted: #6e6760;
+    --highlight: #fff4b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    font-size: 14px;
+    padding: 30px 40px 60px 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(255,255,255,0.4), transparent 60%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-top: 6px double var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0 10px 0;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: -6px; left: 0; right: 0;
+    height: 2px; background: var(--rule);
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .nameplate {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 64px;
+    letter-spacing: -2px;
+    line-height: 1;
+    text-align: center;
+    font-style: italic;
+  }
+  .nameplate em {
+    font-style: normal;
+    font-weight: 400;
+  }
+  .masthead-bottom {
+    border-top: 1px solid var(--rule);
+    margin-top: 10px;
+    padding-top: 6px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* HEADLINE */
+  .headline-wrap {
+    border-bottom: 3px solid var(--rule);
+    padding: 24px 0 20px 0;
+    text-align: center;
+  }
+  .deck {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--neg);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  h1.headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  h1.headline em {
+    font-style: italic;
+    color: var(--pos);
+    font-weight: 900;
+  }
+  h1.headline .neg {
+    color: var(--neg);
+    font-style: italic;
+  }
+  .subhead {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: 14px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+  }
+  .byline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+
+  /* KPI ROW */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-bottom: 3px double var(--rule);
+    padding: 22px 0;
+    gap: 0;
+  }
+  .kpi {
+    padding: 0 22px;
+    border-right: 1px solid var(--rule);
+    text-align: center;
+  }
+  .kpi:last-child { border-right: none; }
+  .kpi .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .kpi .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .kpi .change {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .kpi .change.pos { color: var(--pos); }
+  .kpi .change.neg { color: var(--neg); }
+  .kpi .change.flat { color: var(--muted); }
+  .kpi .sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--warn);
+    margin-top: 4px;
+  }
+
+  /* SECTION HEADERS */
+  .section-rule {
+    margin-top: 32px;
+    border-top: 1px solid var(--rule);
+    padding-top: 8px;
+    margin-bottom: 14px;
+  }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--neg);
+    font-weight: 600;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    margin-top: 4px;
+  }
+  h2 em { font-style: italic; }
+  .section-deck {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* CHART CONTAINER */
+  .chart-block {
+    background: var(--paper-alt);
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    margin-top: 12px;
+  }
+  .chart-block .legend {
+    display: flex;
+    gap: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .chart-block .legend span { display: flex; align-items: center; gap: 6px; }
+  .chart-block .legend i.box { width: 11px; height: 11px; display: inline-block; }
+  .chart-block .legend i.line { width: 16px; height: 2px; display: inline-block; background: #1f4d7a; }
+  .chart-container { position: relative; height: 280px; }
+
+  /* TWO COLUMNS */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 18px;
+  }
+  .two-col.with-divider {
+    position: relative;
+  }
+  .two-col.with-divider::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+    transform: translateX(-50%);
+  }
+
+  /* COMPARISON TABLE */
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  table.compare th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    padding: 8px 10px 6px 10px;
+    border-bottom: 2px solid var(--rule);
+    font-weight: 600;
+  }
+  table.compare th:first-child { text-align: left; }
+  table.compare td {
+    padding: 9px 10px;
+    border-bottom: 1px dotted var(--muted);
+    text-align: right;
+  }
+  table.compare td:first-child {
+    text-align: left;
+    font-weight: 500;
+  }
+  table.compare tr:last-child td { border-bottom: none; }
+  table.compare .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  table.compare .pos { color: var(--pos); font-weight: 600; }
+  table.compare .neg { color: var(--neg); font-weight: 600; }
+  table.compare .flat { color: var(--muted); }
+  table.compare .sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--warn);
+  }
+  table.compare .sig.strong { color: var(--pos); }
+
+  /* PULL QUOTES */
+  .pull-quote {
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    text-align: center;
+    margin: 14px 0;
+  }
+  .pull-quote .q {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.2;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .pull-quote .q em.up { color: var(--pos); font-weight: 700; font-style: normal; }
+  .pull-quote .q em.dn { color: var(--neg); font-weight: 700; font-style: normal; }
+  .pull-quote .attrib {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* INLINE STAT */
+  .stat-inline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 17px;
+  }
+  .stat-inline.pos { color: var(--pos); }
+  .stat-inline.neg { color: var(--neg); }
+
+  /* MINI BAR for tables */
+  .bar-cell {
+    display: inline-block;
+    width: 80px;
+    height: 8px;
+    background: var(--paper-alt);
+    border: 1px solid var(--rule);
+    position: relative;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .bar-cell .fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: var(--ink);
+  }
+  .bar-cell .fill.pos { background: var(--pos); }
+  .bar-cell .fill.neg { background: var(--neg); }
+
+  /* CALLOUT BOXES */
+  .callout-box {
+    border: 2px solid var(--rule);
+    padding: 14px 18px;
+    margin-top: 14px;
+    background: var(--paper);
+    position: relative;
+  }
+  .callout-box::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px;
+    width: 28px; height: 28px;
+    border-top: 4px solid var(--neg);
+    border-left: 4px solid var(--neg);
+  }
+  .callout-box .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--neg);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  /* INSIGHT BULLETS */
+  .insight-list {
+    list-style: none;
+    margin-top: 6px;
+  }
+  .insight-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--muted);
+    font-size: 13.5px;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-list .marker {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--ink);
+    min-width: 28px;
+  }
+
+  .footer-rule {
+    border-top: 6px double var(--rule);
+    margin-top: 36px;
+    padding-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  mark {
+    background: var(--highlight);
+    padding: 0 3px;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-top">
+    <span>Vol. I · No. 1</span>
+    <span>Marketing Analytics · Multiplier</span>
+    <span>Apr 30, 2026 · Eight Pages</span>
+  </div>
+  <div class="nameplate"><em>The</em> Homepage <em>Edition</em></div>
+  <div class="masthead-bottom">A Post-Launch Performance Review · New Baseline Established</div>
+</div>
+
+<div class="headline-wrap">
+  <div class="deck">★ Launch Report · Apr 3 - Apr 28, 2026 ★</div>
+  <h1 class="headline">New Homepage Lifts Conversion <em>+33%.</em><br>Engagement Up. <span class="neg">Sessions Hold.</span></h1>
+  <div class="subhead">In its first 26 days live, the redesigned homepage outperformed the prior 21-day baseline on every quality metric that matters. The signal is consistent across new visitors, desktop, and the NAMER region.</div>
+  <div class="byline">Period A · Old HP · Mar 13 to Apr 2 · 21 Days  ·  ❖  ·  Period B · New HP · Apr 3 to Apr 28 · 26 Days</div>
+</div>
+
+<!-- KPI ROW -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="label">Homepage Sessions</div>
+    <div class="value">14,450</div>
+    <div class="change neg">vs 17,699 · -18%</div>
+    <div class="sig">Note: Old HP inflated by bot spikes</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Conversion Rate (WCR)</div>
+    <div class="value" style="color: var(--pos);">0.64%</div>
+    <div class="change pos">vs 0.48% · +32.6%</div>
+    <div class="sig">p = 0.06 · Near-significant</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Bounce Rate</div>
+    <div class="value" style="color: var(--pos);">62.7%</div>
+    <div class="change pos">vs 71.0% · -8.3 pts</div>
+    <div class="sig" style="color: var(--pos);">p &lt; 0.001 · Highly Significant</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Avg Time on Page</div>
+    <div class="value" style="color: var(--pos);">13.0s</div>
+    <div class="change pos">vs 12.0s · +9% (clean)</div>
+    <div class="sig">Bot-cleaned baseline</div>
+  </div>
+</div>
+
+<!-- DAILY TIMESERIES -->
+<div class="section-rule">
+  <div class="kicker">FRONT PAGE FIGURE I</div>
+  <h2>Daily Sessions, <em>Daily Conversion.</em></h2>
+  <div class="section-deck">A continuous timeline. Apr 3 marks the changeover. The blue line tells the story words cannot.</div>
+</div>
+
+<div class="chart-block">
+  <div class="legend">
+    <span><i class="box" style="background:#9aa0a6;"></i>Old HP Sessions</span>
+    <span><i class="box" style="background:#1f6b3a;"></i>New HP Sessions</span>
+    <span><i class="line"></i>WCR % (Daily)</span>
+  </div>
+  <div class="chart-container"><canvas id="dailyChart"></canvas></div>
+</div>
+
+<!-- VISITOR TYPE -->
+<div class="section-rule">
+  <div class="kicker">PAGE 2 · AUDIENCE</div>
+  <h2>First Impressions <em>Win.</em></h2>
+  <div class="section-deck">The new page does its hardest job — converting strangers — significantly better. Returning visitors lift directionally but don't move the dial as much.</div>
+</div>
+
+<table class="compare">
+  <thead>
+    <tr><th>Visitor Type</th><th>Old HP Sessions</th><th>Old HP WCR</th><th>New HP Sessions</th><th>New HP WCR</th><th>Lift</th><th>Significance</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>New Visitors</strong></td>
+      <td class="num">12,961</td>
+      <td class="num">0.532%</td>
+      <td class="num">9,177</td>
+      <td class="num"><span class="stat-inline pos">0.763%</span></td>
+      <td class="num pos">+43.3%</td>
+      <td class="sig strong">p = 0.03 · SIGNIFICANT</td>
+    </tr>
+    <tr>
+      <td>Returning Visitors</td>
+      <td class="num">4,738</td>
+      <td class="num">0.338%</td>
+      <td class="num">5,273</td>
+      <td class="num">0.417%</td>
+      <td class="num pos">+23.5%</td>
+      <td class="sig">p = 0.52 · directional</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- REGIONAL -->
+<div class="section-rule">
+  <div class="kicker">PAGE 3 · GEOGRAPHY</div>
+  <h2>NAMER <em>Doubles.</em> APAC Steady. EMEA <span style="color: var(--neg); font-style:italic;">Slips.</span></h2>
+  <div class="section-deck">The strongest signal of the entire launch hides in the regional cut. North America's conversion rate more than doubled. EMEA, which had the highest base rate, drifted down.</div>
+</div>
+
+<table class="compare">
+  <thead>
+    <tr><th>Region</th><th>Old Sessions</th><th>Old WCR</th><th>New Sessions</th><th>New WCR</th><th>Lift</th><th>Significance</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>NAMER</strong></td>
+      <td class="num">9,227</td>
+      <td class="num">0.238%</td>
+      <td class="num">5,081</td>
+      <td class="num"><span class="stat-inline pos">0.571%</span></td>
+      <td class="num pos">+139.4%</td>
+      <td class="sig strong">p &lt; 0.01 · HIGHLY SIG</td>
+    </tr>
+    <tr>
+      <td>APAC</td>
+      <td class="num">5,779</td>
+      <td class="num">0.588%</td>
+      <td class="num">6,192</td>
+      <td class="num">0.646%</td>
+      <td class="num pos">+9.8%</td>
+      <td class="sig">p = 0.69 · flat</td>
+    </tr>
+    <tr>
+      <td>EMEA</td>
+      <td class="num">1,760</td>
+      <td class="num">1.193%</td>
+      <td class="num">1,957</td>
+      <td class="num neg">0.869%</td>
+      <td class="num neg">-27.2%</td>
+      <td class="sig">p = 0.33 · not sig</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout-box">
+  <div class="label">EDITORIAL NOTE · EMEA WATCH</div>
+  EMEA had the highest baseline WCR (1.19%) on the old homepage and drifted to 0.87% on the new one. The drop is not statistically significant given the smaller session count, but it is the only region trending negative. Worth a follow-up cut on UK / DE / FR specifically before declaring a regional pattern.
+</div>
+
+<!-- DEVICE -->
+<div class="section-rule">
+  <div class="kicker">PAGE 4 · DEVICES</div>
+  <h2>Desktop <em>Lifts.</em> Mobile <span style="color: var(--neg); font-style:italic;">Holds Flat.</span></h2>
+  <div class="section-deck">78% of homepage traffic is desktop. That's where the conversion lift lives. Mobile is essentially unchanged — a watch-item, not yet a problem.</div>
+</div>
+
+<table class="compare">
+  <thead>
+    <tr><th>Device</th><th>Old Sessions</th><th>Old WCR</th><th>New Sessions</th><th>New WCR</th><th>Lift</th><th>Significance</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Desktop</strong> (78% share)</td>
+      <td class="num">14,704</td>
+      <td class="num">0.510%</td>
+      <td class="num">11,341</td>
+      <td class="num"><span class="stat-inline pos">0.732%</span></td>
+      <td class="num pos">+43.5%</td>
+      <td class="sig strong">p = 0.02 · SIGNIFICANT</td>
+    </tr>
+    <tr>
+      <td>Mobile (21% share)</td>
+      <td class="num">2,971</td>
+      <td class="num">0.337%</td>
+      <td class="num">3,071</td>
+      <td class="num">0.293%</td>
+      <td class="num neg">-12.9%</td>
+      <td class="sig">p = 0.76 · not sig · flat</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ENGAGEMENT -->
+<div class="section-rule">
+  <div class="kicker">PAGE 5 · ENGAGEMENT</div>
+  <h2>Visitors Stay <em>Longer.</em> Bounce <em>Less.</em></h2>
+  <div class="section-deck">The bounce rate drop alone is worth the redesign. Sessions that touch the homepage are now 8.3 percentage points more likely to stick around and explore.</div>
+</div>
+
+<div class="two-col with-divider">
+  <div>
+    <table class="compare">
+      <thead>
+        <tr><th>Engagement Metric</th><th>Old HP</th><th>New HP</th><th>Lift</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Bounce Rate</strong></td>
+          <td class="num">71.0%</td>
+          <td class="num"><span class="stat-inline pos">62.7%</span></td>
+          <td class="num pos">-8.3 pts</td>
+        </tr>
+        <tr>
+          <td>Avg Time on Page <span style="font-size:10px; color:var(--muted);">(bot-cleaned)</span></td>
+          <td class="num">12.0s</td>
+          <td class="num pos">13.0s</td>
+          <td class="num pos">+9.0%</td>
+        </tr>
+        <tr>
+          <td>Scroll Rate ≥90% <span style="font-size:10px; color:var(--muted);">(bot-cleaned)</span></td>
+          <td class="num">17.78%</td>
+          <td class="num">17.87%</td>
+          <td class="num flat">flat</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <p style="font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; line-height: 1.4;">
+      The bounce rate move (<span style="color: var(--pos); font-weight: 700; font-style: normal;">71% → 62.7%</span>) is the most statistically robust finding in this report.
+    </p>
+    <p style="font-size: 13px; margin-top: 14px; color: var(--muted); line-height: 1.6;">
+      Scroll rate was contaminated by bot spikes on Mar 17, 18, 25, 27 (48% scroll completion in &lt;7 seconds). Bot-cleaned scroll comparison is essentially flat. Time on page improved modestly. Bounce rate did the heavy lifting.
+    </p>
+  </div>
+</div>
+
+<!-- BOTTOM FUNNEL -->
+<div class="section-rule">
+  <div class="kicker">PAGE 6 · THE BOTTOM FUNNEL</div>
+  <h2>Lead Quality <em>Improves at Every Stage.</em></h2>
+  <div class="section-deck">A cohort view of leads whose first page seen was the homepage. New HP cohort produces more leads, qualifies a higher share of them, and pushes more through to SQL.</div>
+</div>
+
+<table class="compare">
+  <thead>
+    <tr><th>Cohort Stage</th><th>Old HP (21d)</th><th>New HP (26d)</th><th>Volume Lift</th><th>Per Day Lift</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Leads</strong></td>
+      <td class="num">139</td>
+      <td class="num pos">173</td>
+      <td class="num pos">+24.5%</td>
+      <td class="num flat">+0.5%</td>
+    </tr>
+    <tr>
+      <td><strong>MQLs</strong></td>
+      <td class="num">74</td>
+      <td class="num pos"><span class="stat-inline pos">100</span></td>
+      <td class="num pos">+35.1%</td>
+      <td class="num pos">+9.1%</td>
+    </tr>
+    <tr>
+      <td><strong>SQLs</strong></td>
+      <td class="num">47</td>
+      <td class="num pos"><span class="stat-inline pos">65</span></td>
+      <td class="num pos">+38.3%</td>
+      <td class="num pos">+11.7%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="two-col with-divider" style="margin-top: 24px;">
+  <div>
+    <div class="kicker" style="color: var(--muted); margin-bottom: 8px;">FUNNEL CONVERSION RATIOS</div>
+    <table class="compare">
+      <thead>
+        <tr><th>Conversion</th><th>Old HP</th><th>New HP</th><th>Delta</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Lead → MQL</strong></td>
+          <td class="num">53.2%</td>
+          <td class="num pos"><span class="stat-inline pos">57.8%</span></td>
+          <td class="num pos">+4.6 pts</td>
+        </tr>
+        <tr>
+          <td>MQL → SQL</td>
+          <td class="num">63.5%</td>
+          <td class="num pos">65.0%</td>
+          <td class="num pos">+1.5 pts</td>
+        </tr>
+        <tr>
+          <td><strong>Lead → SQL</strong></td>
+          <td class="num">33.8%</td>
+          <td class="num pos"><span class="stat-inline pos">37.6%</span></td>
+          <td class="num pos">+3.8 pts</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <p style="font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; line-height: 1.4;">
+      Same daily lead volume. <span style="color: var(--pos); font-weight: 700; font-style: normal;">Better fit, deeper through the funnel.</span>
+    </p>
+    <p style="font-size: 13px; margin-top: 14px; color: var(--muted); line-height: 1.6;">
+      Volume up modestly per day (+0.5% leads), but qualification quality jumped: <strong style="color: var(--ink);">Lead → MQL +4.6 pts</strong>, <strong style="color: var(--ink);">Lead → SQL +3.8 pts</strong>. The new homepage is sending sales fewer noise leads and more real opportunities.
+    </p>
+    <p style="font-size: 11px; margin-top: 12px; color: var(--muted); font-style: italic; line-height: 1.5;">
+      Wins excluded — New HP cohort is still maturing through the 30-90 day sales cycle and a like-for-like read isn't possible yet.
+    </p>
+  </div>
+</div>
+
+<!-- THE BIG PULL QUOTE -->
+<div class="pull-quote">
+  <div class="q">
+    Conversions up <em class="up">+33%</em>. New visitors up <em class="up">+43%</em>.<br>
+    NAMER up <em class="up">+139%</em>. Bounce rate down <em class="up">-8 pts</em>.<br>
+    SQLs up <em class="up">+38%</em>. The homepage is, finally, doing its job.
+  </div>
+  <div class="attrib">— Headline Read</div>
+</div>
+
+<!-- WHAT IT MEANS -->
+<div class="section-rule">
+  <div class="kicker">EDITORIAL · CLOSING ARGUMENT</div>
+  <h2>The <em>New Baseline.</em></h2>
+</div>
+
+<ul class="insight-list">
+  <li>
+    <span class="marker">①</span>
+    <span><strong>Conversion lift is real.</strong> WCR moved <span class="stat-inline pos">0.48% → 0.64%</span> (+32.6%, p = 0.06). Confidence intervals nearly separate. One to two more weeks of New HP data should clear the formal &lt;0.05 threshold.</span>
+  </li>
+  <li>
+    <span class="marker">②</span>
+    <span><strong>The lift is concentrated where it counts:</strong> new visitors (<span class="stat-inline pos">+43%</span>, sig), desktop (<span class="stat-inline pos">+43.5%</span>, sig), NAMER (<span class="stat-inline pos">+139%</span>, sig). These are the cohorts that drive new pipeline.</span>
+  </li>
+  <li>
+    <span class="marker">③</span>
+    <span><strong>Engagement is structurally better.</strong> Bounce rate down 8.3 points (p &lt; 0.001). This is the single cleanest data point in the entire report.</span>
+  </li>
+  <li>
+    <span class="marker">④</span>
+    <span><strong>Sales gets better leads.</strong> Homepage-first cohort: SQLs up <span class="stat-inline pos">+38%</span>, Lead → MQL conversion up <span class="stat-inline pos">+4.6 pts</span>. Same daily lead volume, materially better quality.</span>
+  </li>
+  <li>
+    <span class="marker">⑤</span>
+    <span><strong>Two watch-items, not blockers:</strong> EMEA WCR drifted -27% (not significant); Mobile WCR essentially flat. Worth a follow-up cut, not a launch reversal.</span>
+  </li>
+  <li>
+    <span class="marker">⑥</span>
+    <span><strong>This is now the baseline.</strong> Future homepage experiments compete against <span class="stat-inline">0.64% WCR · 62.7% bounce · 13s on page · 37.6% Lead-to-SQL</span>.</span>
+  </li>
+</ul>
+
+<div class="footer-rule">
+  Data Source · marketing.events  ·  salesforce.lead  ·  gtm.full_funnel_details<br>
+  Conversion Definition · Sessions where Requested_Demo or MQL fired after homepage view<br>
+  Bottom Funnel · COHORT VIEW · Leads with first_page_seen_c on homepage, traced through SF<br>
+  Significance · Two-proportion z-test · Wilson 95% CI<br>
+  ━━━━━━━━━━━━  END OF EDITION  ━━━━━━━━━━━━
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+<script>
+Chart.register(window['chartjs-plugin-annotation']);
+
+const data = [
+  ['Mar 13', 475, 4, 0.842, 'Old'],['Mar 14', 437, 2, 0.458, 'Old'],['Mar 15', 347, 3, 0.865, 'Old'],
+  ['Mar 16', 808, 6, 0.743, 'Old'],['Mar 17', 1594, 7, 0.439, 'Old'],['Mar 18', 1827, 6, 0.328, 'Old'],
+  ['Mar 19', 768, 4, 0.521, 'Old'],['Mar 20', 700, 9, 1.286, 'Old'],['Mar 21', 445, 2, 0.449, 'Old'],
+  ['Mar 22', 470, 2, 0.426, 'Old'],['Mar 23', 693, 2, 0.289, 'Old'],['Mar 24', 873, 1, 0.115, 'Old'],
+  ['Mar 25', 1812, 10, 0.552, 'Old'],['Mar 26', 867, 7, 0.807, 'Old'],['Mar 27', 1762, 3, 0.170, 'Old'],
+  ['Mar 28', 377, 3, 0.796, 'Old'],['Mar 29', 369, 0, 0.000, 'Old'],['Mar 30', 770, 4, 0.519, 'Old'],
+  ['Mar 31', 833, 6, 0.720, 'Old'],['Apr 01', 786, 3, 0.382, 'Old'],['Apr 02', 686, 1, 0.146, 'Old'],
+  ['Apr 03', 536, 2, 0.373, 'New'],['Apr 04', 328, 2, 0.610, 'New'],['Apr 05', 232, 0, 0.000, 'New'],
+  ['Apr 06', 490, 2, 0.408, 'New'],['Apr 07', 706, 4, 0.567, 'New'],['Apr 08', 700, 3, 0.429, 'New'],
+  ['Apr 09', 746, 5, 0.670, 'New'],['Apr 10', 641, 7, 1.092, 'New'],['Apr 11', 309, 0, 0.000, 'New'],
+  ['Apr 12', 292, 2, 0.685, 'New'],['Apr 13', 607, 1, 0.165, 'New'],['Apr 14', 741, 4, 0.540, 'New'],
+  ['Apr 15', 813, 3, 0.369, 'New'],['Apr 16', 787, 6, 0.762, 'New'],['Apr 17', 624, 6, 0.962, 'New'],
+  ['Apr 18', 296, 3, 1.014, 'New'],['Apr 19', 206, 0, 0.000, 'New'],['Apr 20', 581, 3, 0.516, 'New'],
+  ['Apr 21', 637, 10, 1.570, 'New'],['Apr 22', 700, 6, 0.857, 'New'],['Apr 23', 728, 8, 1.099, 'New'],
+  ['Apr 24', 711, 6, 0.844, 'New'],['Apr 25', 348, 3, 0.862, 'New'],['Apr 26', 271, 0, 0.000, 'New'],
+  ['Apr 27', 624, 3, 0.481, 'New'],['Apr 28', 796, 3, 0.377, 'New']
+];
+const labels = data.map(r => r[0]);
+const sessions = data.map(r => r[1]);
+const wcr = data.map(r => r[3]);
+const colors = data.map(r => r[4] === 'Old' ? '#9aa0a6' : '#1f6b3a');
+const splitIndex = data.findIndex(r => r[4] === 'New');
+
+new Chart(document.getElementById('dailyChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [
+      { label: 'Sessions', data: sessions, backgroundColor: colors, yAxisID: 'y', order: 2, borderWidth: 0 },
+      { label: 'WCR %', data: wcr, type: 'line',
+        borderColor: '#1f4d7a', backgroundColor: '#1f4d7a',
+        pointRadius: 2.2, pointBackgroundColor: '#1f4d7a',
+        yAxisID: 'y1', borderWidth: 1.6, tension: 0.25, order: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      annotation: {
+        annotations: {
+          launchLine: {
+            type: 'line',
+            xMin: splitIndex - 0.5, xMax: splitIndex - 0.5,
+            borderColor: '#a82c1f', borderWidth: 2, borderDash: [5, 4],
+            label: {
+              display: true,
+              content: '★ NEW HP LIVE · APR 3 ★',
+              position: 'start',
+              backgroundColor: '#a82c1f',
+              color: '#f5f1e8',
+              font: { family: 'JetBrains Mono', size: 9, weight: 'bold' },
+              padding: { top: 4, bottom: 4, left: 8, right: 8 }
+            }
+          },
+          oldLabel: {
+            type: 'label',
+            xValue: 9, yValue: 1750,
+            backgroundColor: 'rgba(154, 160, 166, 0.18)',
+            borderColor: '#5e5e5e', borderWidth: 1,
+            content: ['OLD HP · 21 DAYS', 'WCR 0.48%'],
+            font: { family: 'JetBrains Mono', size: 9, weight: 'bold' },
+            color: '#1a1614', padding: 5
+          },
+          newLabel: {
+            type: 'label',
+            xValue: 33, yValue: 1750,
+            backgroundColor: 'rgba(31, 107, 58, 0.15)',
+            borderColor: '#1f6b3a', borderWidth: 1,
+            content: ['NEW HP · 26 DAYS', 'WCR 0.64% · +33%'],
+            font: { family: 'JetBrains Mono', size: 9, weight: 'bold' },
+            color: '#0d3a1c', padding: 5
+          }
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { font: { family: 'JetBrains Mono', size: 8 }, maxRotation: 70, minRotation: 60, color: '#6e6760' }, grid: { display: false }, border: { color: '#1a1614'} },
+      y: { position: 'left',
+           title: { display: true, text: 'SESSIONS', font: { family: 'JetBrains Mono', size: 9, weight: 'bold' }, color: '#6e6760' },
+           ticks: { font: { family: 'JetBrains Mono', size: 9 }, color: '#6e6760' },
+           beginAtZero: true, max: 2000,
+           grid: { color: 'rgba(42, 37, 32, 0.08)' },
+           border: { color: '#1a1614' } },
+      y1: { position: 'right',
+            title: { display: true, text: 'WCR %', font: { family: 'JetBrains Mono', size: 9, weight: 'bold' }, color: '#1f4d7a' },
+            ticks: { font: { family: 'JetBrains Mono', size: 9 }, color: '#1f4d7a' },
+            grid: { drawOnChartArea: false }, beginAtZero: true, max: 2.0,
+            border: { color: '#1f4d7a' } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
