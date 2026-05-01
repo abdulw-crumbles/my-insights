@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Homepage Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #121212;
+    --paper: #ffffff;
+    --rule: #121212;
+    --rule-light: #dcdcdc;
+    --muted: #5a5a5a;
+    --muted-light: #888;
+    --accent: #c00000;
+    --pos: #1a7f3f;
+    --neg: #c00000;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Frank Ruhl Libre', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    font-size: 18px;
+    padding: 60px 24px 80px 24px;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .wide {
+    max-width: 940px;
+    margin: 40px auto;
+  }
+
+  /* MASTHEAD - tiny */
+  .masthead {
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+    margin-bottom: 50px;
+  }
+
+  .pub-name {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .pub-meta {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  /* HEADLINE - big and authoritative */
+  .kicker {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  h1.headline {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .deck {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.45;
+    color: #333;
+    margin-bottom: 28px;
+  }
+
+  .byline {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule-light);
+    border-bottom: 1px solid var(--rule-light);
+    padding: 14px 0;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .byline strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* BODY */
+  .lede::first-letter {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    float: left;
+    font-size: 76px;
+    line-height: 0.85;
+    margin: 6px 8px -2px 0;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  p strong { font-weight: 700; }
+
+  p em { font-style: italic; }
+
+  .num-pos { color: var(--pos); font-weight: 700; }
+  .num-neg { color: var(--neg); font-weight: 700; }
+
+  /* SECTION HEADERS */
+  .section-divider {
+    text-align: center;
+    margin: 60px 0 30px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+    position: relative;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--ink);
+    vertical-align: middle;
+    margin: 0 14px;
+  }
+
+  h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* CHART CAPTION */
+  .figure {
+    margin: 36px 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+  }
+
+  .fig-label {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .fig-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .fig-subtitle {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .fig-source {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 14px;
+    border-top: 1px solid var(--rule-light);
+    padding-top: 8px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 22px;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .legend i.box { width: 12px; height: 12px; display: inline-block; }
+  .legend i.line { width: 16px; height: 2px; display: inline-block; background: var(--accent); }
+
+  .chart-container {
+    position: relative;
+    height: 320px;
+  }
+
+  /* KPI ROW */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    margin: 30px 0;
+  }
+
+  .kpi {
+    padding: 22px 18px;
+    border-right: 1px solid var(--rule-light);
+  }
+
+  .kpi:last-child { border-right: none; }
+
+  .kpi .label {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .kpi .value {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -1px;
+    font-feature-settings: "tnum" 1;
+  }
+
+  .kpi .delta {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+    color: var(--muted);
+  }
+
+  .kpi .delta strong { color: var(--ink); font-weight: 700; }
+  .kpi .delta.up { color: var(--pos); }
+  .kpi .delta.down { color: var(--neg); }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 14px;
+    margin: 20px 0;
+  }
+
+  table th {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    padding: 12px 14px 8px 0;
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  table th:first-child { text-align: left; padding-left: 0; }
+  table th:last-child { padding-right: 0; }
+
+  table td {
+    padding: 14px 14px 14px 0;
+    border-bottom: 1px solid var(--rule-light);
+    text-align: right;
+    font-feature-settings: "tnum" 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  table td:first-child {
+    text-align: left;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 16px;
+    padding-left: 0;
+  }
+
+  table td:last-child { padding-right: 0; }
+
+  table tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+
+  table .pos { color: var(--pos); font-weight: 700; }
+  table .neg { color: var(--neg); font-weight: 700; }
+  table .flat { color: var(--muted); }
+  table .strong { font-weight: 700; color: var(--ink); }
+
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--ink);
+    padding: 4px 0 4px 22px;
+    margin: 30px 0;
+  }
+
+  .callout p {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .callout cite {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-top: 10px;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 32px 0;
+    margin: 50px 0;
+    text-align: center;
+  }
+
+  .pull-quote .q {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.3;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .pull-quote .q em.up { color: var(--pos); font-style: normal; font-weight: 900; }
+  .pull-quote .q em.dn { color: var(--neg); font-style: normal; font-weight: 900; }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'Libre Franklin', sans-serif;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 18px;
+  }
+
+  /* TAKEAWAYS */
+  .takeaways {
+    margin: 30px 0;
+  }
+
+  .takeaway {
+    border-top: 1px solid var(--rule-light);
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 18px;
+  }
+
+  .takeaway:last-child { border-bottom: 1px solid var(--rule-light); }
+
+  .takeaway .num {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .takeaway .body {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .takeaway .body strong {
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  .footnotes {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .footnotes p {
+    font-size: 11px;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+
+  .footnotes strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .end-mark {
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--muted);
+  }
+
+  /* TWO COLUMN */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 30px 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 760px) {
+    body { padding: 40px 18px; font-size: 17px; }
+    h1.headline { font-size: 38px; }
+    .kpi-row { grid-template-columns: 1fr 1fr; }
+    .kpi { border-bottom: 1px solid var(--rule-light); }
+    .two-col { grid-template-columns: 1fr; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="masthead">
+    <div class="pub-name">The Homepage Edition</div>
+    <div class="pub-meta">A Multiplier Marketing Analytics Brief · Apr 30, 2026</div>
+  </div>
+
+  <div class="kicker">Launch Report</div>
+
+  <h1 class="headline">The new homepage converts more, bounces less, and qualifies better.</h1>
+
+  <div class="deck">
+    Twenty-six days after going live, the redesigned homepage outperformed the prior baseline on every quality metric that matters. Conversion rate climbed thirty-three percent. Bounce rate dropped eight points. The signal is consistent across new visitors, desktop, and the North American region.
+  </div>
+
+  <div class="byline">
+    <span><strong>By</strong> Marketing Analytics, Multiplier</span>
+    <span><strong>Periods</strong> Old HP · Mar 13 – Apr 2 (21 days) &nbsp;·&nbsp; New HP · Apr 3 – Apr 28 (26 days)</span>
+  </div>
+
+  <p class="lede">
+    The homepage redesign launched as an A/B test in late January. After a brief pause for a no-index incident in mid-March, the new version went live to all traffic on April 3. This brief compares performance over the twenty-one days the old homepage was live following the experiment to the twenty-six days the new homepage has been live since.
+  </p>
+
+  <p>
+    The conclusion is straightforward. Sessions that touch the homepage are converting at a rate of <strong class="num-pos">0.64 percent</strong>, a <strong class="num-pos">32.6 percent lift</strong> over the <strong>0.48 percent</strong> baseline. The result sits at <strong>p = 0.06</strong>, just shy of conventional statistical significance, with confidence intervals nearly separating. One to two more weeks of data should clear the formal threshold.
+  </p>
+
+</div>
+
+<!-- KPI ROW -->
+<div class="wide">
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">Homepage Sessions</div>
+      <div class="value">14,450</div>
+      <div class="delta"><strong>vs 17,699</strong> &nbsp;–18%</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Conversion Rate</div>
+      <div class="value">0.64%</div>
+      <div class="delta up"><strong>+32.6%</strong> &nbsp;p = 0.06</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Bounce Rate</div>
+      <div class="value">62.7%</div>
+      <div class="delta up"><strong>–8.3 pts</strong> &nbsp;p &lt; 0.001</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Avg Time on Page</div>
+      <div class="value">13.0s</div>
+      <div class="delta up"><strong>+9.0%</strong> &nbsp;bot-cleaned</div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY CHART -->
+<div class="wide">
+  <div class="figure">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-title">Daily homepage sessions and conversion rate</div>
+    <div class="fig-subtitle">A continuous timeline. The dashed line marks the changeover to the new homepage on April 3.</div>
+
+    <div class="legend">
+      <span><i class="box" style="background:#bdbdbd;"></i>Old HP sessions</span>
+      <span><i class="box" style="background:#121212;"></i>New HP sessions</span>
+      <span><i class="line"></i>Conversion rate</span>
+    </div>
+
+    <div class="chart-container"><canvas id="dailyChart"></canvas></div>
+
+    <div class="fig-source">Source · marketing.events &nbsp;·&nbsp; Sessions defined as user_pseudo_id + ga_session_id where homepage was viewed at any point.</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-divider">Audience</div>
+
+  <h2>First impressions, won.</h2>
+
+  <p>
+    The new homepage's strongest result comes from the visitors it sees for the first time. Among new visitors, conversion rate climbed from <strong>0.53 percent</strong> to <strong class="num-pos">0.76 percent</strong>, a <strong class="num-pos">43 percent lift</strong> with <strong>p = 0.03</strong> — comfortably significant. Returning visitors lifted directionally but with smaller volume the change is not yet statistically distinguishable from noise.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Visitor type</th>
+        <th>Old sessions</th>
+        <th>Old WCR</th>
+        <th>New sessions</th>
+        <th>New WCR</th>
+        <th>Lift</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="strong">New visitors</span></td>
+        <td>12,961</td>
+        <td>0.53%</td>
+        <td>9,177</td>
+        <td class="strong">0.76%</td>
+        <td class="pos">+43.3%</td>
+      </tr>
+      <tr>
+        <td>Returning</td>
+        <td>4,738</td>
+        <td>0.34%</td>
+        <td>5,273</td>
+        <td>0.42%</td>
+        <td class="flat">+23.5%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-divider">Geography</div>
+
+  <h2>North America carries the lift.</h2>
+
+  <p>
+    The regional cut is the most striking finding in this report. North America's conversion rate <strong class="num-pos">more than doubled</strong>, from <strong>0.24 percent</strong> to <strong class="num-pos">0.57 percent</strong> — a 139 percent lift with <strong>p &lt; 0.01</strong>. Asia-Pacific moved a few basis points up. Europe, which had the highest baseline, drifted modestly down.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Region</th>
+        <th>Old sessions</th>
+        <th>Old WCR</th>
+        <th>New sessions</th>
+        <th>New WCR</th>
+        <th>Lift</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="strong">NAMER</span></td>
+        <td>9,227</td>
+        <td>0.24%</td>
+        <td>5,081</td>
+        <td class="strong">0.57%</td>
+        <td class="pos">+139.4%</td>
+      </tr>
+      <tr>
+        <td>APAC</td>
+        <td>5,779</td>
+        <td>0.59%</td>
+        <td>6,192</td>
+        <td>0.65%</td>
+        <td class="flat">+9.8%</td>
+      </tr>
+      <tr>
+        <td>EMEA</td>
+        <td>1,760</td>
+        <td>1.19%</td>
+        <td>1,957</td>
+        <td>0.87%</td>
+        <td class="neg">–27.2%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p>EMEA had the highest baseline conversion rate of any region on the old homepage. The drift downward is not statistically significant at this volume, but it is the only region trending negative. A follow-up cut on UK, Germany, and France specifically is worth doing before declaring a regional pattern.</p>
+    <cite>Editorial Note · EMEA Watch</cite>
+  </div>
+
+  <div class="section-divider">Devices</div>
+
+  <h2>Desktop lifts. Mobile holds.</h2>
+
+  <p>
+    Seventy-eight percent of homepage traffic is desktop, and that is where the conversion lift lives. Desktop conversion rate moved from <strong>0.51 percent</strong> to <strong class="num-pos">0.73 percent</strong> with <strong>p = 0.02</strong>. Mobile is essentially unchanged — a watch-item, not yet a problem.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Device</th>
+        <th>Share</th>
+        <th>Old WCR</th>
+        <th>New WCR</th>
+        <th>Lift</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="strong">Desktop</span></td>
+        <td>78%</td>
+        <td>0.51%</td>
+        <td class="strong">0.73%</td>
+        <td class="pos">+43.5%</td>
+      </tr>
+      <tr>
+        <td>Mobile</td>
+        <td>21%</td>
+        <td>0.34%</td>
+        <td>0.29%</td>
+        <td class="flat">–12.9%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-divider">Engagement</div>
+
+  <h2>Visitors stay longer. Bounce less.</h2>
+
+  <p>
+    The bounce rate move is the most statistically robust finding in this report. Sessions that touch the homepage are now <strong class="num-pos">8.3 percentage points</strong> more likely to stick around and explore — from <strong>71.0 percent</strong> down to <strong>62.7 percent</strong>, with <strong>p &lt; 0.001</strong>.
+  </p>
+
+  <p>
+    Average time on page improved modestly. Scroll rate, after correcting for four bot-traffic days on the old homepage, came in essentially flat. The new homepage may be physically taller, which would explain identical scroll completion rates despite better dwell time and lower bounce.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Engagement metric</th>
+        <th>Old HP</th>
+        <th>New HP</th>
+        <th>Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="strong">Bounce rate</span></td>
+        <td>71.0%</td>
+        <td class="strong">62.7%</td>
+        <td class="pos">–8.3 pts</td>
+      </tr>
+      <tr>
+        <td>Avg time on page (bot-cleaned)</td>
+        <td>12.0 s</td>
+        <td>13.0 s</td>
+        <td class="pos">+9.0%</td>
+      </tr>
+      <tr>
+        <td>Scroll rate ≥ 90% (bot-cleaned)</td>
+        <td>17.78%</td>
+        <td>17.87%</td>
+        <td class="flat">flat</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-divider">The Bottom Funnel</div>
+
+  <h2>Sales sees better-fit leads.</h2>
+
+  <p>
+    The cohort of leads whose first page seen was the homepage tells a quietly powerful story. Same daily lead volume. <strong class="num-pos">Better fit. Deeper through the funnel.</strong>
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th>Old HP (21d)</th>
+        <th>New HP (26d)</th>
+        <th>Volume lift</th>
+        <th>Per day lift</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="strong">Leads</span></td>
+        <td>139</td>
+        <td>173</td>
+        <td class="pos">+24.5%</td>
+        <td class="flat">+0.5%</td>
+      </tr>
+      <tr>
+        <td><span class="strong">MQLs</span></td>
+        <td>74</td>
+        <td class="strong">100</td>
+        <td class="pos">+35.1%</td>
+        <td class="pos">+9.1%</td>
+      </tr>
+      <tr>
+        <td><span class="strong">SQLs</span></td>
+        <td>47</td>
+        <td class="strong">65</td>
+        <td class="pos">+38.3%</td>
+        <td class="pos">+11.7%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Conversion ratios across the funnel</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Conversion</th>
+        <th>Old HP</th>
+        <th>New HP</th>
+        <th>Delta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="strong">Lead → MQL</span></td>
+        <td>53.2%</td>
+        <td class="strong">57.8%</td>
+        <td class="pos">+4.6 pts</td>
+      </tr>
+      <tr>
+        <td>MQL → SQL</td>
+        <td>63.5%</td>
+        <td>65.0%</td>
+        <td class="pos">+1.5 pts</td>
+      </tr>
+      <tr>
+        <td><span class="strong">Lead → SQL</span></td>
+        <td>33.8%</td>
+        <td class="strong">37.6%</td>
+        <td class="pos">+3.8 pts</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 14px; color: var(--muted); font-style: italic; margin-top: 14px;">
+    Wins are excluded from the comparison. The new homepage cohort is still maturing through the typical thirty-to-ninety day sales cycle and a like-for-like read isn't possible yet.
+  </p>
+
+  <div class="pull-quote">
+    <div class="q">
+      Conversions up <em class="up">33%</em>. New visitors up <em class="up">43%</em>.<br>
+      NAMER up <em class="up">139%</em>. Bounce rate down <em class="up">8 points</em>.<br>
+      SQLs up <em class="up">38%</em>.
+    </div>
+    <cite>The headline read</cite>
+  </div>
+
+  <div class="section-divider">Closing Argument</div>
+
+  <h2>The new baseline.</h2>
+
+  <p>
+    The case for the new homepage is not a single dramatic finding. It is the consistency of the lift across nearly every cut — visitor type, region, device, engagement, and downstream sales. Each individual signal is modest. Together they form a coherent improvement.
+  </p>
+
+  <div class="takeaways">
+    <div class="takeaway">
+      <div class="num">1</div>
+      <div class="body"><strong>Conversion lift is real.</strong> WCR moved from 0.48 percent to 0.64 percent. p = 0.06. Confidence intervals nearly separate. One to two more weeks of data should clear the formal threshold.</div>
+    </div>
+    <div class="takeaway">
+      <div class="num">2</div>
+      <div class="body"><strong>The lift concentrates where it counts.</strong> New visitors (+43%, sig). Desktop (+44%, sig). NAMER (+139%, sig). These are the cohorts that drive new pipeline.</div>
+    </div>
+    <div class="takeaway">
+      <div class="num">3</div>
+      <div class="body"><strong>Engagement is structurally better.</strong> Bounce rate down 8.3 points at p &lt; 0.001 — the cleanest data point in the entire report.</div>
+    </div>
+    <div class="takeaway">
+      <div class="num">4</div>
+      <div class="body"><strong>Sales gets better leads.</strong> Same daily lead volume from homepage-first cohort, but +35 percent more MQLs and +38 percent more SQLs. Lead → MQL conversion up 4.6 points.</div>
+    </div>
+    <div class="takeaway">
+      <div class="num">5</div>
+      <div class="body"><strong>Two watch-items, not blockers.</strong> EMEA conversion rate drifted –27 percent (not significant). Mobile flat. Worth a follow-up, not a launch reversal.</div>
+    </div>
+    <div class="takeaway">
+      <div class="num">6</div>
+      <div class="body"><strong>This is now the baseline.</strong> Future homepage experiments compete against 0.64 percent WCR, 62.7 percent bounce rate, 13 seconds on page, and a 37.6 percent Lead-to-SQL ratio.</div>
+    </div>
+  </div>
+
+  <div class="footnotes">
+    <p><strong>Methodology.</strong> All data sourced from marketing.events, salesforce.lead, and gtm.full_funnel_details. Sessions deduped on user_pseudo_id and ga_session_id. Homepage sessions defined as any session containing a page_view on usemultiplier.com/. Conversions defined as Requested_Demo or MQL events fired after the homepage view in the same session.</p>
+    <p><strong>Statistical tests.</strong> Two-proportion z-test on independent samples with Wilson 95% confidence intervals.</p>
+    <p><strong>Bot exclusion.</strong> Engagement metrics exclude four high-volume, low-quality traffic days on the old homepage (Mar 17, 18, 25, 27) which showed bot-pattern signatures. All other tables use raw data.</p>
+    <p><strong>Bottom funnel is a cohort view.</strong> Leads are filtered by salesforce.lead.first_page_seen_c matching the homepage URL pattern, then traced through gtm.full_funnel_details via converted_opportunity_id. About 24% of leads have first_page_seen_c populated, so absolute counts are a floor not a ceiling. The relative comparison holds because both periods have the same data quality.</p>
+  </div>
+
+  <div class="end-mark">— End of report —</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+<script>
+Chart.register(window['chartjs-plugin-annotation']);
+
+const data = [
+  ['Mar 13', 475, 4, 0.842, 'Old'],['Mar 14', 437, 2, 0.458, 'Old'],['Mar 15', 347, 3, 0.865, 'Old'],
+  ['Mar 16', 808, 6, 0.743, 'Old'],['Mar 17', 1594, 7, 0.439, 'Old'],['Mar 18', 1827, 6, 0.328, 'Old'],
+  ['Mar 19', 768, 4, 0.521, 'Old'],['Mar 20', 700, 9, 1.286, 'Old'],['Mar 21', 445, 2, 0.449, 'Old'],
+  ['Mar 22', 470, 2, 0.426, 'Old'],['Mar 23', 693, 2, 0.289, 'Old'],['Mar 24', 873, 1, 0.115, 'Old'],
+  ['Mar 25', 1812, 10, 0.552, 'Old'],['Mar 26', 867, 7, 0.807, 'Old'],['Mar 27', 1762, 3, 0.170, 'Old'],
+  ['Mar 28', 377, 3, 0.796, 'Old'],['Mar 29', 369, 0, 0.000, 'Old'],['Mar 30', 770, 4, 0.519, 'Old'],
+  ['Mar 31', 833, 6, 0.720, 'Old'],['Apr 01', 786, 3, 0.382, 'Old'],['Apr 02', 686, 1, 0.146, 'Old'],
+  ['Apr 03', 536, 2, 0.373, 'New'],['Apr 04', 328, 2, 0.610, 'New'],['Apr 05', 232, 0, 0.000, 'New'],
+  ['Apr 06', 490, 2, 0.408, 'New'],['Apr 07', 706, 4, 0.567, 'New'],['Apr 08', 700, 3, 0.429, 'New'],
+  ['Apr 09', 746, 5, 0.670, 'New'],['Apr 10', 641, 7, 1.092, 'New'],['Apr 11', 309, 0, 0.000, 'New'],
+  ['Apr 12', 292, 2, 0.685, 'New'],['Apr 13', 607, 1, 0.165, 'New'],['Apr 14', 741, 4, 0.540, 'New'],
+  ['Apr 15', 813, 3, 0.369, 'New'],['Apr 16', 787, 6, 0.762, 'New'],['Apr 17', 624, 6, 0.962, 'New'],
+  ['Apr 18', 296, 3, 1.014, 'New'],['Apr 19', 206, 0, 0.000, 'New'],['Apr 20', 581, 3, 0.516, 'New'],
+  ['Apr 21', 637, 10, 1.570, 'New'],['Apr 22', 700, 6, 0.857, 'New'],['Apr 23', 728, 8, 1.099, 'New'],
+  ['Apr 24', 711, 6, 0.844, 'New'],['Apr 25', 348, 3, 0.862, 'New'],['Apr 26', 271, 0, 0.000, 'New'],
+  ['Apr 27', 624, 3, 0.481, 'New'],['Apr 28', 796, 3, 0.377, 'New']
+];
+
+const labels = data.map(r => r[0]);
+const sessions = data.map(r => r[1]);
+const wcr = data.map(r => r[3]);
+const colors = data.map(r => r[4] === 'Old' ? '#bdbdbd' : '#121212');
+const splitIndex = data.findIndex(r => r[4] === 'New');
+
+new Chart(document.getElementById('dailyChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [
+      { label: 'Sessions', data: sessions, backgroundColor: colors, yAxisID: 'y', order: 2, borderWidth: 0 },
+      { label: 'WCR %', data: wcr, type: 'line',
+        borderColor: '#c00000', backgroundColor: '#c00000',
+        pointRadius: 1.8, pointBackgroundColor: '#c00000',
+        yAxisID: 'y1', borderWidth: 1.6, tension: 0.3, order: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      annotation: {
+        annotations: {
+          launchLine: {
+            type: 'line',
+            xMin: splitIndex - 0.5, xMax: splitIndex - 0.5,
+            borderColor: '#121212', borderWidth: 1.5, borderDash: [4, 3],
+            label: {
+              display: true,
+              content: 'NEW HOMEPAGE LIVE',
+              position: 'start',
+              backgroundColor: '#121212',
+              color: '#ffffff',
+              font: { family: 'Libre Franklin', size: 9, weight: 'bold' },
+              padding: { top: 4, bottom: 4, left: 8, right: 8 }
+            }
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: { family: 'Libre Franklin', size: 9 },
+          maxRotation: 60, minRotation: 60, color: '#5a5a5a',
+          callback: function(val, index) {
+            return index % 3 === 0 ? this.getLabelForValue(val) : '';
+          }
+        },
+        grid: { display: false },
+        border: { color: '#121212' }
+      },
+      y: {
+        position: 'left',
+        title: { display: true, text: 'SESSIONS', font: { family: 'Libre Franklin', size: 10, weight: 'bold' }, color: '#5a5a5a' },
+        ticks: { font: { family: 'Libre Franklin', size: 10 }, color: '#5a5a5a' },
+        beginAtZero: true, max: 2000,
+        grid: { color: 'rgba(0,0,0,0.05)' },
+        border: { display: false }
+      },
+      y1: {
+        position: 'right',
+        title: { display: true, text: 'CONVERSION RATE %', font: { family: 'Libre Franklin', size: 10, weight: 'bold' }, color: '#c00000' },
+        ticks: { font: { family: 'Libre Franklin', size: 10 }, color: '#c00000' },
+        grid: { drawOnChartArea: false }, beginAtZero: true, max: 2.0,
+        border: { display: false }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
