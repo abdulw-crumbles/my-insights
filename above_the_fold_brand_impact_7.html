@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Above the Fold · Brand Impact on Demand</title>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{zoom:1.25;}
+:root{
+  --ink:#121212;--paper:#fff;--red:#c00000;--orange:#c54a1c;
+  --green:#16a34a;--grey:#bdbdbd;--dim:#555;--faint:#888;--light:#e8e8e8;--bg:#f6f6f4;
+  --serif:'Frank Ruhl Libre',Georgia,serif;
+  --sans:'Libre Franklin',Arial,sans-serif;
+}
+body{font-family:var(--serif);background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;font-feature-settings:"kern" 1;}
+
+/* ── STICKY CHROME ───────────────────────────────────────── */
+.masthead{position:sticky;top:0;z-index:100;background:var(--paper);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:6px 40px;border-bottom:2px solid var(--ink);}
+.pub-name{font-family:var(--serif);font-style:italic;font-size:16px;font-weight:900;}
+.pub-sub{font-family:var(--sans);font-size:10px;color:var(--faint);margin-left:5px;}
+.issue-tag{font-family:var(--sans);font-size:9px;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--faint);}
+
+.tab-bar{position:sticky;top:34px;z-index:99;background:var(--paper);
+  display:flex;padding:0 40px;border-bottom:1px solid var(--light);}
+.tab-btn{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:1.4px;
+  text-transform:uppercase;padding:7px 14px;background:none;border:none;
+  border-bottom:2px solid transparent;cursor:pointer;color:#aaa;
+  margin-bottom:-1px;transition:color .15s,border-color .15s;white-space:nowrap;}
+.tab-btn:hover{color:var(--ink);}
+.tab-btn.active{color:var(--ink);border-bottom-color:var(--ink);}
+
+/* ── SLIDES ──────────────────────────────────────────────── */
+.slide{display:none;}
+.slide.active{display:block;}
+#slide-impact{padding:0 40px 60px;}
+.other-slide{padding:18px 40px 18px;}
+
+/* ── HERO ────────────────────────────────────────────────── */
+.hero{padding:22px 0 16px;}
+.kicker{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--red);margin-bottom:5px;}
+h1.hed{font-family:var(--serif);font-size:30px;font-weight:900;
+  line-height:1.1;letter-spacing:-.5px;margin-bottom:5px;max-width:820px;}
+h1.hed em{font-style:normal;color:var(--orange);}
+.subhed{font-family:var(--serif);font-style:italic;font-size:15px;
+  color:var(--dim);line-height:1.5;max-width:680px;}
+
+/* ── KPI STRIP ───────────────────────────────────────────── */
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  margin-bottom:0;}
+.kpi-c{padding:10px 18px;border-right:1px solid var(--light);}
+.kpi-c:last-child{border-right:none;}
+.kpi-lbl{font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--faint);margin-bottom:2px;}
+.kpi-row-inner{display:flex;align-items:baseline;gap:8px;}
+.kpi-val{font-family:var(--serif);font-size:24px;font-weight:900;line-height:1;
+  font-feature-settings:"tnum" 1;color:var(--ink);}
+.kpi-chg{font-family:var(--sans);font-size:11px;font-weight:700;
+  font-feature-settings:"tnum" 1;}
+.kpi-chg.up{color:var(--green);}
+.kpi-chg.dn{color:var(--red);}
+.kpi-base{font-family:var(--sans);font-size:9px;color:var(--dim);margin-top:1px;}
+
+/* ── SECTION ─────────────────────────────────────────────── */
+.sec{margin-top:28px;}
+.sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.sec-tag{font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--red);white-space:nowrap;}
+.sec-rule{flex:1;height:1px;background:var(--light);}
+.sec-title{font-family:var(--serif);font-size:18px;font-weight:900;
+  letter-spacing:-.3px;margin-bottom:4px;}
+.sec-note{font-family:var(--sans);font-size:10.5px;color:var(--dim);
+  line-height:1.5;margin-bottom:12px;max-width:820px;}
+
+/* ── FUNNEL TABLE ────────────────────────────────────────── */
+.ftable{width:100%;border-collapse:collapse;font-feature-settings:"tnum" 1;}
+.ftable colgroup col{width:auto;}
+.ftable thead tr{border-bottom:2px solid var(--ink);}
+.ftable th{font-family:var(--sans);font-size:8px;font-weight:700;
+  letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);
+  padding:5px 10px;text-align:right;}
+.ftable th:first-child{text-align:left;}
+.ftable th.lft{text-align:left;}
+.ftable tbody tr{border-bottom:1px solid #ebebeb;}
+.ftable tbody tr:last-child{border-bottom:2px solid var(--ink);}
+.ftable tr.rate{background:#fafafa;}
+.ftable td{font-family:var(--sans);font-size:11px;padding:5px 10px;
+  text-align:right;font-feature-settings:"tnum" 1;color:var(--ink);}
+.ftable td:first-child{font-family:var(--serif);font-size:11.5px;
+  font-weight:700;text-align:left;color:var(--ink);}
+/* Baseline: visible but clearly "old" */
+.ftable td.bl{color:var(--dim);font-weight:400;}
+/* Current: bold black */
+.ftable td.cr{color:var(--ink);font-weight:700;}
+/* Deltas */
+.ftable td.up{color:var(--green);font-weight:700;}
+.ftable td.dn{color:var(--red);font-weight:700;}
+/* Signal note */
+.ftable td.sig{font-family:var(--sans);font-size:9px;color:var(--orange);
+  text-align:left;font-style:italic;}
+/* Delta bar cell */
+.dbar{display:flex;align-items:center;gap:5px;justify-content:flex-end;}
+.dbar-track{width:50px;height:4px;background:#ebebeb;border-radius:2px;flex-shrink:0;}
+.dbar-fill{height:100%;border-radius:2px;}
+
+/* ── TWO COL ─────────────────────────────────────────────── */
+.g2{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:start;}
+.g2r{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+
+/* ── CHART FIGURE ────────────────────────────────────────── */
+.fig-lbl{font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--faint);margin-bottom:2px;}
+.fig-ttl{font-family:var(--serif);font-size:13px;font-weight:700;
+  margin-bottom:8px;line-height:1.3;color:var(--ink);}
+.chart-wrap{position:relative;width:100%;}
+.leg{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;
+  font-family:var(--sans);font-size:9px;color:var(--dim);}
+.leg-i{display:flex;align-items:center;gap:4px;}
+.leg-s{width:10px;height:6px;border-radius:1px;flex-shrink:0;}
+.leg-l{width:16px;height:2px;flex-shrink:0;}
+
+/* ── PERIOD TABLE (quality) ──────────────────────────────── */
+.ptbl{width:100%;border-collapse:collapse;font-feature-settings:"tnum" 1;margin-top:6px;}
+.ptbl th{font-family:var(--sans);font-size:8px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;color:var(--faint);
+  padding:5px 8px;border-bottom:2px solid var(--ink);text-align:right;}
+.ptbl th:first-child{text-align:left;}
+.ptbl td{font-family:var(--sans);font-size:10.5px;padding:5px 8px;
+  text-align:right;color:var(--ink);font-feature-settings:"tnum" 1;
+  border-bottom:1px solid #ebebeb;}
+.ptbl td:first-child{font-family:var(--serif);font-size:11px;
+  font-weight:700;text-align:left;}
+.ptbl tr:last-child td{border-bottom:2px solid var(--ink);}
+.ptbl td.gr{color:var(--green);font-weight:700;}
+.ptbl td.rd{color:var(--red);font-weight:700;}
+.ptbl td.dim{color:var(--dim);font-weight:400;}
+
+/* ── CALLOUT ─────────────────────────────────────────────── */
+.note{border-left:3px solid var(--ink);padding:6px 12px;margin:10px 0;}
+.note-tag{font-family:var(--sans);font-size:8px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:2px;}
+.note p{font-family:var(--serif);font-style:italic;font-size:12px;
+  line-height:1.5;color:var(--dim);}
+
+/* ── INFLECTION TABLE ────────────────────────────────────── */
+.itbl{width:100%;border-collapse:collapse;font-feature-settings:"tnum" 1;}
+.itbl thead tr{border-bottom:2px solid var(--ink);}
+.itbl th{font-family:var(--sans);font-size:8px;font-weight:700;
+  letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);
+  padding:5px 10px;text-align:right;}
+.itbl th:first-child,.itbl th:nth-child(2){text-align:left;}
+.itbl tbody tr{border-bottom:1px solid #ebebeb;}
+.itbl tbody tr:last-child{border-bottom:2px solid var(--ink);}
+.itbl td{font-family:var(--sans);font-size:10.5px;padding:5px 10px;
+  text-align:right;color:var(--ink);font-feature-settings:"tnum" 1;}
+.itbl td:first-child{font-family:var(--serif);font-size:11px;font-weight:700;text-align:left;}
+.itbl td:nth-child(2){text-align:left;}
+.etag{display:inline-flex;align-items:center;font-family:var(--sans);font-size:7.5px;
+  font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:2px 6px;border-radius:2px;white-space:nowrap;gap:3px;}
+.etag-or{background:#fff1ec;color:var(--orange);border:1px solid #f8c9b4;}
+.etag-bk{background:#f2f2f2;color:var(--ink);border:1px solid #ddd;}
+.ath{color:var(--orange);font-weight:700;}
+
+/* ── MULTI-KPI SELECTOR ──────────────────────────────────── */
+.kpi-sel{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.ksel{font-family:var(--sans);border:1.5px solid #e0e0e0;background:#fff;
+  cursor:pointer;padding:8px 14px;border-radius:3px;text-align:left;
+  transition:all .15s;min-width:100px;}
+.ksel:hover{border-color:#999;}
+.ksel.active{border:2px solid var(--ink);background:var(--ink);}
+.ksb-l{font-size:7.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--faint);margin-bottom:2px;}
+.ksel.active .ksb-l{color:rgba(255,255,255,.5);}
+.ksb-v{font-family:var(--serif);font-size:18px;font-weight:900;line-height:1;
+  color:var(--ink);font-feature-settings:"tnum" 1;}
+.ksel.active .ksb-v{color:#fff;}
+.ksb-c{font-size:9.5px;font-weight:700;margin-top:1px;font-feature-settings:"tnum" 1;}
+.ksb-c.up{color:var(--green);}
+.ksb-c.dn{color:var(--red);}
+.ksel.active .ksb-c.up{color:#4ade80;}
+.ksel.active .ksb-c.dn{color:#fca5a5;}
+.ksb-b{font-size:8px;color:#bbb;margin-top:1px;}
+.ksel.active .ksb-b{color:rgba(255,255,255,.35);}
+
+/* ── SHARED: other tabs ──────────────────────────────────── */
+.deck{font-family:var(--serif);font-size:14px;color:var(--dim);line-height:1.5;
+  max-width:720px;margin-bottom:12px;}
+.mini-head{font-family:var(--sans);font-size:8px;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--faint);
+  margin-bottom:6px;padding-bottom:3px;border-bottom:1px solid #eee;}
+.tbl{width:100%;border-collapse:collapse;font-family:var(--sans);
+  font-size:10.5px;font-feature-settings:"tnum" 1;}
+.tbl th{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--faint);padding:5px 8px;border-bottom:1px solid #ddd;text-align:right;}
+.tbl th:first-child{text-align:left;}
+.tbl td{padding:5px 8px;border-bottom:1px solid #f0f0f0;text-align:right;color:var(--ink);}
+.tbl td:first-child{text-align:left;font-weight:600;}
+.tbl tr:last-child td{border-bottom:2px solid var(--ink);}
+.t-up{color:var(--green)!important;font-weight:700;}
+.t-dn{color:var(--red)!important;font-weight:700;}
+.callout{border-left:3px solid var(--ink);padding:6px 10px;margin:8px 0;}
+.c-lbl{font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--red);margin-bottom:2px;}
+.callout p{font-family:var(--serif);font-style:italic;font-size:11.5px;
+  line-height:1.5;color:var(--dim);}
+.mc-row{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.mc-lbl{font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;color:var(--faint);width:60px;flex-shrink:0;}
+.mc-track{flex:1;height:3px;background:#f0f0f0;border-radius:2px;}
+.mc-fill{height:100%;border-radius:2px;}
+.mc-val{font-family:var(--sans);font-size:9px;font-weight:700;
+  font-feature-settings:"tnum" 1;min-width:34px;text-align:right;color:var(--ink);}
+.three-kpi{display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin-bottom:12px;}
+.kpi-card-sm{padding:8px 14px;border-right:1px solid var(--light);}
+.kpi-card-sm:last-child{border-right:none;}
+.pq{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  padding:8px 0;margin:10px 0;font-family:var(--serif);font-style:italic;
+  font-size:14px;line-height:1.4;text-align:center;}
+.pq em{color:var(--red);font-style:normal;}
+.h2-tab{font-family:var(--serif);font-size:28px;font-weight:900;
+  line-height:1.08;letter-spacing:-.5px;margin-bottom:5px;}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div><span class="pub-name">Above the Fold</span>
+    <span class="pub-sub">· A Multiplier Marketing Analytics Publication</span></div>
+  <span class="issue-tag">Issue 02 · Brand Impact · May 2026</span>
+</header>
+
+<!-- TABS -->
+<nav class="tab-bar">
+  <button class="tab-btn active" data-tab="impact">Impact at a Glance</button>
+  <button class="tab-btn" data-tab="funnel">Funnel &amp; Channels</button>
+  <button class="tab-btn" data-tab="segments">Region &amp; Product</button>
+  <button class="tab-btn" data-tab="seo">SEO &amp; Authority</button>
+  <button class="tab-btn" data-tab="timeline">Brand Timeline</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     TAB 1 — IMPACT AT A GLANCE
+══════════════════════════════════════════════════ -->
+<section class="slide active" id="slide-impact">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="kicker">Brand Impact · Jan 2024 – Apr 2026 · Marketing</div>
+    <h1 class="hed">32% more leads turned into <em>79% more MQLs</em> and <em>108% more SQLs</em>, generating 3× the pipeline per month.</h1>
+    <p class="subhed">The funnel didn't just get bigger — it got smarter at every stage.</p>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi-c">
+      <div class="kpi-lbl">Pipeline / Month</div>
+      <div class="kpi-row-inner">
+        <div class="kpi-val">$371K</div>
+        <div class="kpi-chg up">+203%</div>
+      </div>
+      <div class="kpi-base">was $122K/mo at baseline</div>
+    </div>
+    <div class="kpi-c">
+      <div class="kpi-lbl">MQL / Month</div>
+      <div class="kpi-row-inner">
+        <div class="kpi-val">620</div>
+        <div class="kpi-chg up">+79%</div>
+      </div>
+      <div class="kpi-base">was 346/mo at baseline</div>
+    </div>
+    <div class="kpi-c">
+      <div class="kpi-lbl">SQL / Month</div>
+      <div class="kpi-row-inner">
+        <div class="kpi-val">332</div>
+        <div class="kpi-chg up">+108%</div>
+      </div>
+      <div class="kpi-base">was 160/mo at baseline</div>
+    </div>
+    <div class="kpi-c">
+      <div class="kpi-lbl">Revenue / Month</div>
+      <div class="kpi-row-inner">
+        <div class="kpi-val">$66K</div>
+        <div class="kpi-chg up">+93%</div>
+      </div>
+      <div class="kpi-base">was $34K/mo at baseline</div>
+    </div>
+  </div>
+
+  <!-- TABLE 1: FULL FUNNEL -->
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-tag">Full Funnel Comparison</span><div class="sec-rule"></div></div>
+    <div class="sec-title">Baseline vs Current — Every Stage</div>
+    <p class="sec-note">Baseline = Jan–Jun 2024 (6 months, pre-brand). Current = Jan–Apr 2026 (4 months, compounding). Per-month averages. ⚑ flags are timing artifacts, not structural regressions.</p>
+
+    <table class="ftable">
+      <colgroup>
+        <col style="width:160px">
+        <col style="width:110px">
+        <col style="width:110px">
+        <col style="width:130px">
+        <col style="width:70px">
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Baseline</th>
+          <th>Current</th>
+          <th style="text-align:right">Delta</th>
+          <th style="text-align:right">Visual</th>
+          <th class="lft">Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Leads / Month</td>
+          <td class="bl">1,374</td><td class="cr">1,807</td>
+          <td class="up">+32%</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:32%;background:var(--green)"></div></div></div></td>
+          <td></td>
+        </tr>
+        <tr class="rate">
+          <td>Lead → MQL</td>
+          <td class="bl">25.2%</td><td class="cr">34.3%</td>
+          <td class="up">+9.1pp</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:80%;background:var(--green)"></div></div></div></td>
+          <td class="sig">Higher-intent leads</td>
+        </tr>
+        <tr>
+          <td>MQL / Month</td>
+          <td class="bl">346</td><td class="cr">620</td>
+          <td class="up">+79%</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:79%;background:var(--green)"></div></div></div></td>
+          <td></td>
+        </tr>
+        <tr class="rate">
+          <td>MQL → SQL</td>
+          <td class="bl">46.4%</td><td class="cr">53.6%</td>
+          <td class="up">+7.2pp</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:65%;background:var(--green)"></div></div></div></td>
+          <td class="sig">Better-fit demos</td>
+        </tr>
+        <tr>
+          <td>SQL / Month</td>
+          <td class="bl">160</td><td class="cr">332</td>
+          <td class="up">+108%</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:100%;background:var(--green)"></div></div></div></td>
+          <td></td>
+        </tr>
+        <tr class="rate">
+          <td>SQL → Win ⚑</td>
+          <td class="bl">22.0%</td><td class="cr">14.7%</td>
+          <td class="dn">–7.3pp</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:33%;background:var(--red)"></div></div></div></td>
+          <td class="sig">2026 pipeline too fresh</td>
+        </tr>
+        <tr>
+          <td>Wins / Month</td>
+          <td class="bl">35</td><td class="cr">49</td>
+          <td class="up">+40%</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:40%;background:var(--green)"></div></div></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Pipeline / Month</td>
+          <td class="bl">$122K</td><td class="cr">$371K</td>
+          <td class="up">+203%</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:100%;background:var(--green)"></div></div></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Revenue / Month</td>
+          <td class="bl">$34K</td><td class="cr">$66K</td>
+          <td class="up">+93%</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:93%;background:var(--green)"></div></div></div></td>
+          <td></td>
+        </tr>
+        <tr class="rate">
+          <td>Pipe → Revenue ⚑</td>
+          <td class="bl">28.0%</td><td class="cr">17.8%</td>
+          <td class="dn">–10.2pp</td>
+          <td><div class="dbar"><div class="dbar-track"><div class="dbar-fill" style="width:36%;background:var(--red)"></div></div></div></td>
+          <td class="sig">Revenue lags pipeline</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PIPELINE VOLUME + QUALITY -->
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-tag">Pipeline Volume &amp; Deal Quality</span><div class="sec-rule"></div></div>
+    <div class="g2">
+      <div>
+        <div class="sec-title">Each initiative lifted volume and deal value together</div>
+        <p class="sec-note">Bars = pipeline/mo per period. Orange line = pipeline per SQL (deal size proxy). Both grew — except the Website Refresh dip, which was the brand setting the foundation, not yet driving commercial signal.</p>
+        <div class="fig-lbl">Fig 1 — Pipeline/mo ($K) + Pipeline/SQL ($) by period</div>
+        <div class="chart-wrap" style="height:220px">
+          <canvas id="cPipe" role="img" aria-label="Pipeline per month and pipeline per SQL across 6 brand initiative periods"></canvas>
+        </div>
+        <div class="leg">
+          <div class="leg-i"><div class="leg-s" style="background:#bdbdbd"></div>Pipeline/mo ($K)</div>
+          <div class="leg-i"><div class="leg-l" style="background:#c54a1c"></div>Pipeline/SQL ($)</div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-title" style="font-size:15px">Period breakdown</div>
+        <p class="sec-note">Deal quality (pipeline/SQL) dipped at Web Refresh then compounded.</p>
+        <table class="ptbl">
+          <thead>
+            <tr>
+              <th style="text-align:left">Period</th>
+              <th>Pipe/mo</th><th>$/SQL</th><th>Quality Δ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Baseline</td><td class="dim">$122K</td><td class="dim">$763</td><td>—</td></tr>
+            <tr><td>Website Refresh</td><td>$109K</td><td class="rd">$630</td><td class="rd">–17%</td></tr>
+            <tr><td>Brand Manifesto</td><td>$180K</td><td>$952</td><td class="gr">+25%</td></tr>
+            <tr><td>Documentary</td><td>$260K</td><td>$1,048</td><td class="gr">+37%</td></tr>
+            <tr><td>HR Tech + Dest.</td><td>$271K</td><td>$1,059</td><td class="gr">+39%</td></tr>
+            <tr><td style="font-weight:900">Compounding</td>
+                <td class="gr" style="font-weight:700">$371K</td>
+                <td class="gr" style="font-weight:700">$1,118</td>
+                <td class="gr">+46%</td></tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <div class="note-tag">Quality signal</div>
+          <p>The Compounding period shows the highest pipeline/SQL at $1,118 — up from $763 at baseline. Volume and quality compounding together is the structural proof that brand investment is not just adding leads, it is improving each one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFLECTION MONTHS -->
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-tag">Key Inflection Months</span><div class="sec-rule"></div></div>
+    <div class="sec-title">The months where the trend moved materially</div>
+    <p class="sec-note">Raw monthly totals — not period averages. March 2026 is the all-time high on every metric.</p>
+    <table class="itbl">
+      <thead>
+        <tr>
+          <th>Month</th><th>Event</th>
+          <th>Leads</th><th>MQL</th><th>SQL</th><th>Pipeline</th><th>$/SQL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Jan 2024</td><td><span class="etag etag-bk">Baseline</span></td>
+            <td>2,085</td><td>179</td><td>149</td><td>$127K</td><td>$852</td></tr>
+        <tr><td>Jun 2024</td><td><span class="etag etag-or">Web Refresh</span></td>
+            <td>752</td><td>365</td><td>185</td><td>$155K</td><td>$838</td></tr>
+        <tr><td>Jan 2025</td><td><span class="etag etag-or">Brand Manifesto</span></td>
+            <td>1,380</td><td>423</td><td>174</td><td>$138K</td><td>$793</td></tr>
+        <tr><td>May 2025</td><td><span class="etag etag-or">Pipeline inflection</span></td>
+            <td>1,268</td><td>376</td><td>193</td><td>$242K</td><td>$1,254</td></tr>
+        <tr><td>Sep 2025</td><td><span class="etag etag-or">Beyond Borders peak</span></td>
+            <td style="color:var(--orange);font-weight:700">3,273 ⚑</td><td>641</td><td>278</td><td>$327K</td><td>$1,176</td></tr>
+        <tr><td>Oct 2025</td><td><span class="etag etag-or">Post HR Tech LV</span></td>
+            <td>1,600</td><td>506</td><td>246</td><td>$349K</td><td>$1,419</td></tr>
+        <tr><td>Dec 2025</td><td><span class="etag etag-bk">Compounding</span></td>
+            <td>999</td><td>558</td><td>320</td><td>$272K</td><td>$851</td></tr>
+        <tr><td>Feb 2026</td><td><span class="etag etag-bk">Compounding</span></td>
+            <td>1,207</td><td>643</td><td>335</td><td>$375K</td><td>$1,119</td></tr>
+        <tr><td>Mar 2026</td><td><span class="etag etag-or">All-time high</span></td>
+            <td class="ath">1,862</td><td class="ath">688</td><td class="ath">401</td>
+            <td class="ath">$553K</td><td class="ath">$1,379</td></tr>
+      </tbody>
+    </table>
+    <p style="font-family:var(--sans);font-size:9px;color:var(--orange);margin-top:5px">⚑ Sep 2025 leads spike (3,273) is a likely bulk import anomaly — consistent with similar spikes in Dec 2024 (5,221). MQL, SQL and pipeline for the same month are genuine.</p>
+  </div>
+
+  <!-- MULTI-KPI TREND -->
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-tag">28-Month Trend</span><div class="sec-rule"></div></div>
+    <div class="sec-title">Select a KPI — Full Monthly Trend</div>
+    <p class="sec-note">Click any metric to update the chart. Vertical lines mark brand initiatives. Grey band is the pre-brand baseline window.</p>
+
+    <div class="kpi-sel" id="kpiSel">
+      <button class="ksel" data-kpi="leads">
+        <div class="ksb-l">Leads / Month</div>
+        <div class="ksb-v">1,807</div>
+        <div class="ksb-c up">+32% vs baseline</div>
+        <div class="ksb-b">was 1,374/mo</div>
+      </button>
+      <button class="ksel active" data-kpi="mql">
+        <div class="ksb-l">MQL / Month</div>
+        <div class="ksb-v">620</div>
+        <div class="ksb-c up">+79% vs baseline</div>
+        <div class="ksb-b">was 346/mo</div>
+      </button>
+      <button class="ksel" data-kpi="sql">
+        <div class="ksb-l">SQL / Month</div>
+        <div class="ksb-v">332</div>
+        <div class="ksb-c up">+108% vs baseline</div>
+        <div class="ksb-b">was 160/mo</div>
+      </button>
+      <button class="ksel" data-kpi="pipe">
+        <div class="ksb-l">Pipeline / Month</div>
+        <div class="ksb-v">$371K</div>
+        <div class="ksb-c up">+203% vs baseline</div>
+        <div class="ksb-b">was $122K/mo</div>
+      </button>
+      <button class="ksel" data-kpi="rev">
+        <div class="ksb-l">Revenue / Month</div>
+        <div class="ksb-v">$66K</div>
+        <div class="ksb-c up">+93% vs baseline</div>
+        <div class="ksb-b">was $34K/mo</div>
+      </button>
+      <button class="ksel" data-kpi="pps">
+        <div class="ksb-l">Pipeline / SQL</div>
+        <div class="ksb-v">$1,118</div>
+        <div class="ksb-c up">+46% vs baseline</div>
+        <div class="ksb-b">was $763</div>
+      </button>
+    </div>
+
+    <div class="fig-lbl" id="tFigLbl">MQL/month — Jan 2024 to Apr 2026</div>
+    <div class="chart-wrap" style="height:280px">
+      <canvas id="cTrend" role="img" aria-label="Monthly KPI trend with brand initiative annotations"></canvas>
+    </div>
+    <div class="leg" style="margin-top:8px">
+      <div class="leg-i"><div class="leg-l" style="background:#121212"></div>Selected metric</div>
+      <div class="leg-i"><div style="width:14px;height:2px;border-top:2px dashed #bdbdbd"></div>Brand initiative</div>
+      <div class="leg-i"><div style="width:12px;height:10px;background:rgba(189,189,189,.18);border-radius:1px"></div>Baseline window</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════════
+     TABS 2–5
+══════════════════════════════════════════════════ -->
+<section class="slide" id="slide-funnel"><div class="other-slide">
+
+  <!-- PART 1: THE FUNNEL -->
+  <div class="kicker">Funnel Analysis · Baseline vs Current · Marketing</div>
+  <h1 class="h2-tab">The Funnel Got Deeper at Every Stage</h1>
+  <p class="deck">Volume grew, but conversion rates grew too. Lead to MQL improved 9pp. MQL to SQL improved 7pp. Brand is pre-qualifying demand before it hits the form.</p>
+  <div class="g2" style="margin-bottom:0">
+    <div>
+      <div class="fig-lbl">Funnel per month: Baseline vs Current</div>
+      <div class="fig-ttl">Every stage improved. 108% SQL lift is volume and quality compounding together.</div>
+      <div class="chart-wrap" style="height:230px"><canvas id="c2" role="img" aria-label="Funnel grouped bars"></canvas></div>
+      <div class="leg"><div class="leg-i"><div class="leg-s" style="background:#bdbdbd"></div>Baseline</div><div class="leg-i"><div class="leg-s" style="background:#121212"></div>Current</div></div>
+    </div>
+    <div>
+      <div class="mini-head">Conversion rates</div>
+      <table class="tbl" style="margin-bottom:10px">
+        <thead><tr><th style="text-align:left">Stage</th><th>Baseline</th><th>Current</th><th>Delta</th></tr></thead>
+        <tbody>
+          <tr><td>Lead → MQL</td><td>25.2%</td><td>34.3%</td><td class="t-up">+9.1pp</td></tr>
+          <tr><td>MQL → SQL</td><td>46.4%</td><td>53.6%</td><td class="t-up">+7.2pp</td></tr>
+          <tr><td>SQL → Win ⚑</td><td>22.0%</td><td>14.7%</td><td class="t-dn">–7.3pp</td></tr>
+          <tr><td>Pipe → Rev ⚑</td><td>28.0%</td><td>17.8%</td><td class="t-dn">–10.2pp</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><div class="c-lbl">Worth investigating</div><p>SQL→Win and Pipe→Revenue both fell. Timing artifact — 2026 pipeline is too fresh to close. Compare full-year 2024 and 2025 cohorts before drawing conclusions.</p></div>
+      <div style="margin-top:12px"><div class="mini-head">Volume per month</div>
+        <div class="mc-row"><div class="mc-lbl">Leads</div><div class="mc-track"><div class="mc-fill" style="width:76%;background:#bdbdbd"></div></div><div class="mc-val" style="color:var(--dim)">1,374</div><div class="mc-track"><div class="mc-fill" style="width:100%;background:#121212"></div></div><div class="mc-val">1,807</div></div>
+        <div class="mc-row"><div class="mc-lbl">MQL</div><div class="mc-track"><div class="mc-fill" style="width:56%;background:#bdbdbd"></div></div><div class="mc-val" style="color:var(--dim)">346</div><div class="mc-track"><div class="mc-fill" style="width:100%;background:#121212"></div></div><div class="mc-val">620</div></div>
+        <div class="mc-row"><div class="mc-lbl">SQL</div><div class="mc-track"><div class="mc-fill" style="width:48%;background:#bdbdbd"></div></div><div class="mc-val" style="color:var(--dim)">160</div><div class="mc-track"><div class="mc-fill" style="width:100%;background:#121212"></div></div><div class="mc-val">332</div></div>
+        <div class="mc-row"><div class="mc-lbl">Pipeline</div><div class="mc-track"><div class="mc-fill" style="width:33%;background:#bdbdbd"></div></div><div class="mc-val" style="color:var(--dim)">$122K</div><div class="mc-track"><div class="mc-fill" style="width:100%;background:#121212"></div></div><div class="mc-val">$371K</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="margin:32px 0 28px;border-top:2px solid var(--ink);display:flex;align-items:center;gap:10px;padding-top:12px">
+    <span style="font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);white-space:nowrap">Channel Shift</span>
+    <div style="flex:1;height:1px;background:var(--light)"></div>
+  </div>
+
+  <!-- PART 2: CHANNEL SHIFT -->
+  <h1 class="h2-tab" style="font-size:24px;margin-bottom:4px">Pull Overtook Paid as the Pipeline Engine</h1>
+  <p class="deck" style="margin-bottom:12px">Pull (Organic + Direct) owned 42% of pipeline at baseline. It now owns 57%. Paid grew 78% but lost share. Field Marketing went from near-zero to $42K/mo.</p>
+
+  <div class="three-kpi" style="margin-bottom:16px">
+    <div class="kpi-card-sm"><div style="font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--faint);margin-bottom:2px">Pull (Organic + Direct)</div><div style="display:flex;align-items:baseline;gap:6px"><div style="font-family:var(--serif);font-size:20px;font-weight:900;color:var(--ink)">$201K</div><div style="font-family:var(--sans);font-size:11px;color:var(--green);font-weight:700">+324%</div></div><div style="font-family:var(--sans);font-size:9px;color:var(--dim)">Pipeline/mo · was $47K</div></div>
+    <div class="kpi-card-sm" style="border-left:1px solid var(--light)"><div style="font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--faint);margin-bottom:2px">Paid</div><div style="display:flex;align-items:baseline;gap:6px"><div style="font-family:var(--serif);font-size:20px;font-weight:900;color:var(--ink)">$109K</div><div style="font-family:var(--sans);font-size:11px;color:var(--green);font-weight:700">+78%</div></div><div style="font-family:var(--sans);font-size:9px;color:var(--dim)">Pipeline/mo · was $62K</div></div>
+    <div class="kpi-card-sm" style="border-left:1px solid var(--light)"><div style="font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--faint);margin-bottom:2px">Field Marketing</div><div style="display:flex;align-items:baseline;gap:6px"><div style="font-family:var(--serif);font-size:20px;font-weight:900;color:var(--ink)">$42K</div><div style="font-family:var(--sans);font-size:11px;color:var(--green);font-weight:700">+879%</div></div><div style="font-family:var(--sans);font-size:9px;color:var(--dim)">Pipeline/mo · was $4K</div></div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div class="fig-lbl">Pipeline/mo by channel: Baseline vs Current</div>
+      <div class="fig-ttl">Pull tripled and flipped the mix from 42% to 57%.</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="c3" role="img" aria-label="Channel pipeline bars"></canvas></div>
+      <div class="leg"><div class="leg-i"><div class="leg-s" style="background:#bdbdbd"></div>Baseline</div><div class="leg-i"><div class="leg-s" style="background:#121212"></div>Current</div></div>
+    </div>
+    <div>
+      <div class="mini-head">Pipeline per MQL — efficiency</div>
+      <table class="tbl" style="margin-bottom:10px">
+        <thead><tr><th style="text-align:left">Channel</th><th>MQL/mo</th><th>Pipe/MQL</th><th>vs Base</th></tr></thead>
+        <tbody>
+          <tr><td>Pull</td><td>260</td><td>$773</td><td class="t-up">+112%</td></tr>
+          <tr><td>Paid</td><td>288</td><td>$380</td><td class="t-up">+19%</td></tr>
+          <tr><td>Field Mktg</td><td>47</td><td>$883</td><td class="t-up">+66%</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><div class="c-lbl">Paid efficiency signal</div><p>Paid leads peaked at 898/mo in Oct 2024 on $46K pipeline. They now run at ~450/mo with $87–139K pipeline. Less volume, more output. Brand-warmed audiences convert better on paid.</p></div>
+      <div class="callout" style="margin-top:8px"><div class="c-lbl">Pipeline mix shift</div><p>Baseline: Pull 42%, Paid 54%, Field 4%. Current: Pull 57%, Paid 31%, Field 12%. Pipeline is no longer dependent on ad spend.</p></div>
+    </div>
+  </div>
+
+</div></section>
+
+<!-- BRAND TIMELINE -->
+<section class="slide" id="slide-timeline"><div class="other-slide">
+  <div class="kicker">Brand Narrative · 5 Moments · Jan 2024 – Dec 2025</div>
+  <h1 class="h2-tab">Five Initiatives. One Compounding Arc.</h1>
+  <p class="deck" style="margin-bottom:28px">Each initiative built on the last. None was a standalone campaign. Together they shifted how the market encounters Multiplier — and the demand data reflects it.</p>
+
+  <div style="position:relative;padding-left:28px;border-left:2px solid var(--ink);">
+
+    <!-- 1 -->
+    <div style="position:relative;margin-bottom:36px;">
+      <div style="position:absolute;left:-35px;top:5px;width:12px;height:12px;background:var(--ink);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--ink);"></div>
+      <div style="display:inline-block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--ink);color:#fff;padding:2px 8px;border-radius:2px;margin-bottom:6px;">Jul 2024</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:900;color:var(--ink);margin-bottom:2px;letter-spacing:-.3px;">Website Refresh</div>
+      <div style="font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.5px;color:var(--faint);margin-bottom:7px;text-transform:uppercase;">World Without Limits — brand promise, ungated assets, new identity</div>
+      <p style="font-family:var(--serif);font-size:13.5px;color:var(--dim);line-height:1.6;max-width:680px;">First brand initiative. Introduced the brand philosophy and removed friction from the website. This was the foundation, not a growth moment — but it set the conditions for everything that followed.</p>
+    </div>
+
+    <!-- 2 -->
+    <div style="position:relative;margin-bottom:36px;">
+      <div style="position:absolute;left:-35px;top:5px;width:12px;height:12px;background:var(--orange);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--orange);"></div>
+      <div style="display:inline-block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--orange);color:#fff;padding:2px 8px;border-radius:2px;margin-bottom:6px;">Jan 2025</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:900;color:var(--ink);margin-bottom:2px;letter-spacing:-.3px;">Brand Manifesto</div>
+      <div style="font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.5px;color:var(--faint);margin-bottom:7px;text-transform:uppercase;">The 'why we exist' moment</div>
+      <p style="font-family:var(--serif);font-size:13.5px;color:var(--dim);line-height:1.6;max-width:680px;">Gave the market a narrative to latch onto. SQLs climbed 20% above baseline, and pipeline jumped 39% — the first real commercial signal that brand was translating into demand quality, not just awareness.</p>
+    </div>
+
+    <!-- 3 -->
+    <div style="position:relative;margin-bottom:36px;">
+      <div style="position:absolute;left:-35px;top:5px;width:12px;height:12px;background:var(--orange);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--orange);"></div>
+      <div style="display:inline-block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--orange);color:#fff;padding:2px 8px;border-radius:2px;margin-bottom:6px;">Jun 2025</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:900;color:var(--ink);margin-bottom:2px;letter-spacing:-.3px;">CNBC Documentary</div>
+      <div style="font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.5px;color:var(--faint);margin-bottom:7px;text-transform:uppercase;">8-minute documentary on CNBC — the credibility moment</div>
+      <p style="font-family:var(--serif);font-size:13.5px;color:var(--dim);line-height:1.6;max-width:680px;">This is the inflection point. Inbound surged to 324 contacts in June alone — from an average of under 20. People sought us out. Paid search didn't do this. The documentary did.</p>
+    </div>
+
+    <!-- 4 -->
+    <div style="position:relative;margin-bottom:36px;">
+      <div style="position:absolute;left:-35px;top:5px;width:12px;height:12px;background:var(--orange);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--orange);"></div>
+      <div style="display:inline-block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--orange);color:#fff;padding:2px 8px;border-radius:2px;margin-bottom:6px;">Jul 2025</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:900;color:var(--ink);margin-bottom:2px;letter-spacing:-.3px;">Beyond Borders Series</div>
+      <div style="font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.5px;color:var(--faint);margin-bottom:7px;text-transform:uppercase;">4-part thought leadership series, amplified pre/during/post</div>
+      <p style="font-family:var(--serif);font-size:13.5px;color:var(--dim);line-height:1.6;max-width:680px;">Sustained amplification across all channels. The pre/during/post architecture meant the signal lasted multiple months rather than spiking and dying. Direct traffic began its sustained climb — brand recall, not retargeting.</p>
+    </div>
+
+    <!-- 5 -->
+    <div style="position:relative;margin-bottom:0;">
+      <div style="position:absolute;left:-35px;top:5px;width:12px;height:12px;background:var(--red);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--red);"></div>
+      <div style="display:inline-block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 8px;border-radius:2px;margin-bottom:6px;">Sep 2025</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:900;color:var(--ink);margin-bottom:2px;letter-spacing:-.3px;">HR Tech LV + Destination Multiplier</div>
+      <div style="font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.5px;color:var(--faint);margin-bottom:7px;text-transform:uppercase;">Biggest brand event — HR Tech Las Vegas launch</div>
+      <p style="font-family:var(--serif);font-size:13.5px;color:var(--dim);line-height:1.6;max-width:680px;">The demand data shows the biggest and most durable commercial lift. SQLs hit all-time high. Pipeline in Oct–Dec 2025 ran 143% above baseline. And crucially — these numbers didn't fall back. The floor permanently rose.</p>
+    </div>
+
+  </div>
+</div></section>
+
+<section class="slide" id="slide-segments"><div class="other-slide">
+  <div class="kicker">Segment Analysis · Region &amp; Product · Marketing</div>
+  <h1 class="h2-tab">EMEA Opened Up. EOR Compounded. GP Stalled.</h1>
+  <p class="deck">Brand investment did not lift all segments equally. EMEA MQL tripled. EOR doubled. GP went nowhere across every region.</p>
+  <div class="g2r">
+    <div>
+      <div class="fig-lbl">MQL/mo by region — 6 periods</div>
+      <div class="fig-ttl">EMEA grew fastest. NAMER spiked on documentary. APAC compounded steadily.</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="c4" role="img" aria-label="Region MQL trend lines"></canvas></div>
+      <div class="leg"><div class="leg-i"><div class="leg-l" style="background:#121212"></div>NAMER</div><div class="leg-i"><div class="leg-l" style="background:#888"></div>APAC</div><div class="leg-i"><div class="leg-l" style="background:#c54a1c"></div>EMEA</div></div>
+      <div style="margin-top:12px"><div class="mini-head">Region × Product — top 5</div>
+      <table class="tbl"><thead><tr><th style="text-align:left">Combination</th><th>Baseline/mo</th><th>Current/mo</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr><td>EMEA / EOR</td><td>51</td><td>142</td><td class="t-up">+178%</td></tr>
+        <tr><td>NAMER / EOR</td><td>74</td><td>121</td><td class="t-up">+64%</td></tr>
+        <tr><td>APAC / EOR</td><td>57</td><td>112</td><td class="t-up">+97%</td></tr>
+        <tr><td>NAMER / AOR</td><td>27</td><td>55</td><td class="t-up">+104%</td></tr>
+        <tr><td>APAC / GP</td><td>39</td><td>29</td><td class="t-dn">–26%</td></tr>
+      </tbody></table></div>
+    </div>
+    <div>
+      <div class="fig-lbl">MQL/mo by product: Baseline vs Current</div>
+      <div class="fig-ttl">EOR doubled. AOR grew. GP declined.</div>
+      <div class="chart-wrap" style="height:160px"><canvas id="c5" role="img" aria-label="Product MQL bars"></canvas></div>
+      <div class="leg" style="margin-bottom:10px"><div class="leg-i"><div class="leg-s" style="background:#bdbdbd"></div>Baseline</div><div class="leg-i"><div class="leg-s" style="background:#121212"></div>Current</div></div>
+      <div class="callout"><div class="c-lbl">The GP gap</div><p>GP MQL was 91/mo at baseline. It is 76/mo now — down 16% while total MQL grew 79%. GP buyers have a different discovery path that current initiatives are not reaching.</p></div>
+      <div class="callout" style="margin-top:8px"><div class="c-lbl">The EMEA signal</div><p>EMEA went from the smallest region (86 MQL/mo) to near-parity with NAMER (195 vs 228). HR Tech and Beyond Borders had global content reach that activated EMEA demand.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="slide" id="slide-seo"><div class="other-slide">
+  <div class="kicker">SEO &amp; Brand Authority · Ahrefs · Multiplier vs Field</div>
+  <h1 class="h2-tab">Authority Grew. The Organic Gap Remains Real.</h1>
+  <p class="deck">Domain Rating climbed 50 to 68 in 18 months. Top-3 keyword positions grew 52%. The gap to Deel and Rippling is narrowing but not closed.</p>
+  <div class="g2">
+    <div>
+      <div class="fig-lbl">Domain Rating &amp; Top-3 Keywords, Jan 2024 – Apr 2026</div>
+      <div class="fig-ttl">DR and premium rankings climbed from mid-2025, correlating with brand initiatives.</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="c6" role="img" aria-label="DR and top-3 keywords dual axis"></canvas></div>
+      <div class="leg"><div class="leg-i"><div class="leg-l" style="background:#121212"></div>Domain Rating (left)</div><div class="leg-i"><div class="leg-l" style="background:#c54a1c"></div>Top-3 Keywords (right)</div></div>
+    </div>
+    <div>
+      <div class="mini-head">Competitive positioning — organic (US, Apr 2026)</div>
+      <table class="tbl" style="margin-bottom:10px">
+        <thead><tr><th style="text-align:left">Domain</th><th>DR</th><th>Common KWs</th><th>Traffic est.</th></tr></thead>
+        <tbody>
+          <tr><td>Rippling</td><td>83</td><td>1,349</td><td>420K</td></tr>
+          <tr><td>Deel</td><td>80</td><td>1,381</td><td>120K</td></tr>
+          <tr><td>Remote</td><td>79</td><td>871</td><td class="t-dn">58K ↓47%</td></tr>
+          <tr><td>OysterHR</td><td>72</td><td>939</td><td>73K</td></tr>
+          <tr><td style="font-weight:900">Multiplier</td><td style="font-weight:900">68</td><td>—</td><td>~23K est.</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><div class="c-lbl">The opportunity</div><p>Remote.com traffic fell 47% (108K to 58K). Multiplier shares 6.3% keyword overlap with Remote — the highest of any EOR competitor. DR 68 is within striking distance of Remote's 79.</p></div>
+      <div class="callout" style="margin-top:8px"><div class="c-lbl">Ahrefs traffic caveat</div><p>Ahrefs estimates Multiplier organic traffic at ~23K/mo, down from 49K. A suspected Oct 2025 Ahrefs database change caused a cliff-edge drop in tracked keywords. Our Postgres Pull pipeline data grew 3x in the same window. GSC is the authoritative source.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<script>
+// TAB SWITCHING
+const inited={};
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const tab=btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('slide-'+tab).classList.add('active');
+    window.scrollTo(0,0);
+    if(!inited[tab]){buildChart(tab);inited[tab]=true;}
+  });
+});
+
+Chart.defaults.font.family="'Libre Franklin',Arial,sans-serif";
+Chart.defaults.font.size=9;
+Chart.defaults.color='#666';
+const INK='#121212',GREY='#bdbdbd',ORANGE='#c54a1c',GREEN='#16a34a',
+      RED='#c00000',LGREY='#e8e8e8';
+const xB={grid:{display:false},border:{display:false},ticks:{font:{size:9},color:'#666'}};
+const yB={grid:{color:LGREY},border:{display:false},ticks:{font:{size:9},color:'#666'}};
+const noL={legend:{display:false}};
+
+// Monthly data (28 months)
+const MO=['Jan\'24','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',
+          'Jan\'25','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',
+          'Jan\'26','Feb','Mar','Apr\'26'];
+const LEADS_D=[2085,784,2561,1186,874,752,1437,1482,1486,2473,1733,5221,1380,1395,1212,1792,1268,1720,1417,1422,3273,1600,1312,999,1144,1207,1862,3015];
+const MQL_D=[179,187,411,483,427,365,387,417,458,372,294,384,423,474,362,442,376,422,492,452,641,506,458,558,592,643,688,558];
+const SQL_D=[149,143,163,181,178,185,180,174,201,158,135,192,174,202,164,205,193,198,229,236,278,246,203,320,273,335,401,320];
+const PIPE_D=[127,113,144,126,116,155,103,105,126,93,91,135,138,125,177,196,242,201,255,197,327,349,192,272,285,375,553,272];
+const REV_D=[24,29,37,35,45,28,31,23,25,37,28,17,25,40,21,21,22,30,49,58,53,43,68,53,49,93,69,53];
+const PPS_D=PIPE_D.map((p,i)=>SQL_D[i]>0?Math.round(p*1000/SQL_D[i]):0);
+
+function ann(idx,lbl,col){
+  return{type:'line',scaleID:'x',value:idx,borderColor:col||'#ddd',
+    borderWidth:1,borderDash:[4,4],
+    label:{display:true,content:lbl,position:'start',
+      color:col||'#bbb',font:{size:8,family:"'Libre Franklin'"}}};
+}
+const ANNS={
+  a1:ann(6,'Web Refresh'),
+  a2:ann(12,'Manifesto'),
+  a3:ann(17,'CNBC Doc',ORANGE),
+  a4:ann(18,'Beyond Borders',ORANGE),
+  a5:ann(20,'HR Tech',RED)
+};
+const BBOX={type:'box',xMin:-.5,xMax:5.5,
+  backgroundColor:'rgba(189,189,189,.12)',borderColor:'transparent',
+  label:{display:true,content:'Baseline',position:{x:'start',y:'start'},
+    color:'#aaa',font:{size:8}}};
+
+// Pipeline quality chart
+(()=>{
+  const per=['Baseline','Web Refresh','Manifesto','Documentary','HR Tech','Compounding'];
+  const pipe=[122,109,180,260,271,371];
+  const pps=[763,630,952,1048,1059,1118];
+  const bc=['#e0e0e0','#ccc','#a0a0a0','#686868','#383838',INK];
+  new Chart(document.getElementById('cPipe'),{
+    data:{labels:per,datasets:[
+      {type:'bar',data:pipe,backgroundColor:bc,borderRadius:2,borderSkipped:false,yAxisID:'y',order:2},
+      {type:'line',data:pps,borderColor:ORANGE,backgroundColor:'transparent',borderWidth:2.5,
+       pointRadius:5,pointBackgroundColor:ORANGE,pointBorderColor:'#fff',pointBorderWidth:1.5,
+       yAxisID:'y1',order:1,tension:.2}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{...noL,
+        annotation:{annotations:{base:{type:'line',scaleID:'y',value:122,
+          borderColor:'#e0e0e0',borderWidth:1,borderDash:[5,4],
+          label:{display:true,content:'$122K baseline',position:'start',
+            color:'#aaa',font:{size:8,family:"'Libre Franklin'"}}}}},
+        tooltip:{callbacks:{label:ctx=>ctx.dataset.yAxisID==='y'?
+          `Pipeline: $${ctx.raw}K/mo`:`Per SQL: $${ctx.raw.toLocaleString()}`}}
+      },
+      scales:{
+        x:xB,
+        y:{...yB,type:'linear',position:'left',ticks:{...yB.ticks,callback:v=>'$'+v+'K'}},
+        y1:{type:'linear',position:'right',grid:{drawOnChartArea:false},border:{display:false},
+            ticks:{font:{size:9},color:ORANGE,callback:v=>'$'+v.toLocaleString()}}
+      }
+    }
+  });
+})();
+
+// Multi-KPI trend chart
+let tChart;
+const KPIS={
+  leads:{d:LEADS_D,lbl:'Leads/month',fmt:v=>v.toLocaleString(),fl:'Leads/month — Jan 2024 to Apr 2026'},
+  mql: {d:MQL_D, lbl:'MQL/month', fmt:v=>v.toLocaleString(), fl:'MQL/month — Jan 2024 to Apr 2026'},
+  sql: {d:SQL_D, lbl:'SQL/month', fmt:v=>v.toLocaleString(), fl:'SQL/month — Jan 2024 to Apr 2026'},
+  pipe:{d:PIPE_D,lbl:'Pipeline/mo ($K)',fmt:v=>'$'+v+'K', fl:'Pipeline/month — Jan 2024 to Apr 2026'},
+  rev: {d:REV_D, lbl:'Revenue/mo ($K)',fmt:v=>'$'+v+'K', fl:'Revenue/month — Jan 2024 to Apr 2026'},
+  pps: {d:PPS_D, lbl:'Pipeline/SQL ($)',fmt:v=>'$'+v.toLocaleString(),fl:'Pipeline per SQL — Jan 2024 to Apr 2026'}
+};
+function buildTrend(kpi){
+  const c=KPIS[kpi];
+  if(tChart)tChart.destroy();
+  tChart=new Chart(document.getElementById('cTrend'),{
+    type:'line',
+    data:{labels:MO,datasets:[{label:c.lbl,data:c.d,borderColor:INK,
+      backgroundColor:'transparent',borderWidth:2.5,pointRadius:0,
+      pointHoverRadius:5,pointHoverBackgroundColor:INK,tension:.3}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{...noL,
+        annotation:{annotations:{...ANNS,bbox:BBOX}},
+        tooltip:{mode:'index',intersect:false,
+          callbacks:{label:ctx=>`${c.lbl}: ${c.fmt(ctx.raw)}`}}
+      },
+      scales:{
+        x:{...xB,ticks:{...xB.ticks,maxTicksLimit:14,maxRotation:0}},
+        y:{...yB,ticks:{...yB.ticks,callback:v=>c.fmt(v)}}
+      }
+    }
+  });
+}
+(()=>{
+  buildTrend('mql');
+  document.getElementById('kpiSel').querySelectorAll('.ksel').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.ksel').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const kpi=btn.dataset.kpi;
+      document.getElementById('tFigLbl').textContent=KPIS[kpi].fl;
+      buildTrend(kpi);
+    });
+  });
+})();
+
+// Other tabs
+function buildChart(tab){
+  switch(tab){
+    case 'funnel':
+      new Chart(document.getElementById('c2'),{type:'bar',
+        data:{labels:['Leads/mo','MQL/mo','SQL/mo','Wins/mo'],
+          datasets:[{label:'Baseline',data:[1374,346,160,35],backgroundColor:GREY,borderRadius:2},
+                    {label:'Current', data:[1807,620,332,49],backgroundColor:INK,borderRadius:2}]},
+        options:{responsive:true,maintainAspectRatio:false,plugins:noL,scales:{x:xB,y:yB}}});
+      new Chart(document.getElementById('c3'),{type:'bar',
+        data:{labels:['Pull (Organic + Direct)','Paid','Field Marketing'],
+          datasets:[{label:'Baseline',data:[47,62,4],backgroundColor:GREY,borderRadius:2},
+                    {label:'Current', data:[201,109,42],backgroundColor:INK,borderRadius:2}]},
+        options:{responsive:true,maintainAspectRatio:false,plugins:noL,
+          scales:{x:xB,y:{...yB,ticks:{...yB.ticks,callback:v=>'$'+v+'K'}}}}});
+      break;
+    case 'timeline': break;
+    case 'segments':
+      const p6=['Baseline','Web Refresh','Manifesto','Documentary','HR Tech','Compounding'];
+      new Chart(document.getElementById('c4'),{type:'line',
+        data:{labels:p6,datasets:[
+          {label:'NAMER',data:[131,140,143,217,210,228],borderColor:INK,backgroundColor:'transparent',borderWidth:2,pointRadius:4,pointBackgroundColor:INK,tension:.25},
+          {label:'APAC',data:[110,133,153,129,157,196],borderColor:'#888',backgroundColor:'transparent',borderWidth:1.5,borderDash:[4,3],pointRadius:3,pointBackgroundColor:'#888',tension:.25},
+          {label:'EMEA',data:[86,78,89,106,167,195],borderColor:ORANGE,backgroundColor:'transparent',borderWidth:2,pointRadius:4,pointBackgroundColor:ORANGE,tension:.25}
+        ]},
+        options:{responsive:true,maintainAspectRatio:false,plugins:noL,
+          scales:{x:xB,y:{...yB,title:{display:true,text:'MQL/mo',font:{size:8},color:'#666'}}}}});
+      new Chart(document.getElementById('c5'),{type:'bar',
+        data:{labels:['EOR','GP','AOR'],
+          datasets:[{label:'Baseline',data:[185,91,48],backgroundColor:GREY,borderRadius:2},
+                    {label:'Current', data:[376,76,109],backgroundColor:INK,borderRadius:2}]},
+        options:{responsive:true,maintainAspectRatio:false,plugins:noL,scales:{x:xB,y:yB}}});
+      break;
+    case 'seo':
+      const m28=['Jan 24','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',
+                 'Jan 25','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',
+                 'Jan 26','Feb','Mar','Apr 26'];
+      const dr=[50,51,51,52,53,53,54,53,55,55,56,58,59,58,58,58,58,60,61,62,64,65,66,68,67,67,68,68];
+      const kw3=[1476,1334,1562,1662,1392,1233,1003,966,819,800,1055,945,866,1112,1535,1893,2187,2055,1998,2391,2541,2093,2355,2245,2066,1864,2436,2241];
+      const a6=(i,l)=>({type:'line',scaleID:'x',value:i,borderColor:'#ddd',borderWidth:1,borderDash:[4,4],label:{display:true,content:l,position:'start',color:'#bbb',font:{size:7.5,family:"'Libre Franklin'"}}});
+      new Chart(document.getElementById('c6'),{type:'line',
+        data:{labels:m28,datasets:[
+          {data:dr,borderColor:INK,backgroundColor:'transparent',borderWidth:2,pointRadius:0,tension:.3,yAxisID:'y'},
+          {data:kw3,borderColor:ORANGE,backgroundColor:'transparent',borderWidth:2,pointRadius:0,tension:.3,yAxisID:'y1'}
+        ]},
+        options:{responsive:true,maintainAspectRatio:false,
+          plugins:{...noL,annotation:{annotations:{a1:a6(6,'Web Refresh'),a2:a6(12,'Manifesto'),a3:a6(17,'Documentary'),a4:a6(20,'HR Tech')}}},
+          scales:{
+            x:{...xB,ticks:{...xB.ticks,maxTicksLimit:12,maxRotation:0}},
+            y:{...yB,type:'linear',position:'left',min:42,max:76,title:{display:true,text:'Domain Rating',color:'#666',font:{size:8}}},
+            y1:{type:'linear',position:'right',grid:{drawOnChartArea:false},border:{display:false},ticks:{font:{size:9},color:ORANGE},title:{display:true,text:'Top-3 Keywords',color:ORANGE,font:{size:8}}}
+          }
+        }
+      });
+      break;
+  }
+}
+inited['impact']=true;
+</script>
+</body>
+</html>
