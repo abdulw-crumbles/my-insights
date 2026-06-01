@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketing Funnel Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#efece3; --ink:#1b1a16; --muted:#8d877a;
+    --pos:#2f7d4f; --neg:#bf4a2f; --warn:#b07d28; --teal:#176b66;
+    --hair:rgba(27,26,22,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+  #viewport{position:relative;width:100%;height:100%;overflow:hidden;
+    background-image:radial-gradient(rgba(27,26,22,.06) 1px,transparent 1px);background-size:30px 30px;}
+  #world{position:absolute;left:0;top:0;transform-origin:0 0;transition:transform 1.15s cubic-bezier(.66,.01,.27,1);}
+  .node{position:absolute;transition:opacity .7s ease, transform .7s cubic-bezier(.5,.02,.3,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  .sources.active .card{animation:rise .6s both}
+  .sources.active .card:nth-child(2){animation-delay:.12s}
+  .sources.active .card:nth-child(3){animation-delay:.24s}
+
+  /* TITLE */
+  .titleblock{left:100px;top:40px;width:900px;text-align:center}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:15px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .titleblock h1{font-family:"Fraunces",serif;font-weight:500;font-size:60px;line-height:1.0;letter-spacing:-.015em;margin-top:14px}
+  .titleblock h1 em{font-style:italic;color:var(--teal)}
+  .titleblock .sub{font-size:20px;color:var(--muted);margin-top:14px}
+
+  /* FUNNEL */
+  .funnel{left:170px;top:235px;width:760px;height:880px}
+  .band-name{font-family:"IBM Plex Mono",monospace;font-size:15px;letter-spacing:.14em;text-transform:uppercase;fill:var(--ink);opacity:.62}
+  .band-pct{font-family:"Fraunces",serif;font-size:52px;font-weight:500}
+  .band-num{font-family:"IBM Plex Mono",monospace;font-size:15px;fill:var(--muted)}
+
+  /* LEAK callout */
+  .leak{left:946px;top:706px;width:392px}
+  .leak .tag{font-family:"IBM Plex Mono",monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--neg)}
+  .leak h2{font-family:"Fraunces",serif;font-weight:500;font-size:34px;line-height:1.08;margin:10px 0 14px}
+  .leak p{font-size:17px;line-height:1.5;color:#48443c}
+  .leak .big{display:flex;gap:26px;margin-top:18px}
+  .leak .big div{font-family:"Fraunces",serif;font-size:40px;font-weight:500}
+  .leak .big span{display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .leak .arrow{position:absolute;left:-150px;top:96px;width:150px;height:2px;background:var(--neg);opacity:.5}
+  .leak .arrow:after{content:'';position:absolute;left:-2px;top:-4px;border:5px solid transparent;border-right-color:var(--neg);}
+
+  /* SOURCES */
+  .sources{left:120px;top:1245px;width:1300px}
+  .sources .lead{font-family:"Fraunces",serif;font-size:30px;font-weight:500;text-align:center;margin-bottom:24px}
+  .cards{display:flex;gap:26px;justify-content:center}
+  .card{flex:1;max-width:400px;background:#fff;border:1px solid var(--hair);border-radius:12px;padding:24px 24px 20px}
+  .card h3{font-family:"IBM Plex Mono",monospace;font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+  .card .verdict{font-family:"Fraunces",serif;font-size:23px;font-weight:500;margin:6px 0 4px;line-height:1.12}
+  .card .meta{font-size:14px;color:var(--muted);min-height:38px}
+  .bars{margin-top:16px;display:flex;flex-direction:column;gap:11px}
+  .bar{display:flex;align-items:center;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+  .bar .lbl{width:52px;color:var(--muted);letter-spacing:.04em}
+  .bar .track{position:relative;flex:1;height:12px;background:rgba(27,26,22,.07);border-radius:6px}
+  .bar .fill{position:absolute;left:0;top:0;height:100%;border-radius:6px;transition:width .8s cubic-bezier(.5,.02,.3,1)}
+  .bar .tick{position:absolute;top:-3px;height:18px;width:2px;background:rgba(27,26,22,.32);border-radius:2px}
+  .bar .v{width:50px;text-align:right;font-weight:600}
+  .barkey{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:center;margin-bottom:18px;letter-spacing:.03em}
+  .cardnote{margin-top:13px;padding-top:11px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted);font-style:italic}
+
+  /* CLOSING */
+  .closing{left:1150px;top:250px;width:660px}
+  .closing .tag{font-family:"IBM Plex Mono",monospace;font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  .closing h2{font-family:"Fraunces",serif;font-weight:500;font-size:52px;line-height:1.06;letter-spacing:-.01em;margin:16px 0}
+  .closing h2 em{font-style:italic;color:var(--teal)}
+  .closing p{font-size:19px;line-height:1.55;color:#48443c}
+
+  /* UI */
+  #ui{position:absolute;inset:0;pointer-events:none}
+  .caption{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);
+    font-family:"IBM Plex Mono",monospace;font-size:14px;letter-spacing:.06em;color:var(--ink);
+    background:rgba(251,249,243,.86);border:1px solid var(--hair);border-radius:30px;padding:9px 20px;
+    backdrop-filter:blur(4px);opacity:0;transition:opacity .5s;white-space:nowrap}
+  .caption.show{opacity:1}
+  .dots{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:8px}
+  .dot{width:7px;height:7px;border-radius:50%;background:rgba(27,26,22,.2);transition:all .3s}
+  .dot.active{background:var(--teal);width:20px;border-radius:4px}
+  .nav{position:absolute;bottom:26px;pointer-events:auto;cursor:pointer;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--hair);background:rgba(251,249,243,.86);display:flex;align-items:center;justify-content:center;
+    font-size:18px;color:var(--ink);user-select:none;transition:background .2s}
+  .nav:hover{background:#fff}
+  #prev{left:24px} #next{right:24px}
+  .stepno{position:absolute;left:24px;top:20px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.12em;color:var(--muted)}
+
+  /* DRILL-DOWN: Q2 open & commit */
+  .op-hero{left:230px;top:1850px;width:1060px;text-align:center}
+  .op-hero .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+  .op-hero .huge{font-family:"Fraunces",serif;font-weight:500;font-size:96px;line-height:1;margin:14px 0 6px;color:var(--teal)}
+  .op-hero .hsub{font-size:19px;color:#48443c}
+  .splitbar{display:flex;height:50px;width:760px;margin:30px auto 9px;border-radius:9px;overflow:hidden;border:1px solid var(--hair)}
+  .splitbar .seg{display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono",monospace;font-size:13.5px;letter-spacing:.02em}
+  .splitlbl{display:flex;width:760px;margin:0 auto;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted)}
+  .drill{left:200px;width:1120px}
+  .drill .dtitle{font-family:"Fraunces",serif;font-weight:500;font-size:30px;text-align:center;margin-bottom:5px}
+  .drill .dsub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);text-align:center;margin-bottom:22px;letter-spacing:.02em}
+  .hrow{display:flex;align-items:center;gap:16px;margin:11px 0;font-family:"IBM Plex Mono",monospace;font-size:14px}
+  .hrow .hlbl{width:170px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hrow .htrack{position:relative;flex:1;height:22px;background:rgba(27,26,22,.06);border-radius:6px}
+  .hrow .hfill{position:absolute;left:0;top:0;height:100%;border-radius:6px}
+  .hrow .hval{width:172px;text-align:right;font-weight:600;color:var(--ink)}
+  .hrow .hval span{color:var(--muted);font-weight:400}
+</style>
+</head>
+<body>
+<div id="viewport">
+  <div id="world">
+
+    <div class="node titleblock" data-scenes="0">
+      <div class="eyebrow">Marketing &middot; FY2026 &middot; through May</div>
+      <h1>The plan was a funnel.<br>Here's <em>where we are</em>.</h1>
+      <div class="sub">Target vs actual, and what it's really telling us.</div>
+    </div>
+
+    <div class="node funnel" data-scenes="0,1,2">
+      <svg viewBox="0 0 760 880" width="760" height="880" id="funnelSvg"></svg>
+    </div>
+
+    <div class="node leak" data-scenes="2">
+      <div class="arrow"></div>
+      <div class="tag">The leak</div>
+      <h2>Pipeline is here.<br>It just isn't converting.</h2>
+      <p>The plan assumed roughly a quarter of pipeline turns into revenue. Through May it's closer to a sixth.</p>
+      <div class="big">
+        <div style="color:var(--neg)">18%<span>Actual</span></div>
+        <div style="color:var(--muted)">23%<span>Plan</span></div>
+      </div>
+    </div>
+
+    <div class="node sources" data-scenes="3">
+      <div class="lead">One funnel. Three very different engines.</div>
+      <div class="barkey">bars show attainment vs plan &middot; vertical line = 100% of target</div>
+      <div class="cards" id="cards"></div>
+    </div>
+
+    <div class="node closing" data-scenes="4">
+      <div class="tag">The H2 call</div>
+      <h2>The gap isn't leads.<br>It's <em>the close</em>.</h2>
+      <p>Non-Paid is flooding the funnel for free but converting at 16%. The leverage in H2 is converting the pipeline we already have, not buying more of it.</p>
+    </div>
+
+    <!-- DRILL-DOWN: Q2 open & commit -->
+    <div class="node op-hero" data-scenes="5">
+      <div class="eyebrow">Drill-down &middot; Q2 open &amp; commit</div>
+      <div class="huge">$369K</div>
+      <div class="hsub">Marketing pipeline closest to closing this quarter &middot; 223 deals</div>
+      <div class="splitbar">
+        <div class="seg" style="width:56.8%;background:var(--teal);color:#fff">Late stage &middot; $210K</div>
+        <div class="seg" style="width:43.2%;background:rgba(27,26,22,.12);color:var(--ink)">Early &middot; $159K</div>
+      </div>
+      <div class="splitlbl"><span>57% &middot; Negotiation / Contract Review / Signed</span><span>43% &middot; Scope / Qualified</span></div>
+    </div>
+
+    <div class="node drill op-source" data-scenes="6" style="top:2310px">
+      <div class="dtitle">Where the Q2 commit sits</div>
+      <div class="dsub">by source</div>
+      <div id="opSource"></div>
+    </div>
+
+    <div class="node drill op-stage" data-scenes="7" style="top:2790px">
+      <div class="dtitle">Closest to closure</div>
+      <div class="dsub">by stage &middot; teal = late stage (57% of commit)</div>
+      <div id="opStage"></div>
+    </div>
+
+    <div class="node drill op-owner" data-scenes="8" style="top:3270px">
+      <div class="dtitle">Who's carrying it</div>
+      <div class="dsub">top 10 AEs hold 65% of the Q2 commit</div>
+      <div id="opOwner"></div>
+    </div>
+
+  </div>
+
+  <div id="ui">
+    <div class="stepno" id="stepno"></div>
+    <div class="caption" id="caption"></div>
+    <div class="dots" id="dots"></div>
+    <div class="nav" id="prev">&#8249;</div>
+    <div class="nav" id="next">&#8250;</div>
+  </div>
+</div>
+
+<script>
+// ---------- FUNNEL DATA ----------
+const STAGES=[
+  {name:'MQL',   pct:114, a:'3,138', t:'2,754', status:'pos', pts:'20,0 740,0 690,200 70,200',    cx:380, cy:100},
+  {name:'SQL',   pct:120, a:'1,652', t:'1,380', status:'pos', pts:'70,216 690,216 620,416 140,416', cx:380, cy:316},
+  {name:'Pipeline',pct:107,a:'$1.76M', t:'$1.64M', status:'pos', pts:'140,432 620,432 540,632 220,632', cx:380, cy:532},
+  {name:'Revenue', pct:85, a:'$321K', t:'$378K', status:'neg', pts:'220,648 540,648 470,848 290,848', cx:380, cy:748},
+];
+const COL={pos:'#2f7d4f',neg:'#bf4a2f',warn:'#b07d28'};
+const FILL={pos:'rgba(47,125,79,.16)',neg:'rgba(191,74,47,.15)',warn:'rgba(176,125,40,.16)'};
+const svg=document.getElementById('funnelSvg');
+let s='';
+STAGES.forEach((st,i)=>{
+  s+=`<polygon points="${st.pts}" fill="${FILL[st.status]}" stroke="${COL[st.status]}" stroke-width="2"/>`;
+  s+=`<text class="band-name" x="${st.cx}" y="${st.cy-26}" text-anchor="middle">${st.name}</text>`;
+  s+=`<text class="band-pct" x="${st.cx}" y="${st.cy+20}" text-anchor="middle" fill="${COL[st.status]}" id="pct${i}">0%</text>`;
+  s+=`<text class="band-num" x="${st.cx}" y="${st.cy+44}" text-anchor="middle">${st.a} / ${st.t} target</text>`;
+});
+svg.innerHTML=s;
+
+// ---------- SOURCE CARDS ----------
+const SRC=[
+  {name:'Non-Paid', verdict:'Free pipeline. Weak close.', meta:'$0 media spend &middot; converts 16% vs 23% plan',
+   bars:[['MQL',118,'pos'],['SQL',132,'pos'],['Pipe',131,'pos'],['Rev',87,'neg']]},
+  {name:'Paid', verdict:'Efficient, costly, March-heavy.', meta:'~$3.9M spent &middot; converts 29% of pipeline',
+   note:'* Revenue beat is concentrated in one big March; strip it and Paid is ~85% too.',
+   bars:[['MQL',115,'pos'],['SQL',113,'pos'],['Pipe',81,'neg'],['Rev',120,'warn','*']]},
+  {name:'Field Mktg', verdict:"Hasn't fired yet.", meta:'2 wins &middot; revenue 2% of plan &middot; events lag',
+   bars:[['MQL',90,'warn'],['SQL',85,'warn'],['Pipe',97,'warn'],['Rev',2,'neg']]},
+];
+const SCALE=150, TICK=(100/SCALE*100).toFixed(1);
+const cards=document.getElementById('cards');
+cards.innerHTML=SRC.map(c=>`
+  <div class="card">
+    <h3>${c.name}</h3>
+    <div class="verdict">${c.verdict}</div>
+    <div class="meta">${c.meta}</div>
+    <div class="bars">
+      ${c.bars.map(b=>{const w=(Math.min(b[1],SCALE)/SCALE*100).toFixed(1);return `<div class="bar"><span class="lbl">${b[0]}</span>
+        <span class="track"><span class="fill" style="width:${w}%;background:${COL[b[2]]}"></span><span class="tick" style="left:${TICK}%"></span></span>
+        <span class="v" style="color:${COL[b[2]]}">${b[1]}%${b[3]||''}</span></div>`}).join('')}
+    </div>
+    ${c.note?`<div class="cardnote">${c.note}</div>`:''}
+  </div>`).join('');
+
+// ---------- DRILL-DOWN: Q2 OPEN & COMMIT ----------
+const C_T='#176b66', C_M='#7d8c88', C_L='rgba(27,26,22,.22)';
+function bars(elId, rows, max, total){
+  const el=document.getElementById(elId); if(!el) return;
+  el.innerHTML=rows.map(r=>{
+    const w=(r.v/max*100).toFixed(1);
+    const share = total? ` <span>&middot; ${Math.round(r.v/total*100)}%</span>`:'';
+    return `<div class="hrow"><span class="hlbl">${r.name}</span>`+
+      `<span class="htrack"><span class="hfill" style="width:${w}%;background:${r.c}"></span></span>`+
+      `<span class="hval">$${r.v.toLocaleString()}${share}</span></div>`;
+  }).join('');
+}
+bars('opSource',[
+  {name:'Non-Paid',v:250777,c:C_T},{name:'Paid',v:107375,c:C_M},{name:'Field Marketing',v:10946,c:C_L}
+],250777,369098);
+bars('opStage',[
+  {name:'Contract Signed',v:14951,c:C_T},{name:'Contract Review',v:92324,c:C_T},{name:'Negotiation',v:102242,c:C_T},
+  {name:'Scope',v:83971,c:C_L},{name:'Qualified',v:75010,c:C_L},{name:'LOI',v:600,c:C_L}
+],102242,null);
+bars('opOwner',[
+  {name:'Jamie Holt',v:37721,c:C_T},{name:'Justin Ryan',v:28682,c:C_T},{name:'Tristan George',v:24398,c:C_T},
+  {name:'Andrew Exposito',v:23684,c:C_T},{name:'Andy Wyschna',v:19970,c:C_T},{name:'Aaron Miller',v:18375,c:C_T},
+  {name:'Savion Campbell',v:16425,c:C_T},{name:'Christoph Borens',v:15200,c:C_T},{name:'Krina Kothari',v:14700,c:C_T},
+  {name:'Kate Pearse',v:13900,c:C_T}
+],37721,null);
+
+// ---------- CAMERA / SCENES ----------
+const SCENES=[
+  {cx:550, cy:500, s:0.74, cap:'Marketing FY2026 \u00b7 plan vs actual, through May'},
+  {cx:500, cy:675, s:0.76, cap:'Ahead at the top. Short at the close.'},
+  {cx:820, cy:900, s:1.16, cap:'Pipeline is here \u2014 it just isn\u2019t converting.'},
+  {cx:770, cy:1455, s:0.88, cap:'One funnel. Three very different engines.'},
+  {cx:1480, cy:430, s:1.02, cap:'The fix isn\u2019t more leads. It\u2019s the close.'},
+  {cx:760, cy:2000, s:0.90, cap:'Closest to closure \u2014 $369K Marketing open in Q2'},
+  {cx:760, cy:2400, s:0.95, cap:'Q2 commit by source \u2014 Non-Paid carries 68%'},
+  {cx:760, cy:2910, s:0.90, cap:'By stage \u2014 57% already late stage'},
+  {cx:760, cy:3455, s:0.82, cap:'By owner \u2014 top 10 AEs hold 65%'},
+];
+const world=document.getElementById('world');
+const cap=document.getElementById('caption');
+const dotsEl=document.getElementById('dots');
+const stepno=document.getElementById('stepno');
+const nodes=[...document.querySelectorAll('.node')];
+let cur=0, counted=false;
+SCENES.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';dotsEl.appendChild(d);});
+const dots=[...document.querySelectorAll('.dot')];
+
+function vp(){return {W:document.getElementById('viewport').clientWidth, H:document.getElementById('viewport').clientHeight};}
+function gate(){
+  nodes.forEach(n=>{
+    const list=(n.dataset.scenes||'').split(',').map(Number);
+    const on=list.includes(cur);
+    let op = on?1:0;
+    const isFunnel=n.classList.contains('funnel');
+    if(isFunnel && cur===0) op=0.5; // dim funnel behind title
+    n.style.opacity=op;
+    n.classList.toggle('active',on);
+    if(!isFunnel) n.style.transform = on?'translateY(0)':'translateY(16px)';
+  });
+}
+function render(){
+  const sc=SCENES[cur], {W,H}=vp();
+  world.style.transform=`translate(${W/2}px,${H/2}px) scale(${sc.s}) translate(${-sc.cx}px,${-sc.cy}px)`;
+  gate();
+  cap.classList.remove('show');
+  setTimeout(()=>{cap.textContent=sc.cap;cap.classList.add('show');},300);
+  dots.forEach((d,i)=>d.classList.toggle('active',i===cur));
+  stepno.textContent=`${String(cur+1).padStart(2,'0')} / ${String(SCENES.length).padStart(2,'0')}`;
+  if(cur===1 && !counted){counted=true;countUp();}
+}
+function countUp(){
+  STAGES.forEach((st,i)=>{
+    const el=document.getElementById('pct'+i);let v=0;const target=st.pct;
+    const step=()=>{v+=Math.max(1,Math.round(target/28));if(v>=target)v=target;el.textContent=v+'%';if(v<target)requestAnimationFrame(step);};
+    setTimeout(step,200+i*160);
+  });
+}
+function go(n){cur=Math.max(0,Math.min(SCENES.length-1,n));render();}
+window.go=go;
+document.getElementById('next').onclick=()=>go(cur+1);
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
+window.addEventListener('resize',render);
+render();
+</script>
+</body>
+</html>
