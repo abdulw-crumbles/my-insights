@@ -6,124 +6,72 @@
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Segoe UI','Helvetica Neue',sans-serif; background:#FBF6EE; color:#0E0500; padding:24px 32px; }
-
   .header { margin-bottom:18px; }
   .header h1 { font-size:20px; font-weight:700; }
   .header p { font-size:13px; color:#696563; margin-top:4px; }
-
-  .filters {
-    display:flex; flex-wrap:wrap; gap:18px; align-items:center;
-    background:#fff; border:1px solid #F0E4CD; border-radius:10px;
-    padding:14px 18px; margin-bottom:18px;
-  }
+  .filters { display:flex; flex-wrap:wrap; gap:18px; align-items:center; background:#fff; border:1px solid #F0E4CD; border-radius:10px; padding:14px 18px; margin-bottom:18px; }
   .filter-group { display:flex; align-items:center; gap:8px; }
   .filter-group label { font-size:11px; color:#696563; text-transform:uppercase; letter-spacing:0.04em; font-weight:600; }
-  .filter-group input[type="date"], .filter-group select {
-    padding:5px 8px; border:1px solid #ECDDC0; border-radius:6px;
-    background:#FBF6EE; font-size:12px; font-family:inherit; color:#0E0500;
-  }
+  .filter-group input[type="date"], .filter-group select { padding:5px 8px; border:1px solid #ECDDC0; border-radius:6px; background:#FBF6EE; font-size:12px; font-family:inherit; color:#0E0500; }
   .filter-group select { cursor:pointer; }
   .preset-btns { display:flex; gap:4px; }
-  .preset-btn {
-    padding:5px 10px; font-size:11px; border-radius:6px;
-    border:1px solid #ECDDC0; background:#fff; color:#696563;
-    cursor:pointer; font-family:inherit;
-  }
+  .preset-btn { padding:5px 10px; font-size:11px; border-radius:6px; border:1px solid #ECDDC0; background:#fff; color:#696563; cursor:pointer; font-family:inherit; }
   .preset-btn:hover { background:#FBF6EE; }
   .preset-btn.active { background:#0E0500; color:#fff; border-color:#0E0500; }
-
   .card { background:#fff; border:1px solid #F0E4CD; border-radius:10px; padding:20px; margin-bottom:18px; }
   .section-tag { display:inline-block; font-size:10px; font-weight:700; color:#F76918; letter-spacing:0.06em; margin-bottom:4px; }
   .card-title { font-size:14px; font-weight:600; }
   .card-sub { font-size:11px; color:#696563; margin-top:2px; margin-bottom:16px; }
-
   .kpi-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
   .kpi { background:#fff; border:1px solid #F0E4CD; border-radius:10px; padding:16px 18px; position:relative; }
   .kpi-label { font-size:11px; color:#696563; text-transform:uppercase; letter-spacing:0.04em; }
   .kpi-value { font-size:30px; font-weight:700; margin-top:6px; line-height:1; }
   .kpi-sub { font-size:11px; color:#696563; margin-top:6px; }
   .kpi-dot { position:absolute; top:16px; right:16px; width:10px; height:10px; border-radius:3px; }
-
   .chart-wrap { height:280px; }
   .chart-wrap svg { width:100%; height:100%; }
   .legend { font-size:11px; color:#696563; display:flex; gap:14px; margin-bottom:10px; flex-wrap:wrap; }
   .legend span { display:inline-flex; align-items:center; }
   .legend i { display:inline-block; width:12px; height:12px; border-radius:2px; margin-right:5px; }
-
   .tbl-scroll { overflow-x:auto; }
   .wow-tbl { width:100%; border-collapse:collapse; font-size:13px; min-width:600px; }
-  .wow-tbl thead th {
-    text-align:right; padding:10px 8px; font-size:11px;
-    color:#696563; font-weight:600;
-    border-bottom:2px solid #ECDDC0;
-    text-transform:uppercase; letter-spacing:0.03em;
-    white-space:nowrap;
-  }
+  .wow-tbl thead th { text-align:right; padding:10px 8px; font-size:11px; color:#696563; font-weight:600; border-bottom:2px solid #ECDDC0; text-transform:uppercase; letter-spacing:0.03em; white-space:nowrap; }
   .wow-tbl thead th:first-child { text-align:left; }
   .wow-tbl thead th.current { background:#FFF8E1; color:#0E0500; }
-  .wow-tbl tbody td {
-    padding:12px 8px; text-align:right; border-bottom:1px solid #F7F4EF;
-    font-variant-numeric:tabular-nums;
-  }
+  .wow-tbl tbody td { padding:12px 8px; text-align:right; border-bottom:1px solid #F7F4EF; font-variant-numeric:tabular-nums; }
   .wow-tbl tbody td:first-child { text-align:left; font-weight:600; }
   .wow-tbl tbody td.current { background:#FFF8E1; }
   .wow-tbl tbody td.clickable { cursor:pointer; transition:background 0.15s; border-radius:4px; }
   .wow-tbl tbody td.clickable:hover { background:#FFF1D6; }
   .wow-tbl tbody td.clickable.active { background:#F76918 !important; }
-  .wow-tbl tbody td.clickable.active .val,
-  .wow-tbl tbody td.clickable.active .delta { color:#fff !important; }
+  .wow-tbl tbody td.clickable.active .val, .wow-tbl tbody td.clickable.active .delta { color:#fff !important; }
   .metric-name { display:flex; align-items:center; gap:8px; }
   .metric-dot { width:8px; height:8px; border-radius:2px; }
   .val { font-size:15px; font-weight:600; }
   .delta { font-size:11px; margin-top:2px; }
   .delta.up { color:#017947; } .delta.down { color:#C0392B; } .delta.flat { color:#A09997; }
-  .badge {
-    display:inline-block; padding:1px 6px; border-radius:8px;
-    font-size:10px; font-weight:600;
-    background:#FFEFC2; color:#8B6500; margin-left:6px;
-  }
+  .badge { display:inline-block; padding:1px 6px; border-radius:8px; font-size:10px; font-weight:600; background:#FFEFC2; color:#8B6500; margin-left:6px; }
   .click-hint { font-size:11px; color:#F76918; font-weight:600; margin-top:10px; }
-
   .drilldown { display:none; }
   .drilldown.show { display:block; }
-  .drilldown-header {
-    display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:14px; flex-wrap:wrap; gap:10px;
-  }
+  .drilldown-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px; }
   .drilldown-title { font-size:15px; font-weight:600; }
   .drilldown-meta { font-size:12px; color:#696563; margin-top:2px; }
   .controls { display:flex; gap:8px; align-items:center; }
-  .search-box {
-    width:220px; padding:6px 10px; font-size:12px;
-    border:1px solid #ECDDC0; border-radius:6px; background:#FBF6EE;
-    font-family:inherit;
-  }
-  .close-btn {
-    background:none; border:1px solid #ECDDC0; border-radius:6px;
-    padding:6px 12px; font-size:12px; cursor:pointer; color:#696563;
-    font-family:inherit;
-  }
+  .search-box { width:220px; padding:6px 10px; font-size:12px; border:1px solid #ECDDC0; border-radius:6px; background:#FBF6EE; font-family:inherit; }
+  .close-btn { background:none; border:1px solid #ECDDC0; border-radius:6px; padding:6px 12px; font-size:12px; cursor:pointer; color:#696563; font-family:inherit; }
   .close-btn:hover { background:#FBF6EE; color:#0E0500; }
   .tbl-wrap { max-height:500px; overflow-y:auto; border:1px solid #F0E4CD; border-radius:6px; }
   .dd-tbl { width:100%; border-collapse:collapse; font-size:12px; }
   .dd-tbl thead { position:sticky; top:0; background:#FBF6EE; z-index:1; }
-  .dd-tbl th {
-    text-align:left; padding:10px 12px; font-size:11px;
-    color:#696563; font-weight:600;
-    border-bottom:1px solid #ECDDC0;
-    text-transform:uppercase; letter-spacing:0.03em;
-    cursor:pointer; user-select:none; white-space:nowrap;
-  }
+  .dd-tbl th { text-align:left; padding:10px 12px; font-size:11px; color:#696563; font-weight:600; border-bottom:1px solid #ECDDC0; text-transform:uppercase; letter-spacing:0.03em; cursor:pointer; user-select:none; white-space:nowrap; }
   .dd-tbl th:hover { color:#0E0500; }
   .dd-tbl th.num, .dd-tbl td.num { text-align:right; }
   .dd-tbl td { padding:9px 12px; border-bottom:1px solid #F7F4EF; }
   .dd-tbl td.partner { font-weight:600; }
   .dd-tbl td.muted { color:#A09997; }
   .dd-tbl tbody tr:hover { background:#FBF6EE; }
-  .status-pill {
-    display:inline-block; padding:2px 8px; border-radius:10px;
-    font-size:10px; font-weight:600; white-space:nowrap;
-  }
+  .status-pill { display:inline-block; padding:2px 8px; border-radius:10px; font-size:10px; font-weight:600; white-space:nowrap; }
   .status-Accepted, .status-PublisherAcceptedOffer { background:#EAFAF1; color:#017947; }
   .status-Pending, .status-PendingProposals, .status-CounteredOffer { background:#FFF8E1; color:#B8860B; }
   .status-Rejected, .status-PublisherRejectedOffer, .status-PublisherRetractedOffer { background:#FDEDEB; color:#C0392B; }
@@ -135,17 +83,17 @@
 
 <div class="header">
   <h1>Impact Referral Partner Onboarding Funnel</h1>
-  <p>Data range Feb 24 to May 25, 2026 · Refreshed May 26, 2026 · 365 unique partners.</p>
+  <p>Data range Feb 25 to Jun 3, 2026 · Refreshed Jun 2, 2026 · 377 unique partners.</p>
 </div>
 
 <div class="filters">
   <div class="filter-group">
     <label>From</label>
-    <input type="date" id="dateFrom" value="2026-02-24" min="2026-02-24" max="2026-05-26">
+    <input type="date" id="dateFrom" value="2026-02-25" min="2026-02-25" max="2026-06-03">
   </div>
   <div class="filter-group">
     <label>To</label>
-    <input type="date" id="dateTo" value="2026-05-26" min="2026-02-24" max="2026-05-26">
+    <input type="date" id="dateTo" value="2026-06-03" min="2026-02-25" max="2026-06-03">
   </div>
   <div class="filter-group">
     <label>Quick</label>
@@ -241,377 +189,388 @@
 
 <script>
 const RAW = [
-["10078","Skimbit Ltd.","2026-02-24","Publisher Accepted Offer","2026-02-25","2025-10-01","2025-10-01",1],
-["10098","Ziff Davis - Offers.com","2026-02-24","Pending",null,null,null,0],
-["10557","CouponCabin","2026-02-24","Publisher Rejected Offer",null,null,null,0],
-["10851","Savings.com .","2026-02-24","Publisher Rejected Offer",null,null,null,0],
-["11766","TopCashback Ltd","2026-02-24","Publisher Rejected Offer",null,null,null,0],
-["27795","Sovrn Commerce","2026-02-24","Publisher Accepted Offer","2026-03-10",null,null,0],
-["49764","Prodege, LLC.","2026-02-24","Pending",null,null,null,0],
-["59002","RANK MEDIA TEKNOLOGI PT","2026-02-24","Accepted","2026-02-24",null,null,0],
-["59486","Wickfire","2026-02-24","Publisher Rejected Offer",null,null,null,0],
-["75421","Prodege, LLC - CouponCause.com","2026-02-24","Publisher Accepted Offer","2026-03-23",null,null,0],
-["95368","Affinity.","2026-02-24","Pending",null,null,null,0],
-["123201","Takeads GmbH","2026-02-24","Publisher Accepted Offer","2026-03-10",null,null,0],
-["157932","Usman Masood","2026-02-24","Rejected",null,null,null,0],
-["170244","Sovrn Commerce 2","2026-02-24","Pending",null,null,null,0],
-["170911","Nerdwallet, Inc","2026-02-24","Pending",null,null,null,0],
-["192585","Skimlinks VP","2026-02-24","Pending",null,null,null,0],
-["245060","Brandreward  Coupons","2026-02-24","Publisher Accepted Offer","2026-02-24",null,null,0],
-["357605","YieldKit GmbH","2026-02-24","Publisher Accepted Offer","2026-02-25",null,null,0],
-["493806","eCommerce Enablers Pte. Ltd.","2026-02-24","Pending",null,null,null,0],
-["1193684","NerdWallet, Inc.","2026-02-24","Publisher Rejected Offer",null,null,null,0],
-["1199413","COUPERT PTE.LTD.","2026-02-24","Accepted","2026-02-24",null,null,0],
-["1203271","Brandreward Content","2026-02-24","Publisher Accepted Offer","2026-02-24",null,null,0],
-["1226424","Sovrn Inc","2026-02-24","Pending",null,null,null,0],
-["1441669","Bravodeal","2026-02-24","Pending",null,null,null,0],
-["1457162","NerdWallet Compare Inc","2026-02-24","Pending",null,null,null,0],
-["2003851","Bing Rebates by Microsoft","2026-02-24","Publisher Accepted Offer","2026-02-25",null,null,0],
-["2197213","Klarna","2026-02-24","Pending",null,null,null,0],
-["2637018","Simplycodes","2026-02-24","Accepted","2026-02-24","2026-05-22","2026-05-22",1],
-["2650594","thetrendingreviews","2026-02-24","Accepted","2026-02-26",null,null,0],
-["2861116","Afterpay US, Inc.","2026-02-24","Pending",null,null,null,0],
-["3046262","Nasima Akter","2026-02-24","Accepted","2026-02-26",null,null,0],
-["3111645","MDShamim Reza","2026-02-24","Accepted","2026-02-26",null,null,0],
-["5760192","quk.com","2026-02-24","Rejected",null,null,null,0],
-["6527106","Skimlinks Rewards sites","2026-02-24","Publisher Accepted Offer","2026-03-02",null,null,0],
-["6577427","Revolux Studio","2026-02-24","Accepted","2026-02-26",null,null,0],
-["6604279","Ali  Hasnain business","2026-02-24","Rejected",null,null,null,0],
-["6731580","trendymente","2026-02-24","Rejected",null,null,null,0],
-["6910628","Muhammad Nouman javaid","2026-02-24","Accepted","2026-02-26",null,null,0],
-["6950302","PYJ MEDIA PVT LTD","2026-02-24","Rejected",null,null,null,0],
-["10563","Promocodes.com","2026-02-25","Accepted","2026-02-25",null,null,0],
-["10879","Extrabux","2026-02-25","Accepted","2026-02-25",null,null,0],
-["11089","SurfMyAds.com. Inc.","2026-02-25","Accepted","2026-02-25",null,null,0],
-["12796","DGMAX Interactive","2026-02-25","Accepted","2026-02-25","2025-10-04","2025-11-01",2],
-["121977","digidip GmbH","2026-02-25","Accepted","2026-02-25",null,null,0],
-["343504","LINKGAINS PTE.LTD.","2026-02-25","Accepted","2026-02-25",null,null,0],
-["2075306","Revounts","2026-02-25","Accepted","2026-02-25",null,null,0],
-["2580300","CONG TY TNHH ONADS","2026-02-25","Rejected",null,null,null,0],
-["3317921","Joko USA","2026-02-25","Accepted","2026-02-25",null,null,0],
-["3655744","jeanloup+clickup","2026-02-25","Accepted","2026-02-25","2025-12-15","2025-12-15",1],
-["3812262","CRMside","2026-02-25","Accepted","2026-02-26",null,null,0],
-["4198545","OscarAn","2026-02-25","Accepted","2026-02-25","2026-03-04","2026-03-04",1],
-["5336928","CheeseBunny Media","2026-02-25","Rejected",null,null,null,0],
-["5384307","lenhi1998","2026-02-25","Rejected",null,null,null,0],
-["5463805","Employ Borderless","2026-02-25","Accepted","2026-02-25","2025-10-02","2026-05-25",82],
-["5732090","Premier Driver Recruiting","2026-02-25","Accepted","2026-02-25",null,null,0],
-["5737252","Thrive Ventures Consulting","2026-02-25","Accepted","2026-02-25",null,null,0],
-["5754225","LAMPHAM","2026-02-25","Rejected",null,null,null,0],
-["5939292","LinkShakes","2026-02-25","Accepted","2026-02-26",null,null,0],
-["6153858","Jessica Miller-Merrell","2026-02-25","Accepted","2026-02-25",null,null,0],
-["6164037","HR Stacks","2026-02-25","Accepted","2026-02-25",null,null,0],
-["6306622","EDLOOK","2026-02-25","Accepted","2026-02-26",null,null,0],
-["6476617","Takeads","2026-02-25","Accepted","2026-02-25","2025-10-07","2026-02-15",3],
-["6680591","Skimmwise","2026-02-25","Rejected",null,null,null,0],
-["6852627","Femmeforma","2026-02-25","Rejected",null,null,null,0],
-["6965597","Stylishaddons","2026-02-25","Rejected",null,null,null,0],
-["7007375","Murali24","2026-02-25","Accepted","2026-02-25",null,null,0],
-["7019493","Pixel AI Tools","2026-02-25","Accepted","2026-02-26",null,null,0],
-["7029357","smtp-recruiting","2026-02-25","Accepted","2026-02-26","2026-01-13","2026-05-08",2],
-["7029479","KSHR Advisory Services","2026-02-25","Accepted","2026-02-25",null,null,0],
-["7029806","Ming Wang","2026-02-25","Accepted","2026-02-25",null,null,0],
-["7030583","GDPR Deleted - 7030583","2026-02-25","Accepted","2026-02-26",null,null,0],
-["22788","TopCashback USA Inc","2026-02-26","Pending",null,null,null,0],
-["50942","Demand.io","2026-02-26","Publisher Accepted Offer","2026-02-27",null,null,0],
-["159047","CNET Media Inc.","2026-02-26","Pending",null,null,null,0],
-["190488","Yazing","2026-02-26","Publisher Accepted Offer","2026-02-27",null,null,0],
-["240940","Reward Gateway PTY Ltd","2026-02-26","Pending",null,null,null,0],
-["328256","Investopedia","2026-02-26","Pending",null,null,null,0],
-["390418","Wildfire Systems","2026-02-26","Publisher Accepted Offer","2026-03-05",null,null,0],
-["2022797","Microsoft Online, Inc","2026-02-26","Publisher Rejected Offer",null,null,null,0],
-["2441837","Freelance-Stack.io","2026-02-26","Accepted","2026-03-01",null,null,0],
-["2447408","FatCoupon Technology Ltd","2026-02-26","Accepted","2026-02-26",null,null,0],
-["4833492","eCommerce Enablers Pte. Ltd","2026-02-26","Pending",null,null,null,0],
-["4958099","functionn","2026-02-26","Accepted","2026-02-26","2025-11-16","2025-11-16",1],
-["5230200","Fusion Media Limited","2026-02-26","Pending",null,null,null,0],
-["5449888","Amex Offers","2026-02-26","Pending",null,null,null,0],
-["5949228","Redux88","2026-02-26","Rejected",null,null,null,0],
-["7032391","Avomind","2026-02-26","Accepted","2026-02-27",null,null,0],
-["7032396","Solutions Driven","2026-02-26","Accepted","2026-02-26","2026-04-27","2026-04-27",1],
-["7032679","David Coons","2026-02-26","Accepted","2026-02-26","2025-10-15","2025-10-15",1],
-["7033869","CresorAdvisory","2026-02-26","Accepted","2026-02-26","2025-10-09","2025-10-09",1],
-["7035122","Danielle Yeow","2026-02-26","Accepted","2026-02-27","2026-05-06","2026-05-06",1],
-["7035594","weConnect Finance Team","2026-02-27","Accepted","2026-02-27","2025-11-14","2025-11-14",1],
-["7035904","Jing Han Tan","2026-02-27","Publisher Accepted Offer","2026-02-27",null,null,0],
-["7037478","Somewhere","2026-02-27","Accepted","2026-02-27","2025-11-09","2026-04-21",16],
-["4779947","Recruiting Guy","2026-03-01","Accepted","2026-03-01","2026-02-26","2026-03-12",11],
-["7054250","nicholaspch","2026-03-01","Publisher Accepted Offer","2026-03-05",null,null,0],
-["6955226","DINOLEE","2026-03-02","Rejected",null,null,null,0],
-["6988047","Employsome","2026-03-02","Accepted","2026-03-03","2026-02-20","2026-05-19",17],
-["7044789","Hollyn Laine","2026-03-02","Accepted","2026-03-04","2026-02-19","2026-02-19",1],
-["6972497","Ruggedoutfits","2026-03-03","Rejected",null,null,null,0],
-["7048037","Prime PEO Brokers","2026-03-03","Accepted","2026-03-03","2025-10-07","2025-11-06",2],
-["2056358","Ibotta, powered by Button","2026-03-04","Accepted","2026-03-04",null,null,0],
-["3522274","Refbackbonus","2026-03-04","Rejected",null,null,null,0],
-["7050060","Strego Ventures UG","2026-03-04","Accepted","2026-03-05","2025-10-21","2026-05-25",54],
-["7079739","JackieSalalila","2026-03-04","Publisher Accepted Offer","2026-03-13",null,null,0],
-["1377810","Bernard Haug","2026-03-05","Publisher Accepted Offer","2026-03-05","2026-03-12","2026-04-16",14],
-["1815208","First Alliance Limited","2026-03-05","Accepted","2026-03-08",null,null,0],
-["146026","germanAffiliate","2026-03-06","Accepted","2026-03-06","2026-05-07","2026-05-07",1],
-["352960","Refermate LLC","2026-03-06","Accepted","2026-03-06",null,null,0],
-["2844963","CogneveINC","2026-03-06","Publisher Accepted Offer","2026-03-09",null,null,0],
-["3476091","Smart Influence GmbH","2026-03-06","Accepted","2026-03-08",null,null,0],
-["6335262","Tranquil Media LTD","2026-03-06","Publisher Accepted Offer","2026-03-06",null,null,0],
-["385086","Karma Shopping","2026-03-08","Accepted","2026-03-08",null,null,0],
-["7060318","BELVIN99","2026-03-08","Rejected",null,null,null,0],
-["68273","FreshReach","2026-03-09","Accepted","2026-03-12",null,null,0],
-["7046681","Thesmartuse","2026-03-09","Rejected",null,null,null,0],
-["7049955","Trendytempo","2026-03-09","Rejected",null,null,null,0],
-["7066017","nsave","2026-03-09","Publisher Accepted Offer","2026-03-19",null,null,0],
-["7066632","Mor Search","2026-03-09","Pending",null,null,null,0],
-["6683148","Asharr","2026-03-10","Rejected",null,null,null,0],
-["7072232","Manithesean","2026-03-10","Accepted","2026-03-11","2025-10-06","2025-10-06",1],
-["4328530","JoinGekko.com","2026-03-12","Accepted","2026-03-12",null,null,0],
-["7077866","Subrato Das","2026-03-12","Publisher Accepted Offer","2026-03-12","2025-10-20","2025-10-23",3],
-["3694325","SSR","2026-03-13","Publisher Accepted Offer","2026-03-13","2025-12-24","2026-04-17",7],
-["7046906","Activecore","2026-03-13","Rejected",null,null,null,0],
-["2505102","FNSCREATOR LTD","2026-03-16","Accepted","2026-03-16",null,null,0],
-["7036457","Repute Network","2026-03-16","Accepted","2026-03-16",null,null,0],
-["33477","BeFrugal.com","2026-03-17","Publisher Accepted Offer","2026-03-18",null,null,0],
-["1221278","AffiliateWatch","2026-03-17","Pending Proposals",null,null,null,0],
-["7093608","Hyre","2026-03-17","Accepted","2026-03-17","2026-04-15","2026-04-15",1],
-["44964","FMTC","2026-03-18","Pending Proposals",null,null,null,0],
-["2212367","Joe Lai","2026-03-18","Pending Proposals",null,null,null,0],
-["3254149","GEEKSLETTER LLC","2026-03-18","Pending Proposals",null,null,null,0],
-["4095344","Phia","2026-03-18","Pending Proposals",null,null,null,0],
-["5215989","OCEANSHINY LTD","2026-03-18","Pending Proposals",null,null,null,0],
-["5510647","Gianpaulo Coletti","2026-03-18","Pending Proposals",null,null,null,0],
-["5971555","Underwriterly","2026-03-18","Accepted","2026-03-20","2026-01-22","2026-01-22",1],
-["6865474","Vortex Review","2026-03-18","Rejected",null,null,null,0],
-["7096581","Andrew Kibler","2026-03-18","Accepted","2026-03-19",null,null,0],
-["7097072","Anthony Rumfallo","2026-03-18","Accepted","2026-03-19","2025-10-29","2025-10-29",1],
-["7097209","Brderless","2026-03-18","Accepted","2026-03-18",null,null,0],
-["7099502","Funded.club","2026-03-18","Publisher Accepted Offer","2026-03-19",null,null,0],
-["3319435","Smart Influence GmbH","2026-03-19","Accepted","2026-03-20",null,null,0],
-["3697348","Seven Company","2026-03-19","Rejected",null,null,null,0],
-["3887247","Nguyen Van Nhu","2026-03-19","Rejected",null,null,null,0],
-["4956702","Dao Van Giang","2026-03-19","Rejected",null,null,null,0],
-["5379566","Startup Grind","2026-03-19","Publisher Accepted Offer","2026-03-19",null,null,0],
-["7087717","www.solarstatedata.com","2026-03-19","Pending",null,null,null,0],
-["7087972","WorkQuiet","2026-03-19","Pending",null,null,null,0],
-["7096549","Rand Capital","2026-03-19","Pending",null,null,null,0],
-["15866","Greenwood MonkeyBars LLC","2026-03-20","Accepted","2026-03-20",null,null,0],
-["4292179","Ecomnia - Partner Growth Program","2026-03-20","Accepted","2026-03-20",null,null,0],
-["5143909","Pham Duc Toan","2026-03-20","Accepted","2026-03-22","2025-10-16","2026-01-12",4],
-["7102891","Snaphunt","2026-03-20","Accepted","2026-03-20",null,null,0],
-["7103243","HUMN","2026-03-20","Accepted","2026-03-20",null,null,0],
-["7109997","Vic Allen","2026-03-22","Accepted","2026-03-23",null,null,0],
-["3553031","Saturn Ads","2026-03-23","Rejected",null,null,null,0],
-["4130951","Cratus Services Pvt  Ltd.","2026-03-23","Rejected",null,null,null,0],
-["5615700","Warmlink","2026-03-23","Accepted","2026-03-23",null,null,0],
-["5743079","EDLOOK LTD","2026-03-23","Rejected",null,null,null,0],
-["7111127","Techconek Vietnam","2026-03-23","Accepted","2026-03-23",null,null,0],
-["10010","Quidco","2026-03-24","Pending",null,null,null,0],
-["10087","Reward Gateway (UK) Ltd","2026-03-24","Publisher Rejected Offer",null,null,null,0],
-["184719","Affinity Global.","2026-03-24","Pending",null,null,null,0],
-["354648","Blue Light Card Ltd","2026-03-24","Pending",null,null,null,0],
-["397163","ENOE SAS","2026-03-24","Pending",null,null,null,0],
-["1202966","Dealmoon UK","2026-03-24","Pending",null,null,null,0],
-["1249479","RedBrain Ltd","2026-03-24","Pending",null,null,null,0],
-["1812968","Genie Shopping","2026-03-24","Pending",null,null,null,0],
-["2635395","Ebates Performance Marketing Inc","2026-03-24","Pending",null,null,null,0],
-["4300809","TopCashback Italy","2026-03-24","Pending",null,null,null,0],
-["4751382","abdelwaheb bsiker","2026-03-24","Rejected",null,null,null,0],
-["5764941","InRewards.com","2026-03-24","Pending",null,null,null,0],
-["6038270","Global EOR Services","2026-03-24","Accepted","2026-03-24",null,null,0],
-["6756776","Siteplug EU by Affinity Global GmbH","2026-03-24","Pending",null,null,null,0],
-["4914472","Auctera LLC","2026-03-25","Rejected",null,null,null,0],
-["6625251","Pexda","2026-03-25","Rejected",null,null,null,0],
-["7105292","DUNCAN99","2026-03-25","Rejected",null,null,null,0],
-["6165051","SoftwareFinder","2026-03-26","Publisher Accepted Offer","2026-04-01",null,null,0],
-["7122544","Shi Mei","2026-03-26","Rejected",null,null,null,0],
-["7124742","Leon Alexander Schardin","2026-03-26","Rejected",null,null,null,0],
-["7067377","Earnytics","2026-03-27","Accepted","2026-04-22",null,null,0],
-["7077106","One Global Payroll","2026-03-27","Accepted","2026-03-27","2026-02-09","2026-05-21",19],
-["7086512","CROZDESK LTD","2026-03-27","Accepted","2026-03-27",null,null,0],
-["7126855","Sourcific Talent","2026-03-27","Accepted","2026-03-29","2025-11-25","2026-03-30",2],
-["6387960","Prefer Tech INC","2026-03-29","Accepted","2026-04-02",null,null,0],
-["3232544","catherine@staymoon.com","2026-03-30","Rejected",null,null,null,0],
-["7083922","John Alexandra","2026-03-30","Publisher Retracted Offer",null,null,null,0],
-["7137571","PuzzleHR","2026-03-30","Accepted","2026-03-30","2025-10-01","2025-11-10",2],
-["6813648","Bargorya","2026-03-31","Rejected",null,null,null,0],
-["7133891","WhatAreTheBest","2026-03-31","Rejected",null,null,null,0],
-["6884117","PYJ MEDIA","2026-04-01","Rejected",null,null,null,0],
-["7047415","TrungLe0611","2026-04-01","Rejected",null,null,null,0],
-["7066296","Talkaboutladies","2026-04-01","Rejected",null,null,null,0],
-["7148577","True Search","2026-04-01","Accepted","2026-04-02",null,null,0],
-["37027","TechnologyAdvice LLC - FSB","2026-04-02","Publisher Accepted Offer","2026-04-02",null,null,0],
-["56411","Semantic Labs","2026-04-02","Accepted","2026-04-02",null,null,0],
-["1314462","OutSail","2026-04-02","Accepted","2026-04-02",null,null,0],
-["1987062","TechnologyAdvice LLC","2026-04-02","Publisher Accepted Offer","2026-04-02",null,null,0],
-["7150483","People Partners","2026-04-02","Accepted","2026-04-02",null,null,0],
-["5798489","Minty Platform","2026-04-03","Accepted","2026-04-06",null,null,0],
-["6201106","Whichpayroll","2026-04-03","Accepted","2026-04-06",null,null,0],
-["7148701","Avux190602","2026-04-04","Rejected",null,null,null,0],
-["6449688","Sharmeena Zeeshan","2026-04-06","Rejected",null,null,null,0],
-["7164741","OnHires LLC","2026-04-06","Accepted","2026-04-06",null,null,0],
-["10579","Ebates Performance Marketing, Inc. dba Rakuten Rewards","2026-04-08","Accepted","2026-04-08",null,null,0],
-["4716552","Best Tech AI","2026-04-08","Accepted","2026-04-10",null,null,0],
-["7177903","trybeyondborders","2026-04-09","Accepted","2026-04-10",null,null,0],
-["4101692","Links Circle LTD","2026-04-10","Accepted","2026-04-18",null,null,0],
-["7159182","Strategy for Industry","2026-04-12","Accepted","2026-04-20",null,null,0],
-["4627965","Adsynergix","2026-04-14","Accepted","2026-04-14",null,null,0],
-["7137389","Trycouponn","2026-04-14","Rejected",null,null,null,0],
-["4081192","AffiliateGenius","2026-04-15","Rejected",null,null,null,0],
-["6734584","moosama","2026-04-15","Rejected",null,null,null,0],
-["7204321","WorkFlex","2026-04-17","Accepted","2026-04-17",null,null,0],
-["3085097","Physitia","2026-04-18","Rejected",null,null,null,0],
-["7201724","SoftwareDuel","2026-04-19","Accepted","2026-04-20",null,null,0],
-["6225543","M\u1ea1c Qu\u00e2n","2026-04-20","Rejected",null,null,null,0],
-["7214970","Nova HCM","2026-04-20","Accepted","2026-04-20",null,null,0],
-["30557","27 Kilobyte AB","2026-04-21","Accepted","2026-04-21",null,null,0],
-["205449","Wealth Ambition Marketing Inc","2026-04-21","Accepted","2026-04-22",null,null,0],
-["1242134","Whetten Digital","2026-04-21","Rejected",null,null,null,0],
-["2299006","Frank DeBlasi","2026-04-21","Rejected",null,null,null,0],
-["2331864","BudgetFitter (UK & Worldwide)","2026-04-21","Rejected",null,null,null,0],
-["4690767","Neshat Useini","2026-04-21","Rejected",null,null,null,0],
-["5040023","D84","2026-04-21","Rejected",null,null,null,0],
-["5171145","Couponsturbo","2026-04-21","Rejected",null,null,null,0],
-["5593427","Sialph","2026-04-21","Rejected",null,null,null,0],
-["5886644","Razorpay","2026-04-21","Rejected",null,null,null,0],
-["7208302","Blue Chip Computers","2026-04-21","Rejected",null,null,null,0],
-["7208870","DOAN HONG SON","2026-04-21","Rejected",null,null,null,0],
-["7218293","iangiles","2026-04-21","Rejected",null,null,null,0],
-["7218460","Copper Kettle Consulting","2026-04-21","Accepted","2026-04-22",null,null,0],
-["7219300","WeblyAlfred","2026-04-21","Rejected",null,null,null,0],
-["2374256","PaydayPERX","2026-04-22","Pending",null,null,null,0],
-["2703561","Witfeed","2026-04-22","Publisher Accepted Offer","2026-04-22",null,null,0],
-["4255054","Naturopathic Nutrition","2026-04-22","Publisher Accepted Offer","2026-04-23",null,null,0],
-["5875409","Linkby","2026-04-22","Pending",null,null,null,0],
-["6129143","Dupple","2026-04-22","Rejected",null,null,null,0],
-["6428895","retargetspark_uk","2026-04-22","Rejected",null,null,null,0],
-["7222372","Entravia","2026-04-22","Rejected",null,null,null,0],
-["7223301","Shaun Edlin","2026-04-22","Accepted","2026-04-23",null,null,0],
-["5362662","All Things Remote","2026-04-23","Accepted","2026-04-27",null,null,0],
-["6247397","The HR Takeaways Newsletter","2026-04-23","Countered Offer",null,null,null,0],
-["7067102","doanhongsonerent15","2026-04-23","Accepted","2026-05-05",null,null,0],
-["7224656","Alexis Bourson","2026-04-23","Accepted","2026-04-23",null,null,0],
-["7226301","Rand Capital","2026-04-23","Accepted","2026-04-23","2026-04-30","2026-04-30",1],
-["7227310","Employmate","2026-04-23","Accepted","2026-04-23",null,null,0],
-["7211154","HAVITN","2026-04-24","Accepted","2026-05-05",null,null,0],
-["3293493","DuoSavings","2026-04-25","Accepted","2026-05-05",null,null,0],
-["5447953","Mimoni","2026-04-25","Accepted","2026-05-04",null,null,0],
-["5570000","Qurat ul Ain Abbas","2026-04-25","Accepted","2026-05-05",null,null,0],
-["7231753","doanngoclam","2026-04-26","Accepted","2026-05-05",null,null,0],
-["3631073","nicelyus","2026-04-27","Publisher Accepted Offer","2026-04-27",null,null,0],
-["7066995","DOAN HONG SON","2026-04-27","Accepted","2026-05-05",null,null,0],
-["7205184","Muhammad N Javaid","2026-04-27","Accepted","2026-05-05",null,null,0],
-["1451459","One Web Logic Ltd","2026-04-28","Accepted","2026-04-28",null,null,0],
-["1876771","spark642","2026-04-28","Accepted","2026-05-05",null,null,0],
-["2198566","Deep Brain Pte Ltd","2026-04-28","Accepted","2026-04-28",null,null,0],
-["3257149","Hatem Dbabra","2026-04-28","Accepted","2026-05-05",null,null,0],
-["5404757","RIO3CONSULTING","2026-04-28","Accepted","2026-05-05",null,null,0],
-["7067020","PHAM THAN THUY THAO","2026-04-28","Accepted","2026-05-05",null,null,0],
-["7221228","lkmstore","2026-04-28","Accepted","2026-05-05",null,null,0],
-["7229411","votunglam","2026-04-28","Accepted","2026-05-05",null,null,0],
-["7242896","Connecting Space","2026-04-28","Accepted","2026-04-28",null,null,0],
-["7243422","Tomass Barilo","2026-04-28","Accepted","2026-05-05",null,null,0],
-["7243427","Faz Solution","2026-04-28","Accepted","2026-05-05",null,null,0],
-["7243846","KumoHR","2026-04-28","Accepted","2026-04-28",null,null,0],
-["7244262","Apertus","2026-04-28","Publisher Accepted Offer","2026-04-28",null,null,0],
-["7282751","Compareor","2026-04-28","Publisher Accepted Offer","2026-05-08",null,null,0],
-["7229365","lethimen","2026-04-29","Accepted","2026-05-05",null,null,0],
-["7240159","DigitalSolutions06","2026-04-29","Accepted","2026-05-05",null,null,0],
-["7246248","lucasnguyenn68","2026-04-29","Accepted","2026-05-05",null,null,0],
-["205287","DontPayFull","2026-04-30","Accepted","2026-05-04",null,null,0],
-["7249500","TranTien79","2026-04-30","Accepted","2026-05-05",null,null,0],
-["2213639","Sanu Kumar","2026-05-01","Accepted","2026-05-05",null,null,0],
-["3484071","Vlogfund LLC","2026-05-01","Accepted","2026-05-05",null,null,0],
-["7199519","turbo reviews","2026-05-01","Accepted","2026-05-05",null,null,0],
-["7232355","thuythaocs","2026-05-01","Accepted","2026-05-05",null,null,0],
-["2757201","PromosSwitch","2026-05-02","Accepted","2026-05-05",null,null,0],
-["7242741","Elijr.music2026","2026-05-03","Accepted","2026-05-05",null,null,0],
-["7263701","BlueLion, LLC","2026-05-03","Accepted","2026-05-05",null,null,0],
-["7265172","tunglam","2026-05-04","Accepted","2026-05-05",null,null,0],
-["7269026","Jasper Loh","2026-05-04","Publisher Accepted Offer","2026-05-05",null,null,0],
-["7273598","Law Office of Stephen Zarubaiko","2026-05-04","Publisher Accepted Offer","2026-05-06",null,null,0],
-["101044","Capital One","2026-05-05","Pending",null,null,null,0],
-["2913494","thienan","2026-05-05","Pending",null,null,null,0],
-["3545536","universando","2026-05-05","Accepted","2026-05-05",null,null,0],
-["3602959","TryDealsNow","2026-05-05","Accepted","2026-05-05",null,null,0],
-["5440250","AI Search Directory","2026-05-05","Accepted","2026-05-05",null,null,0],
-["5483134","DigiTechSK333","2026-05-05","Accepted","2026-05-05",null,null,0],
-["5633166","AZ Publishers","2026-05-05","Pending",null,null,null,0],
-["6059560","Maxpoint-Health365","2026-05-05","Accepted","2026-05-05",null,null,0],
-["6988668","Nextwell Ads Ltd","2026-05-05","Accepted","2026-05-05",null,null,0],
-["7266075","thuythao.urbanman","2026-05-05","Accepted","2026-05-05",null,null,0],
-["7268812","SaaS Growth Today","2026-05-05","Publisher Accepted Offer","2026-05-05",null,null,0],
-["7269837","Amber@AlchemyGTS","2026-05-05","Accepted","2026-05-05",null,null,0],
-["2710523","Aayush Bhaskar - SqueezeGrowth","2026-05-06","Accepted","2026-05-07",null,null,0],
-["6853976","Floraszivos","2026-05-06","Pending",null,null,null,0],
-["6929175","Offerblogfm","2026-05-06","Pending",null,null,null,0],
-["7141329","Modish_Muses","2026-05-06","Pending",null,null,null,0],
-["1812065","Growthfunda","2026-05-07","Accepted","2026-05-07",null,null,0],
-["7277391","Chanel Rose","2026-05-07","Rejected",null,null,null,0],
-["7278924","Mariem Khemir","2026-05-07","Publisher Accepted Offer","2026-05-07","2026-05-08","2026-05-08",1],
-["3560535","Jason Tong","2026-05-08","Pending",null,null,null,0],
-["7281971","th\u00e2n th\u1ecb b\u1ea3y","2026-05-08","Rejected",null,null,null,0],
-["7282040","doanhongson","2026-05-08","Rejected",null,null,null,0],
-["7286062","JoinHopscotch","2026-05-08","Publisher Accepted Offer","2026-05-09",null,null,0],
-["7209344","M0975358","2026-05-09","Rejected",null,null,null,0],
-["360964","Promostime.net","2026-05-11","Pending",null,null,null,0],
-["6418503","AuthenCIO.com","2026-05-11","Publisher Accepted Offer","2026-05-11",null,null,0],
-["6694779","Simply Elliott Blog","2026-05-11","Pending",null,null,null,0],
-["2755880","IDoza","2026-05-12","Pending",null,null,null,0],
-["3534231","Minimise","2026-05-12","Pending",null,null,null,0],
-["5227760","HR Tech Partner Consutling Group GmbH","2026-05-12","Accepted","2026-05-12",null,null,0],
-["6059913","LvlUp Ventures","2026-05-12","Accepted","2026-05-14",null,null,0],
-["7296338","Hemanta Marketing","2026-05-12","Rejected",null,null,null,0],
-["7296442","Hemanta Affiliate","2026-05-12","Rejected",null,null,null,0],
-["7296855","WHR Global Consulting","2026-05-12","Accepted","2026-05-12",null,null,0],
-["7297160","LideSpy LLC","2026-05-12","Rejected",null,null,null,0],
-["7299618","click2hr","2026-05-12","Accepted","2026-05-14","2026-05-19","2026-05-22",2],
-["7300056","GoAsia Talent","2026-05-12","Accepted","2026-05-14",null,null,0],
-["3524882","PUBLISHERS HUB CORP","2026-05-13","Pending",null,null,null,0],
-["6186183","Tram Anh","2026-05-13","Pending",null,null,null,0],
-["6822542","Luu Thi Le","2026-05-13","Pending",null,null,null,0],
-["7032886","Luup","2026-05-13","Pending",null,null,null,0],
-["7225342","nhocthanki","2026-05-13","Pending",null,null,null,0],
-["7304167","Rockrose Executive Search","2026-05-13","Accepted","2026-05-14",null,null,0],
-["6233201","qqstore","2026-05-14","Pending",null,null,null,0],
-["7303981","phamthanthuythao admin","2026-05-14","Accepted","2026-05-14",null,null,0],
-["6827029","TheFindWire","2026-05-15","Pending",null,null,null,0],
-["4066493","HuuHieuCo","2026-05-16","Pending",null,null,null,0],
-["7145652","truongtambetibuti","2026-05-16","Pending",null,null,null,0],
-["5498623","BonusArrive","2026-05-17","Accepted","2026-05-21",null,null,0],
-["1238013","PennySaviour","2026-05-18","Pending",null,null,null,0],
-["4168980","Farrukh Peerzada","2026-05-18","Pending",null,null,null,0],
-["5894733","vmnnhat030","2026-05-18","Pending",null,null,null,0],
-["7318772","TRIN1","2026-05-18","Pending",null,null,null,0],
-["2567929","NachoNacho","2026-05-19","Pending",null,null,null,0],
-["2871169","FounderPass","2026-05-19","Pending",null,null,null,0],
-["7321987","Steer Your Business","2026-05-19","Pending",null,null,null,0],
-["7322125","Techlinker Asia","2026-05-19","Pending",null,null,null,0],
-["3483309","Staisha","2026-05-20","Pending",null,null,null,0],
-["6957994","lequanghuy","2026-05-20","Pending",null,null,null,0],
-["7233635","Bharat Job Work","2026-05-20","Pending",null,null,null,0],
-["7072292","Myleven","2026-05-21","Pending",null,null,null,0],
-["7105591","Dino Eatsy","2026-05-21","Pending",null,null,null,0],
-["7105743","tuanbtcx","2026-05-21","Pending",null,null,null,0],
-["7105978","VU NGOC AN 1","2026-05-21","Pending",null,null,null,0],
-["7118562","Surfcalm","2026-05-21","Pending",null,null,null,0],
-["7315423","luxediscounts","2026-05-21","Pending",null,null,null,0],
-["3801024","coupon89","2026-05-22","Pending",null,null,null,0],
-["7105760","Olivia Smithh","2026-05-22","Pending",null,null,null,0],
-["7105772","Michael Smithh","2026-05-22","Pending",null,null,null,0],
-["7111456","William Brownn","2026-05-22","Pending",null,null,null,0],
-["7283470","Ashraf Jacobs","2026-05-22","Pending",null,null,null,0],
-["7318659","CUBIXSOL LIMITED","2026-05-22","Pending",null,null,null,0],
-["6130796","Ngoc Khue","2026-05-23","Pending",null,null,null,0],
-["7113813","Novabus","2026-05-23","Pending",null,null,null,0],
-["7325614","Vu Duc Huy","2026-05-23","Pending",null,null,null,0],
-["7337005","Trong Tri Tue Dang","2026-05-23","Pending",null,null,null,0],
-["7338457","Amaury Covo","2026-05-23","Pending",null,null,null,0],
-["4817295","BestDealsUp","2026-05-25","Pending",null,null,null,0],
-["6923761","Blog Coupon99","2026-05-25","Pending",null,null,null,0],
-["7339256","Kim Nhat Nguyen","2026-05-25","Pending",null,null,null,0]
+["10078","Skimbit Ltd.","2026-02-25","Publisher Accepted Offer","2026-02-26","2025-10-02","2025-10-02",1],
+["10098","Ziff Davis - Offers.com","2026-02-25","Pending",null,null,null,0],
+["10557","CouponCabin","2026-02-25","Publisher Rejected Offer",null,null,null,0],
+["10851","Savings.com .","2026-02-25","Publisher Rejected Offer",null,null,null,0],
+["11766","TopCashback Ltd","2026-02-25","Publisher Rejected Offer",null,null,null,0],
+["27795","Sovrn Commerce","2026-02-25","Publisher Accepted Offer","2026-03-11",null,null,0],
+["49764","Prodege, LLC.","2026-02-25","Pending",null,null,null,0],
+["59002","RANK MEDIA TEKNOLOGI PT","2026-02-25","Accepted","2026-02-25",null,null,0],
+["59486","Wickfire","2026-02-25","Publisher Rejected Offer",null,null,null,0],
+["75421","Prodege, LLC - CouponCause.com","2026-02-25","Publisher Accepted Offer","2026-03-24",null,null,0],
+["95368","Affinity.","2026-02-25","Pending",null,null,null,0],
+["123201","Takeads GmbH","2026-02-25","Publisher Accepted Offer","2026-03-11",null,null,0],
+["157932","Usman Masood","2026-02-25","Rejected",null,null,null,0],
+["170244","Sovrn Commerce 2","2026-02-25","Pending",null,null,null,0],
+["170911","Nerdwallet, Inc","2026-02-25","Pending",null,null,null,0],
+["192585","Skimlinks VP","2026-02-25","Pending",null,null,null,0],
+["245060","Brandreward  Coupons","2026-02-25","Publisher Accepted Offer","2026-02-25",null,null,0],
+["357605","YieldKit GmbH","2026-02-25","Publisher Accepted Offer","2026-02-26",null,null,0],
+["493806","eCommerce Enablers Pte. Ltd.","2026-02-25","Pending",null,null,null,0],
+["1193684","NerdWallet, Inc.","2026-02-25","Publisher Rejected Offer",null,null,null,0],
+["1199413","COUPERT PTE.LTD.","2026-02-25","Accepted","2026-02-25",null,null,0],
+["1203271","Brandreward Content","2026-02-25","Publisher Accepted Offer","2026-02-25",null,null,0],
+["1226424","Sovrn Inc","2026-02-25","Pending",null,null,null,0],
+["1441669","Bravodeal","2026-02-25","Pending",null,null,null,0],
+["1457162","NerdWallet Compare Inc","2026-02-25","Pending",null,null,null,0],
+["2003851","Bing Rebates by Microsoft","2026-02-25","Publisher Accepted Offer","2026-02-26",null,null,0],
+["2197213","Klarna","2026-02-25","Pending",null,null,null,0],
+["2637018","Simplycodes","2026-02-25","Accepted","2026-02-25","2026-05-23","2026-05-23",1],
+["2650594","thetrendingreviews","2026-02-25","Accepted","2026-02-27",null,null,0],
+["2861116","Afterpay US, Inc.","2026-02-25","Pending",null,null,null,0],
+["3046262","Nasima Akter","2026-02-25","Accepted","2026-02-27",null,null,0],
+["3111645","MDShamim Reza","2026-02-25","Accepted","2026-02-27",null,null,0],
+["5760192","quk.com","2026-02-25","Rejected",null,null,null,0],
+["6527106","Skimlinks Rewards sites","2026-02-25","Publisher Accepted Offer","2026-03-03",null,null,0],
+["6577427","Revolux Studio","2026-02-25","Accepted","2026-02-27",null,null,0],
+["6604279","Ali  Hasnain business","2026-02-25","Rejected",null,null,null,0],
+["6731580","trendymente","2026-02-25","Rejected",null,null,null,0],
+["6910628","Muhammad Nouman javaid","2026-02-25","Accepted","2026-02-27",null,null,0],
+["6950302","PYJ MEDIA PVT LTD","2026-02-25","Rejected",null,null,null,0],
+["10563","Promocodes.com","2026-02-26","Accepted","2026-02-26",null,null,0],
+["10879","Extrabux","2026-02-26","Accepted","2026-02-26",null,null,0],
+["11089","SurfMyAds.com. Inc.","2026-02-26","Accepted","2026-02-26",null,null,0],
+["12796","DGMAX Interactive","2026-02-26","Accepted","2026-02-26","2025-10-05","2025-11-02",2],
+["121977","digidip GmbH","2026-02-26","Accepted","2026-02-26",null,null,0],
+["343504","LINKGAINS PTE.LTD.","2026-02-26","Accepted","2026-02-26",null,null,0],
+["2075306","Revounts","2026-02-26","Accepted","2026-02-26",null,null,0],
+["2580300","CONG TY TNHH ONADS","2026-02-26","Rejected",null,null,null,0],
+["3317921","Joko USA","2026-02-26","Accepted","2026-02-26",null,null,0],
+["3655744","jeanloup+clickup","2026-02-26","Accepted","2026-02-26","2025-12-16","2025-12-16",1],
+["3812262","CRMside","2026-02-26","Accepted","2026-02-27",null,null,0],
+["4198545","OscarAn","2026-02-26","Accepted","2026-02-26","2026-03-05","2026-05-28",2],
+["5336928","CheeseBunny Media","2026-02-26","Rejected",null,null,null,0],
+["5384307","lenhi1998","2026-02-26","Rejected",null,null,null,0],
+["5463805","Employ Borderless","2026-02-26","Accepted","2026-02-26","2025-10-03","2026-05-26",82],
+["5732090","Premier Driver Recruiting","2026-02-26","Accepted","2026-02-26",null,null,0],
+["5737252","Thrive Ventures Consulting","2026-02-26","Accepted","2026-02-26",null,null,0],
+["5754225","LAMPHAM","2026-02-26","Rejected",null,null,null,0],
+["5939292","LinkShakes","2026-02-26","Accepted","2026-02-27",null,null,0],
+["6153858","Jessica Miller-Merrell","2026-02-26","Accepted","2026-02-26",null,null,0],
+["6164037","HR Stacks","2026-02-26","Accepted","2026-02-26",null,null,0],
+["6306622","EDLOOK","2026-02-26","Accepted","2026-02-27",null,null,0],
+["6476617","Takeads","2026-02-26","Accepted","2026-02-26","2025-10-08","2026-02-16",3],
+["6680591","Skimmwise","2026-02-26","Rejected",null,null,null,0],
+["6852627","Femmeforma","2026-02-26","Rejected",null,null,null,0],
+["6965597","Stylishaddons","2026-02-26","Rejected",null,null,null,0],
+["7007375","Murali24","2026-02-26","Accepted","2026-02-26",null,null,0],
+["7019493","Pixel AI Tools","2026-02-26","Accepted","2026-02-27",null,null,0],
+["7029357","smtp-recruiting","2026-02-26","Accepted","2026-02-27","2026-01-14","2026-05-09",2],
+["7029479","KSHR Advisory Services","2026-02-26","Accepted","2026-02-26",null,null,0],
+["7029806","Ming Wang","2026-02-26","Accepted","2026-02-26",null,null,0],
+["7030583","GDPR Deleted - 7030583","2026-02-26","Accepted","2026-02-27",null,null,0],
+["22788","TopCashback USA Inc","2026-02-27","Pending",null,null,null,0],
+["50942","Demand.io","2026-02-27","Publisher Accepted Offer","2026-02-28",null,null,0],
+["159047","CNET Media Inc.","2026-02-27","Pending",null,null,null,0],
+["190488","Yazing","2026-02-27","Publisher Accepted Offer","2026-02-28",null,null,0],
+["240940","Reward Gateway PTY Ltd","2026-02-27","Pending",null,null,null,0],
+["328256","Investopedia","2026-02-27","Pending",null,null,null,0],
+["390418","Wildfire Systems","2026-02-27","Publisher Accepted Offer","2026-03-06",null,null,0],
+["2022797","Microsoft Online, Inc","2026-02-27","Publisher Rejected Offer",null,null,null,0],
+["2441837","Freelance-Stack.io","2026-02-27","Accepted","2026-03-02",null,null,0],
+["2447408","FatCoupon Technology Ltd","2026-02-27","Accepted","2026-02-27",null,null,0],
+["4833492","eCommerce Enablers Pte. Ltd","2026-02-27","Pending",null,null,null,0],
+["4958099","functionn","2026-02-27","Accepted","2026-02-27","2025-11-17","2025-11-17",1],
+["5230200","Fusion Media Limited","2026-02-27","Pending",null,null,null,0],
+["5449888","Amex Offers","2026-02-27","Pending",null,null,null,0],
+["5949228","Redux88","2026-02-27","Rejected",null,null,null,0],
+["7032391","Avomind","2026-02-27","Accepted","2026-02-28",null,null,0],
+["7032396","Solutions Driven","2026-02-27","Accepted","2026-02-27","2026-04-28","2026-04-28",1],
+["7032679","David Coons","2026-02-27","Accepted","2026-02-27","2025-10-16","2025-10-16",1],
+["7033869","CresorAdvisory","2026-02-27","Accepted","2026-02-27","2025-10-10","2025-10-10",1],
+["7035122","Danielle Yeow","2026-02-27","Accepted","2026-02-28","2026-05-07","2026-05-07",1],
+["7035594","weConnect Finance Team","2026-02-28","Accepted","2026-02-28","2025-11-15","2025-11-15",1],
+["7035904","Jing Han Tan","2026-02-28","Publisher Accepted Offer","2026-02-28",null,null,0],
+["7037478","Somewhere","2026-02-28","Accepted","2026-02-28","2025-11-10","2026-04-22",16],
+["4779947","Recruiting Guy","2026-03-02","Accepted","2026-03-02","2026-02-27","2026-03-13",11],
+["7054250","nicholaspch","2026-03-02","Publisher Accepted Offer","2026-03-06",null,null,0],
+["6955226","DINOLEE","2026-03-03","Rejected",null,null,null,0],
+["6988047","Employsome","2026-03-03","Accepted","2026-03-04","2026-02-21","2026-05-20",17],
+["7044789","Hollyn Laine","2026-03-03","Accepted","2026-03-05","2026-02-20","2026-02-20",1],
+["6972497","Ruggedoutfits","2026-03-04","Rejected",null,null,null,0],
+["7048037","Prime PEO Brokers","2026-03-04","Accepted","2026-03-04","2025-10-08","2025-11-07",2],
+["2056358","Ibotta, powered by Button","2026-03-05","Accepted","2026-03-05",null,null,0],
+["3522274","Refbackbonus","2026-03-05","Rejected",null,null,null,0],
+["7050060","Strego Ventures UG","2026-03-05","Accepted","2026-03-06","2025-10-22","2026-05-29",56],
+["7079739","JackieSalalila","2026-03-05","Publisher Accepted Offer","2026-03-14",null,null,0],
+["1377810","Bernard Haug","2026-03-06","Publisher Accepted Offer","2026-03-06","2026-03-13","2026-04-17",14],
+["1815208","First Alliance Limited","2026-03-06","Accepted","2026-03-09",null,null,0],
+["146026","germanAffiliate","2026-03-07","Accepted","2026-03-07","2026-05-08","2026-05-08",1],
+["352960","Refermate LLC","2026-03-07","Accepted","2026-03-07",null,null,0],
+["2844963","CogneveINC","2026-03-07","Publisher Accepted Offer","2026-03-10",null,null,0],
+["3476091","Smart Influence GmbH","2026-03-07","Accepted","2026-03-09",null,null,0],
+["6335262","Tranquil Media LTD","2026-03-07","Publisher Accepted Offer","2026-03-07",null,null,0],
+["385086","Karma Shopping","2026-03-09","Accepted","2026-03-09",null,null,0],
+["7060318","BELVIN99","2026-03-09","Rejected",null,null,null,0],
+["68273","FreshReach","2026-03-10","Accepted","2026-03-13",null,null,0],
+["7046681","Thesmartuse","2026-03-10","Rejected",null,null,null,0],
+["7049955","Trendytempo","2026-03-10","Rejected",null,null,null,0],
+["7066017","nsave","2026-03-10","Publisher Accepted Offer","2026-03-20",null,null,0],
+["7066632","Mor Search","2026-03-10","Countered Offer",null,null,null,0],
+["6683148","Asharr","2026-03-11","Rejected",null,null,null,0],
+["7072232","Manithesean","2026-03-11","Accepted","2026-03-12","2025-10-07","2025-10-07",1],
+["4328530","JoinGekko.com","2026-03-13","Accepted","2026-03-13",null,null,0],
+["7077866","Subrato Das","2026-03-13","Publisher Accepted Offer","2026-03-13","2025-10-21","2025-10-24",3],
+["3694325","SSR","2026-03-14","Publisher Accepted Offer","2026-03-14","2025-12-25","2026-05-28",8],
+["7046906","Activecore","2026-03-14","Rejected",null,null,null,0],
+["2505102","FNSCREATOR LTD","2026-03-17","Accepted","2026-03-17",null,null,0],
+["7036457","Repute Network","2026-03-17","Accepted","2026-03-17",null,null,0],
+["33477","BeFrugal.com","2026-03-18","Publisher Accepted Offer","2026-03-19",null,null,0],
+["1221278","AffiliateWatch","2026-03-18","Pending Proposals",null,null,null,0],
+["7093608","Hyre","2026-03-18","Accepted","2026-03-18","2026-04-16","2026-04-16",1],
+["44964","FMTC","2026-03-19","Pending Proposals",null,null,null,0],
+["2212367","Joe Lai","2026-03-19","Pending Proposals",null,null,null,0],
+["3254149","GEEKSLETTER LLC","2026-03-19","Pending Proposals",null,null,null,0],
+["4095344","Phia","2026-03-19","Pending Proposals",null,null,null,0],
+["5215989","OCEANSHINY LTD","2026-03-19","Pending Proposals",null,null,null,0],
+["5510647","Gianpaulo Coletti","2026-03-19","Pending Proposals",null,null,null,0],
+["5971555","Underwriterly","2026-03-19","Accepted","2026-03-21","2026-01-23","2026-01-23",1],
+["6865474","Vortex Review","2026-03-19","Rejected",null,null,null,0],
+["7096581","Andrew Kibler","2026-03-19","Accepted","2026-03-20",null,null,0],
+["7097072","Anthony Rumfallo","2026-03-19","Accepted","2026-03-20","2025-10-30","2025-10-30",1],
+["7097209","Brderless","2026-03-19","Accepted","2026-03-19",null,null,0],
+["7099502","Funded.club","2026-03-19","Publisher Accepted Offer","2026-03-20",null,null,0],
+["3319435","Smart Influence GmbH","2026-03-20","Accepted","2026-03-21",null,null,0],
+["3697348","Seven Company","2026-03-20","Rejected",null,null,null,0],
+["3887247","Nguyen Van Nhu","2026-03-20","Rejected",null,null,null,0],
+["4956702","Dao Van Giang","2026-03-20","Rejected",null,null,null,0],
+["5379566","Startup Grind","2026-03-20","Publisher Accepted Offer","2026-03-20","2026-05-30","2026-05-30",2],
+["7087717","www.solarstatedata.com","2026-03-20","Pending",null,null,null,0],
+["7087972","WorkQuiet","2026-03-20","Pending",null,null,null,0],
+["7096549","Rand Capital","2026-03-20","Pending",null,null,null,0],
+["15866","Greenwood MonkeyBars LLC","2026-03-21","Accepted","2026-03-21",null,null,0],
+["4292179","Ecomnia - Partner Growth Program","2026-03-21","Accepted","2026-03-21",null,null,0],
+["5143909","Pham Duc Toan","2026-03-21","Accepted","2026-03-23","2025-10-17","2026-01-13",4],
+["7102891","Snaphunt","2026-03-21","Accepted","2026-03-21",null,null,0],
+["7103243","HUMN","2026-03-21","Accepted","2026-03-21",null,null,0],
+["7109997","Vic Allen","2026-03-23","Accepted","2026-03-24",null,null,0],
+["3553031","Saturn Ads","2026-03-24","Rejected",null,null,null,0],
+["4130951","Cratus Services Pvt  Ltd.","2026-03-24","Rejected",null,null,null,0],
+["5615700","Warmlink","2026-03-24","Accepted","2026-03-24",null,null,0],
+["5743079","EDLOOK LTD","2026-03-24","Rejected",null,null,null,0],
+["7111127","Techconek Vietnam","2026-03-24","Accepted","2026-03-24",null,null,0],
+["10010","Quidco","2026-03-25","Pending",null,null,null,0],
+["10087","Reward Gateway (UK) Ltd","2026-03-25","Publisher Rejected Offer",null,null,null,0],
+["184719","Affinity Global.","2026-03-25","Pending",null,null,null,0],
+["354648","Blue Light Card Ltd","2026-03-25","Pending",null,null,null,0],
+["397163","ENOE SAS","2026-03-25","Pending",null,null,null,0],
+["1202966","Dealmoon UK","2026-03-25","Pending",null,null,null,0],
+["1249479","RedBrain Ltd","2026-03-25","Pending",null,null,null,0],
+["1812968","Genie Shopping","2026-03-25","Pending",null,null,null,0],
+["2635395","Ebates Performance Marketing Inc","2026-03-25","Pending",null,null,null,0],
+["4300809","TopCashback Italy","2026-03-25","Pending",null,null,null,0],
+["4751382","abdelwaheb bsiker","2026-03-25","Rejected",null,null,null,0],
+["5764941","InRewards.com","2026-03-25","Pending",null,null,null,0],
+["6038270","Global EOR Services","2026-03-25","Accepted","2026-03-25",null,null,0],
+["6756776","Siteplug EU by Affinity Global GmbH","2026-03-25","Pending",null,null,null,0],
+["4914472","Auctera LLC","2026-03-26","Rejected",null,null,null,0],
+["6625251","Pexda","2026-03-26","Rejected",null,null,null,0],
+["7105292","DUNCAN99","2026-03-26","Rejected",null,null,null,0],
+["6165051","SoftwareFinder","2026-03-27","Publisher Accepted Offer","2026-04-02",null,null,0],
+["7122544","Shi Mei","2026-03-27","Rejected",null,null,null,0],
+["7124742","Leon Alexander Schardin","2026-03-27","Rejected",null,null,null,0],
+["7067377","Earnytics","2026-03-28","Accepted","2026-04-23",null,null,0],
+["7077106","One Global Payroll","2026-03-28","Accepted","2026-03-28","2026-02-10","2026-05-28",20],
+["7086512","CROZDESK LTD","2026-03-28","Accepted","2026-03-28",null,null,0],
+["7126855","Sourcific Talent","2026-03-28","Accepted","2026-03-30","2025-11-26","2026-03-31",2],
+["6387960","Prefer Tech INC","2026-03-30","Accepted","2026-04-03",null,null,0],
+["3232544","catherine@staymoon.com","2026-03-31","Rejected",null,null,null,0],
+["7083922","John Alexandra","2026-03-31","Publisher Retracted Offer",null,null,null,0],
+["7137571","PuzzleHR","2026-03-31","Accepted","2026-03-31","2025-10-02","2025-11-11",2],
+["6813648","Bargorya","2026-04-01","Rejected",null,null,null,0],
+["7133891","WhatAreTheBest","2026-04-01","Rejected",null,null,null,0],
+["6884117","PYJ MEDIA","2026-04-02","Rejected",null,null,null,0],
+["7047415","TrungLe0611","2026-04-02","Rejected",null,null,null,0],
+["7066296","Talkaboutladies","2026-04-02","Rejected",null,null,null,0],
+["7148577","True Search","2026-04-02","Accepted","2026-04-03",null,null,0],
+["37027","TechnologyAdvice LLC - FSB","2026-04-03","Publisher Accepted Offer","2026-04-03",null,null,0],
+["56411","Semantic Labs","2026-04-03","Accepted","2026-04-03",null,null,0],
+["1314462","OutSail","2026-04-03","Accepted","2026-04-03",null,null,0],
+["1987062","TechnologyAdvice LLC","2026-04-03","Publisher Accepted Offer","2026-04-03",null,null,0],
+["7150483","People Partners","2026-04-03","Accepted","2026-04-03",null,null,0],
+["5798489","Minty Platform","2026-04-04","Accepted","2026-04-07",null,null,0],
+["6201106","Whichpayroll","2026-04-04","Accepted","2026-04-07",null,null,0],
+["7148701","Avux190602","2026-04-05","Rejected",null,null,null,0],
+["6449688","Sharmeena Zeeshan","2026-04-07","Rejected",null,null,null,0],
+["7164741","OnHires LLC","2026-04-07","Accepted","2026-04-07",null,null,0],
+["10579","Ebates Performance Marketing, Inc. dba Rakuten Rewards","2026-04-09","Accepted","2026-04-09",null,null,0],
+["4716552","Best Tech AI","2026-04-09","Accepted","2026-04-11",null,null,0],
+["7177903","trybeyondborders","2026-04-10","Accepted","2026-04-11",null,null,0],
+["4101692","Links Circle LTD","2026-04-11","Accepted","2026-04-19",null,null,0],
+["7159182","Strategy for Industry","2026-04-13","Accepted","2026-04-21",null,null,0],
+["4627965","Adsynergix","2026-04-15","Accepted","2026-04-15",null,null,0],
+["7137389","Trycouponn","2026-04-15","Rejected",null,null,null,0],
+["4081192","AffiliateGenius","2026-04-16","Rejected",null,null,null,0],
+["6734584","moosama","2026-04-16","Rejected",null,null,null,0],
+["7204321","WorkFlex","2026-04-18","Accepted","2026-04-18",null,null,0],
+["3085097","Physitia","2026-04-19","Rejected",null,null,null,0],
+["7201724","SoftwareDuel","2026-04-20","Accepted","2026-04-21",null,null,0],
+["6225543","Mac Quan","2026-04-21","Rejected",null,null,null,0],
+["7214970","Nova HCM","2026-04-21","Accepted","2026-04-21",null,null,0],
+["30557","27 Kilobyte AB","2026-04-22","Accepted","2026-04-22",null,null,0],
+["205449","Wealth Ambition Marketing Inc","2026-04-22","Accepted","2026-04-23",null,null,0],
+["1242134","Whetten Digital","2026-04-22","Rejected",null,null,null,0],
+["2299006","Frank DeBlasi","2026-04-22","Rejected",null,null,null,0],
+["2331864","BudgetFitter (UK & Worldwide)","2026-04-22","Rejected",null,null,null,0],
+["4690767","Neshat Useini","2026-04-22","Rejected",null,null,null,0],
+["5040023","D84","2026-04-22","Rejected",null,null,null,0],
+["5171145","Couponsturbo","2026-04-22","Rejected",null,null,null,0],
+["5593427","Sialph","2026-04-22","Rejected",null,null,null,0],
+["5886644","Razorpay","2026-04-22","Rejected",null,null,null,0],
+["7208302","Blue Chip Computers","2026-04-22","Rejected",null,null,null,0],
+["7208870","DOAN HONG SON","2026-04-22","Rejected",null,null,null,0],
+["7218293","iangiles","2026-04-22","Rejected",null,null,null,0],
+["7218460","Copper Kettle Consulting","2026-04-22","Accepted","2026-04-23",null,null,0],
+["7219300","WeblyAlfred","2026-04-22","Rejected",null,null,null,0],
+["2374256","PaydayPERX","2026-04-23","Pending",null,null,null,0],
+["2703561","Witfeed","2026-04-23","Publisher Accepted Offer","2026-04-23",null,null,0],
+["4255054","Naturopathic Nutrition","2026-04-23","Publisher Accepted Offer","2026-04-24",null,null,0],
+["5875409","Linkby","2026-04-23","Pending",null,null,null,0],
+["6129143","Dupple","2026-04-23","Rejected",null,null,null,0],
+["6428895","retargetspark_uk","2026-04-23","Rejected",null,null,null,0],
+["7222372","Entravia","2026-04-23","Rejected",null,null,null,0],
+["7223301","Shaun Edlin","2026-04-23","Accepted","2026-04-24",null,null,0],
+["5362662","All Things Remote","2026-04-24","Accepted","2026-04-28",null,null,0],
+["6247397","The HR Takeaways Newsletter","2026-04-24","Pending",null,null,null,0],
+["7067102","doanhongsonerent15","2026-04-24","Accepted","2026-05-06",null,null,0],
+["7224656","Alexis Bourson","2026-04-24","Accepted","2026-04-24",null,null,0],
+["7226301","Rand Capital","2026-04-24","Accepted","2026-04-24","2026-05-01","2026-05-01",1],
+["7227310","Employmate","2026-04-24","Accepted","2026-04-24",null,null,0],
+["7211154","HAVITN","2026-04-25","Accepted","2026-05-06",null,null,0],
+["3293493","DuoSavings","2026-04-26","Accepted","2026-05-06",null,null,0],
+["5447953","Mimoni","2026-04-26","Accepted","2026-05-05",null,null,0],
+["5570000","Qurat ul Ain Abbas","2026-04-26","Accepted","2026-05-06",null,null,0],
+["7231753","doanngoclam","2026-04-27","Accepted","2026-05-06",null,null,0],
+["3631073","nicelyus","2026-04-28","Publisher Accepted Offer","2026-04-28",null,null,0],
+["7066995","DOAN HONG SON","2026-04-28","Accepted","2026-05-06",null,null,0],
+["7205184","Muhammad N Javaid","2026-04-28","Accepted","2026-05-06",null,null,0],
+["1451459","One Web Logic Ltd","2026-04-29","Accepted","2026-04-29",null,null,0],
+["1876771","spark642","2026-04-29","Accepted","2026-05-06",null,null,0],
+["2198566","Deep Brain Pte Ltd","2026-04-29","Accepted","2026-04-29",null,null,0],
+["3257149","Hatem Dbabra","2026-04-29","Accepted","2026-05-06",null,null,0],
+["5404757","RIO3CONSULTING","2026-04-29","Accepted","2026-05-06",null,null,0],
+["7067020","PHAM THAN THUY THAO","2026-04-29","Accepted","2026-05-06",null,null,0],
+["7221228","lkmstore","2026-04-29","Accepted","2026-05-06",null,null,0],
+["7229411","votunglam","2026-04-29","Accepted","2026-05-06",null,null,0],
+["7242896","Connecting Space","2026-04-29","Accepted","2026-04-29",null,null,0],
+["7243422","Tomass Barilo","2026-04-29","Accepted","2026-05-06",null,null,0],
+["7243427","Faz Solution","2026-04-29","Accepted","2026-05-06",null,null,0],
+["7243846","KumoHR","2026-04-29","Accepted","2026-04-29",null,null,0],
+["7244262","Apertus","2026-04-29","Publisher Accepted Offer","2026-04-29",null,null,0],
+["7282751","Compareor","2026-04-29","Publisher Accepted Offer","2026-05-09",null,null,0],
+["7229365","lethimen","2026-04-30","Accepted","2026-05-06",null,null,0],
+["7240159","DigitalSolutions06","2026-04-30","Accepted","2026-05-06",null,null,0],
+["7246248","lucasnguyenn68","2026-04-30","Accepted","2026-05-06",null,null,0],
+["205287","DontPayFull","2026-05-01","Accepted","2026-05-05",null,null,0],
+["7249500","TranTien79","2026-05-01","Accepted","2026-05-06",null,null,0],
+["2213639","Sanu Kumar","2026-05-02","Accepted","2026-05-06",null,null,0],
+["3484071","Vlogfund LLC","2026-05-02","Accepted","2026-05-06",null,null,0],
+["7199519","turbo reviews","2026-05-02","Accepted","2026-05-06",null,null,0],
+["7232355","thuythaocs","2026-05-02","Accepted","2026-05-06",null,null,0],
+["2757201","PromosSwitch","2026-05-03","Accepted","2026-05-06",null,null,0],
+["7242741","Elijr.music2026","2026-05-04","Accepted","2026-05-06",null,null,0],
+["7263701","BlueLion, LLC","2026-05-04","Accepted","2026-05-06",null,null,0],
+["7265172","tunglam","2026-05-05","Accepted","2026-05-06",null,null,0],
+["7269026","Jasper Loh","2026-05-05","Publisher Accepted Offer","2026-05-06",null,null,0],
+["7273598","Law Office of Stephen Zarubaiko","2026-05-05","Publisher Accepted Offer","2026-05-07","2026-05-05","2026-05-05",1],
+["101044","Capital One","2026-05-06","Pending",null,null,null,0],
+["2913494","thienan","2026-05-06","Pending",null,null,null,0],
+["3545536","universando","2026-05-06","Accepted","2026-05-06",null,null,0],
+["3602959","TryDealsNow","2026-05-06","Accepted","2026-05-06",null,null,0],
+["5440250","AI Search Directory","2026-05-06","Accepted","2026-05-06",null,null,0],
+["5483134","DigiTechSK333","2026-05-06","Accepted","2026-05-06",null,null,0],
+["5633166","AZ Publishers","2026-05-06","Pending",null,null,null,0],
+["6059560","Maxpoint-Health365","2026-05-06","Accepted","2026-05-06",null,null,0],
+["6988668","Nextwell Ads Ltd","2026-05-06","Accepted","2026-05-06",null,null,0],
+["7266075","thuythao.urbanman","2026-05-06","Accepted","2026-05-06",null,null,0],
+["7268812","SaaS Growth Today","2026-05-06","Publisher Accepted Offer","2026-05-06",null,null,0],
+["7269837","Amber@AlchemyGTS","2026-05-06","Accepted","2026-05-06",null,null,0],
+["2710523","Aayush Bhaskar - SqueezeGrowth","2026-05-07","Accepted","2026-05-08",null,null,0],
+["6853976","Floraszivos","2026-05-07","Pending",null,null,null,0],
+["6929175","Offerblogfm","2026-05-07","Pending",null,null,null,0],
+["7141329","Modish_Muses","2026-05-07","Pending",null,null,null,0],
+["1812065","Growthfunda","2026-05-08","Accepted","2026-05-08",null,null,0],
+["7277391","Chanel Rose","2026-05-08","Rejected",null,null,null,0],
+["7278924","Mariem Khemir","2026-05-08","Publisher Accepted Offer","2026-05-08","2026-05-09","2026-05-09",1],
+["3560535","Jason Tong","2026-05-09","Pending",null,null,null,0],
+["7281971","than thi bay","2026-05-09","Rejected",null,null,null,0],
+["7282040","doanhongson","2026-05-09","Rejected",null,null,null,0],
+["7286062","JoinHopscotch","2026-05-09","Publisher Accepted Offer","2026-05-10",null,null,0],
+["7209344","M0975358","2026-05-10","Rejected",null,null,null,0],
+["360964","Promostime.net","2026-05-12","Pending",null,null,null,0],
+["6418503","AuthenCIO.com","2026-05-12","Publisher Accepted Offer","2026-05-12",null,null,0],
+["6694779","Simply Elliott Blog","2026-05-12","Pending",null,null,null,0],
+["2755880","IDoza","2026-05-13","Pending",null,null,null,0],
+["3534231","Minimise","2026-05-13","Pending",null,null,null,0],
+["5227760","HR Tech Partner Consutling Group GmbH","2026-05-13","Accepted","2026-05-13",null,null,0],
+["6059913","LvlUp Ventures","2026-05-13","Accepted","2026-05-15",null,null,0],
+["7296338","Hemanta Marketing","2026-05-13","Rejected",null,null,null,0],
+["7296442","Hemanta Affiliate","2026-05-13","Rejected",null,null,null,0],
+["7296855","WHR Global Consulting","2026-05-13","Accepted","2026-05-13",null,null,0],
+["7297160","LideSpy LLC","2026-05-13","Rejected",null,null,null,0],
+["7299618","click2hr","2026-05-13","Accepted","2026-05-15","2026-05-20","2026-05-23",2],
+["7300056","GoAsia Talent","2026-05-13","Accepted","2026-05-15",null,null,0],
+["3524882","PUBLISHERS HUB CORP","2026-05-14","Pending",null,null,null,0],
+["6186183","Tram Anh","2026-05-14","Pending",null,null,null,0],
+["6822542","Luu Thi Le","2026-05-14","Pending",null,null,null,0],
+["7032886","Luup","2026-05-14","Pending",null,null,null,0],
+["7225342","nhocthanki","2026-05-14","Pending",null,null,null,0],
+["7304167","Rockrose Executive Search","2026-05-14","Accepted","2026-05-15",null,null,0],
+["6233201","qqstore","2026-05-15","Pending",null,null,null,0],
+["7303981","phamthanthuythao admin","2026-05-15","Accepted","2026-05-15",null,null,0],
+["6827029","TheFindWire","2026-05-16","Pending",null,null,null,0],
+["4066493","HuuHieuCo","2026-05-17","Pending",null,null,null,0],
+["7145652","truongtambetibuti","2026-05-17","Pending",null,null,null,0],
+["5498623","BonusArrive","2026-05-18","Accepted","2026-05-22",null,null,0],
+["1238013","PennySaviour","2026-05-19","Publisher Retracted Offer",null,null,null,0],
+["4168980","Farrukh Peerzada","2026-05-19","Pending",null,null,null,0],
+["5894733","vmnnhat030","2026-05-19","Pending",null,null,null,0],
+["7318772","TRIN1","2026-05-19","Pending",null,null,null,0],
+["2567929","NachoNacho","2026-05-20","Pending",null,null,null,0],
+["2871169","FounderPass","2026-05-20","Accepted","2026-05-28",null,null,0],
+["7321987","Steer Your Business","2026-05-20","Pending",null,null,null,0],
+["7322125","Techlinker Asia","2026-05-20","Pending",null,null,null,0],
+["3483309","Staisha","2026-05-21","Pending",null,null,null,0],
+["6957994","lequanghuy","2026-05-21","Pending",null,null,null,0],
+["7233635","Bharat Job Work","2026-05-21","Pending",null,null,null,0],
+["7072292","Myleven","2026-05-22","Pending",null,null,null,0],
+["7105591","Dino Eatsy","2026-05-22","Pending",null,null,null,0],
+["7105743","tuanbtcx","2026-05-22","Pending",null,null,null,0],
+["7105978","VU NGOC AN 1","2026-05-22","Pending",null,null,null,0],
+["7118562","Surfcalm","2026-05-22","Pending",null,null,null,0],
+["7315423","luxediscounts","2026-05-22","Pending",null,null,null,0],
+["3801024","coupon89","2026-05-23","Pending",null,null,null,0],
+["7105760","Olivia Smithh","2026-05-23","Publisher Retracted Offer",null,null,null,0],
+["7105772","Michael Smithh","2026-05-23","Pending",null,null,null,0],
+["7111456","William Brownn","2026-05-23","Publisher Retracted Offer",null,null,null,0],
+["7283470","Ashraf Jacobs","2026-05-23","Pending",null,null,null,0],
+["7318659","CUBIXSOL LIMITED","2026-05-23","Pending",null,null,null,0],
+["6130796","Ngoc Khue","2026-05-24","Pending",null,null,null,0],
+["7113813","Novabus","2026-05-24","Pending",null,null,null,0],
+["7325614","Vu Duc Huy","2026-05-24","Pending",null,null,null,0],
+["7337005","Trong Tri Tue Dang","2026-05-24","Pending",null,null,null,0],
+["7338457","Amaury Covo","2026-05-24","Pending",null,null,null,0],
+["4817295","BestDealsUp","2026-05-26","Pending",null,null,null,0],
+["6923761","Blog Coupon99","2026-05-26","Pending",null,null,null,0],
+["7339256","Kim Nhat Nguyen","2026-05-26","Pending",null,null,null,0],
+["7331119","REVIEWNEEDED LLC.","2026-05-27","Pending",null,null,null,0],
+["6514240","Yond Advisory","2026-05-28","Pending",null,null,null,0],
+["6859520","DealCouponTop","2026-05-28","Pending",null,null,null,0],
+["7340974","Tran Linh","2026-05-28","Pending",null,null,null,0],
+["7355111","Hire Emerald","2026-05-29","Publisher Accepted Offer","2026-05-29",null,null,0],
+["7368861","BALANCED HR","2026-05-29","Publisher Accepted Offer","2026-06-03",null,null,0],
+["5227181","Digital Consulting Ventures","2026-05-30","Pending",null,null,null,0],
+["3802732","tranhlinh","2026-06-01","Pending",null,null,null,0],
+["7137084","shopmaniax","2026-06-01","Pending",null,null,null,0],
+["6617491","Ignacio Iglesias","2026-06-02","Pending",null,null,null,0],
+["7341497","Doug Bohn","2026-06-02","Pending",null,null,null,0],
+["1249451","reviewsint","2026-06-03","Pending",null,null,null,0]
 ];
 
 const PARTNERS = RAW.map(r => ({pid:r[0], pn:r[1], ad:r[2], as:r[3], acd:r[4], fl:r[5], ll:r[6], tl:r[7]}));
-
 const ACCEPTED = ['Accepted','Publisher Accepted Offer'];
-const TODAY = '2026-05-26';
+const TODAY = '2026-06-03';
 
 function parseDate(s) { return new Date(s + 'T00:00:00'); }
 function toISO(d) {
@@ -674,7 +633,7 @@ const deltaSym = (curr, prev) => {
 };
 
 let state = {
-  from: '2026-02-24',
+  from: '2026-02-25',
   to: TODAY,
   granularity: 'month',
   buckets: [],
@@ -692,7 +651,6 @@ function buildBuckets() {
   const fromDate = parseDate(state.from);
   const toDate = parseDate(state.to);
   const todayDate = parseDate(TODAY);
-
   const buckets = [];
   let cursor = bucketStart(fromDate, state.granularity);
   while (cursor <= toDate) {
@@ -703,12 +661,9 @@ function buildBuckets() {
     const counts = {};
     metricsConfig.forEach(m => { counts[m.key] = bp.filter(filters[m.key]).length; });
     buckets.push({
-      key: startISO,
-      label: bucketLabel(start, state.granularity),
+      key: startISO, label: bucketLabel(start, state.granularity),
       start, end, startISO, endISO,
-      partial: end > todayDate,
-      partners: bp,
-      counts
+      partial: end > todayDate, partners: bp, counts
     });
     if (state.granularity === 'week') cursor.setDate(cursor.getDate() + 7);
     else if (state.granularity === 'month') cursor.setMonth(cursor.getMonth() + 1);
@@ -765,12 +720,8 @@ function renderChart() {
       }
     });
     const showLbl = state.buckets.length <= 14 || wi % 2 === 0;
-    if (showLbl) {
-      svgC += `<text x="${groupX + groupW/2 - 4}" y="${H - 22}" font-size="10" fill="#696563" text-anchor="middle">${b.label}</text>`;
-    }
-    if (b.partial) {
-      svgC += `<text x="${groupX + groupW/2 - 4}" y="${H-8}" font-size="9" fill="#8B6500" text-anchor="middle" font-weight="600">partial</text>`;
-    }
+    if (showLbl) svgC += `<text x="${groupX + groupW/2 - 4}" y="${H - 22}" font-size="10" fill="#696563" text-anchor="middle">${b.label}</text>`;
+    if (b.partial) svgC += `<text x="${groupX + groupW/2 - 4}" y="${H-8}" font-size="9" fill="#8B6500" text-anchor="middle" font-weight="600">partial</text>`;
   });
   svg.innerHTML = svgC;
 }
@@ -811,10 +762,8 @@ function onCellClick(cell) {
   const metric = metricsConfig.find(m => m.key === cell.dataset.metric);
   const partners = b.partners.filter(filters[metric.key]);
   state.currentCells = { bucket: b, metric, partners };
-  document.getElementById('dd-title').textContent =
-    `${metric.label} · ${b.label} (${partners.length})`;
-  document.getElementById('dd-meta').textContent =
-    `${metric.desc} · Range: ${b.startISO} to ${b.endISO}`;
+  document.getElementById('dd-title').textContent = `${metric.label} · ${b.label} (${partners.length})`;
+  document.getElementById('dd-meta').textContent = `${metric.desc} · Range: ${b.startISO} to ${b.endISO}`;
   document.getElementById('drilldown').classList.add('show');
   document.getElementById('search').value = '';
   renderDrilldown();
@@ -903,11 +852,11 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
       const d = new Date(today); d.setDate(d.getDate() - 89);
       state.from = toISO(d); state.to = TODAY;
     } else if (p === 'q1') {
-      state.from = '2026-02-24'; state.to = '2026-03-31';
+      state.from = '2026-02-25'; state.to = '2026-03-31';
     } else if (p === 'q2') {
       state.from = '2026-04-01'; state.to = TODAY;
     } else {
-      state.from = '2026-02-24'; state.to = TODAY;
+      state.from = '2026-02-25'; state.to = TODAY;
     }
     document.getElementById('dateFrom').value = state.from;
     document.getElementById('dateTo').value = state.to;
