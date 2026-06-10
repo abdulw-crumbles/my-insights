@@ -178,6 +178,7 @@ body{
 
 .cols-2{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:20px;flex:1}
 .cols-2.even{grid-template-columns:1fr 1fr}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:18px;flex:1;min-height:0}
 .notes{display:flex;flex-direction:column;gap:12px}
 .note{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px}
 .note h5{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:4px}
@@ -309,6 +310,15 @@ body{
 #counter{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.55)}
 .hint{position:fixed;bottom:20px;right:24px;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--mono);z-index:50}
 svg text{font-family:var(--sans)}
+/* monthly trend small multiples */
+.trend-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px 5px}
+.tcard .th{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1px}
+.tcard .tn{font-size:12px;font-weight:800;color:var(--ink)}
+.tcard .tc{font-size:11px;font-weight:800;font-family:var(--mono)}
+.tcard .tc.g{color:var(--green)} .tcard .tc.r{color:var(--red)} .tcard .tc.n{color:var(--muted)}
+.tlegend{margin-top:12px;font-size:10.5px;color:var(--muted);font-style:italic}
+#mSqlBucket svg,#mLostBucket svg,#mLostMonth svg,#rSqlBucket svg,#rLostBucket svg,#rLostMonth svg{width:100%;height:188px;display:block}
 </style>
 </head>
 <body>
@@ -343,7 +353,7 @@ svg text{font-family:var(--sans)}
       </div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">02 / 24</div>
+    <div class="pg">02 / 28</div>
   </section>
 
   <!-- SLIDE 3 — DIVIDER 01 -->
@@ -353,7 +363,7 @@ svg text{font-family:var(--sans)}
     <h2 class="reveal" style="--d:.12s">Marketing</h2>
     <p class="reveal" style="--d:.24s">Funnel attainment, then the source, region, and product cuts, and top of funnel efficiency.</p>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">03 / 24</div>
+    <div class="pg">03 / 28</div>
   </section>
 
   <!-- SLIDE 4 — FUNNEL ATTAINMENT -->
@@ -376,7 +386,7 @@ svg text{font-family:var(--sans)}
       <div class="ta reveal" style="--d:.62s"><p><b>The leak is pipeline to revenue</b> at 18% versus a 23% plan on smaller deals. On the <b>$1.76M pipeline</b>, closing to plan is about <b>$88K of revenue</b> on top of the $321K booked. A joint close motion with Sales, not more leads.</p></div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">04 / 24</div>
+    <div class="pg">04 / 28</div>
   </section>
 
   <!-- SLIDE 5 — PAID SEARCH -->
@@ -421,7 +431,7 @@ svg text{font-family:var(--sans)}
       <div class="it"><span>CPC</span><b>$22.04</b></div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">05 / 24</div>
+    <div class="pg">05 / 28</div>
   </section>
 
   <!-- SLIDE 6 — CAMPAIGN EFFICIENCY -->
@@ -444,7 +454,7 @@ svg text{font-family:var(--sans)}
     </div>
     <div class="banner reveal" style="--d:.6s">Reallocation play: protect EOR Hiring, Brand and APAC India, then trim or rework the generic EOR and high-CPC Australia and V2 campaigns leaking spend at sub-1.5% CTR.</div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">06 / 24</div>
+    <div class="pg">06 / 28</div>
   </section>
 
   <!-- SLIDE 6b — PAID SEARCH CAMPAIGN DETAIL -->
@@ -473,7 +483,7 @@ svg text{font-family:var(--sans)}
       </table>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">07 / 24</div>
+    <div class="pg">07 / 28</div>
   </section>
 
   <!-- SLIDE 7 — ORGANIC SEARCH -->
@@ -517,7 +527,7 @@ svg text{font-family:var(--sans)}
       <div class="it"><span>Media cost</span><b>$0</b></div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">08 / 24</div>
+    <div class="pg">08 / 28</div>
   </section>
 
   <!-- SLIDE 9 — DIVIDER 02 REFERRALS -->
@@ -527,7 +537,7 @@ svg text{font-family:var(--sans)}
     <h2 class="reveal" style="--d:.12s">Referrals</h2>
     <p class="reveal" style="--d:.24s">The mirror image of Marketing. Overall first, then the sub-source, region, and product cuts.</p>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">09 / 24</div>
+    <div class="pg">09 / 28</div>
   </section>
 
   <!-- SLIDE 10 — REFERRALS FUNNEL ATTAINMENT -->
@@ -550,7 +560,7 @@ svg text{font-family:var(--sans)}
       <div class="ta reveal" style="--d:.62s"><p><b>The engine converts, supply is the question.</b> Pipeline overdelivers and deals run 1.7 to 2.1x plan. Do not annualise the May spike, it is timing.</p></div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">10 / 24</div>
+    <div class="pg">10 / 28</div>
   </section>
 
   <!-- SLIDE 10b — REFERRALS PARTNER ONBOARDING (proposed) -->
@@ -580,7 +590,7 @@ svg text{font-family:var(--sans)}
       <div class="it"><span>Median days to first lead</span><b>36</b></div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential · Source: Impact, gtm.impact_partners</div>
-    <div class="pg">11 / 24</div>
+    <div class="pg">11 / 28</div>
   </section>
 
   <!-- SLIDE 11 — DIVIDER 03 LLM SOV -->
@@ -590,7 +600,7 @@ svg text{font-family:var(--sans)}
     <h2 class="reveal" style="--d:.12s">LLM Share of Voice</h2>
     <p class="reveal" style="--d:.24s">A leading indicator of where B2B buyers research. How often AI assistants mention and cite Multiplier versus rivals. Data sourced from Ahrefs Brand Radar.</p>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">12 / 24</div>
+    <div class="pg">12 / 28</div>
   </section>
 
   <!-- SLIDE 12 — LLM SOV OVERVIEW -->
@@ -625,7 +635,7 @@ svg text{font-family:var(--sans)}
       </div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">13 / 24</div>
+    <div class="pg">13 / 28</div>
   </section>
 
   <!-- SLIDE 13 — THE 2026 CLIMB -->
@@ -647,7 +657,7 @@ svg text{font-family:var(--sans)}
       </div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">14 / 24</div>
+    <div class="pg">14 / 28</div>
   </section>
 
   <!-- SLIDE 14 — TAKEAWAYS -->
@@ -676,7 +686,7 @@ svg text{font-family:var(--sans)}
       <div class="ai"><b>Own the AI citation:</b> turn that mention lead into cited sources. A 14-per-1,000 citation rate is the GEO gap to close.</div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">15 / 24</div>
+    <div class="pg">15 / 28</div>
   </section>
 
   <!-- SLIDE 15 — DIVIDER 04 APPENDIX -->
@@ -686,7 +696,115 @@ svg text{font-family:var(--sans)}
     <h2 class="reveal" style="--d:.12s">Appendix</h2>
     <p class="reveal" style="--d:.24s">Reference cuts by source, region and product. Not walked through live; here for the questions.</p>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">16 / 24</div>
+    <div class="pg">16 / 28</div>
+  </section>
+
+  <!-- SLIDE 15b — MARKETING MONTHLY TREND VS TARGET -->
+  <section class="slide">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Appendix · Marketing</div></div>
+    <h2 class="title reveal" style="--d:.08s">Monthly trend vs target · Marketing</h2>
+    <p class="dek reveal" style="--d:.16s">Volume holds at or above plan, but <b>revenue and pipe to revenue run below</b>. Jan to May 2026.</p>
+    <div class="trend-grid reveal" style="--d:.26s">
+      <div class="tcard"><div class="th"><span class="tn">MQL</span><span class="tc g">100%</span></div><div id="tM_mql"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">SQL</span><span class="tc g">114%</span></div><div id="tM_sql"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">Pipeline $</span><span class="tc r">82%</span></div><div id="tM_pipe"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">Revenue $</span><span class="tc r">72%</span></div><div id="tM_rev"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">MQL → SQL</span><span class="tc g">114%</span></div><div id="tM_m2s"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">SQL → Win</span><span class="tc n">17.5%</span></div><div id="tM_s2w"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">Pipe → Revenue</span><span class="tc r">87%</span></div><div id="tM_p2r"></div></div>
+    </div>
+    <div class="tlegend reveal" style="--d:.4s">Bars and lines are monthly actuals, dashed line is target, chip is May vs target. SQL to Win has no target.</div>
+    <div class="foot">Multiplier · Marketing MBR · Confidential</div>
+    <div class="pg">17 / 28</div>
+  </section>
+
+  <!-- SLIDE 15c — REFERRALS MONTHLY TREND VS TARGET -->
+  <section class="slide">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Appendix · Referrals</div></div>
+    <h2 class="title reveal" style="--d:.08s">Monthly trend vs target · Referrals</h2>
+    <p class="dek reveal" style="--d:.16s">Small base and lumpy. The <b>May revenue spike is one large deal</b> closing against a thin pipeline. Jan to May 2026.</p>
+    <div class="trend-grid reveal" style="--d:.26s">
+      <div class="tcard"><div class="th"><span class="tn">MQL</span><span class="tc r">56%</span></div><div id="tR_mql"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">SQL</span><span class="tc r">69%</span></div><div id="tR_sql"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">Pipeline $</span><span class="tc g">127%</span></div><div id="tR_pipe"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">Revenue $</span><span class="tc g">434%</span></div><div id="tR_rev"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">MQL → SQL</span><span class="tc g">124%</span></div><div id="tR_m2s"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">SQL → Win</span><span class="tc n">18.5%</span></div><div id="tR_s2w"></div></div>
+      <div class="tcard"><div class="th"><span class="tn">Pipe → Revenue</span><span class="tc g">341%</span></div><div id="tR_p2r"></div></div>
+    </div>
+    <div class="tlegend reveal" style="--d:.4s">Bars and lines are monthly actuals, dashed line is target, chip is May vs target. SQL to Win has no target.</div>
+    <div class="foot">Multiplier · Marketing MBR · Confidential</div>
+    <div class="pg">18 / 28</div>
+  </section>
+
+  <!-- SLIDE 15d — MARKETING SQL TO WIN GAP BY ACV -->
+  <section class="slide">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Appendix · Marketing · SQL to Win gap</div></div>
+    <h2 class="title reveal" style="--d:.08s">A few high-ACV losses carry half the lost pipeline</h2>
+    <p class="dek reveal" style="--d:.16s">In the SQL to Win gap, <b>high-ACV deals over $3K are 8% of lost deals but 51% of lost value</b>. We lose the big ones. Jan to May 2026.</p>
+    <div class="cols-3">
+      <div class="chart-card reveal" style="--d:.3s">
+        <h4>Lost deals by ACV bucket</h4>
+        <div class="sub">Most lost deals are small. High-ACV (orange) is thin by count.</div>
+        <div id="mSqlBucket"></div>
+      </div>
+      <div class="chart-card reveal" style="--d:.38s">
+        <h4>Lost pipeline by ACV bucket</h4>
+        <div class="sub">But lost value concentrates in the high-ACV buckets.</div>
+        <div id="mLostBucket"></div>
+      </div>
+      <div class="chart-card reveal" style="--d:.46s">
+        <h4>Monthly lost pipeline</h4>
+        <div class="sub">Orange is the high-ACV portion each month.</div>
+        <div id="mLostMonth"></div>
+      </div>
+    </div>
+    <div class="ytd reveal" style="--d:.5s">
+      <div class="it"><span>SQL pipeline</span><b>$1.77M</b></div>
+      <div class="it"><span>Won</span><b>$260K</b></div>
+      <div class="it"><span>Lost</span><b>$1.19M</b></div>
+      <div class="it"><span>High-ACV share of lost</span><b>51%</b></div>
+      <div class="it"><span>Win rate small vs high</span><b>23% / 11%</b></div>
+    </div>
+    <div class="foot">Multiplier · Marketing MBR · Confidential · Source: gtm.full_funnel_details</div>
+    <div class="pg">19 / 28</div>
+  </section>
+
+  <!-- SLIDE 15e — REFERRALS SQL TO WIN GAP BY ACV -->
+  <section class="slide">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Appendix · Referrals · SQL to Win gap</div></div>
+    <h2 class="title reveal" style="--d:.08s">Same pattern: high-ACV losses drive most of the lost value</h2>
+    <p class="dek reveal" style="--d:.16s">High-ACV deals over $3K are <b>13% of lost deals but 55% of lost value</b>, with the $5K to $10K band the single biggest leak. Small base. Jan to May 2026.</p>
+    <div class="cols-3">
+      <div class="chart-card reveal" style="--d:.3s">
+        <h4>Lost deals by ACV bucket</h4>
+        <div class="sub">Most lost deals are small. High-ACV (orange) is thin by count.</div>
+        <div id="rSqlBucket"></div>
+      </div>
+      <div class="chart-card reveal" style="--d:.38s">
+        <h4>Lost pipeline by ACV bucket</h4>
+        <div class="sub">Orange is high-ACV, over $3K. The $5K to $10K band leaks the most.</div>
+        <div id="rLostBucket"></div>
+      </div>
+      <div class="chart-card reveal" style="--d:.46s">
+        <h4>Monthly lost pipeline</h4>
+        <div class="sub">Orange is the high-ACV portion. May spikes on high-ACV losses.</div>
+        <div id="rLostMonth"></div>
+      </div>
+    </div>
+    <div class="ytd reveal" style="--d:.5s">
+      <div class="it"><span>SQL pipeline</span><b>$273K</b></div>
+      <div class="it"><span>Won</span><b>$73K</b></div>
+      <div class="it"><span>Lost</span><b>$143K</b></div>
+      <div class="it"><span>High-ACV share of lost</span><b>55%</b></div>
+      <div class="it"><span>$5K-$10K lost</span><b>$44K</b></div>
+    </div>
+    <div class="foot">Multiplier · Marketing MBR · Confidential · Source: gtm.full_funnel_details</div>
+    <div class="pg">20 / 28</div>
   </section>
 
   <!-- SLIDE 16 — MARKETING BY SOURCE -->
@@ -698,7 +816,7 @@ svg text{font-family:var(--sans)}
     <div class="apx-cap reveal" style="--d:.2s">Q2 attainment vs plan. Line marks 100% of plan; bars cap at 200%.</div>
     <div class="apx-cards" id="apxSource"></div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">17 / 24</div>
+    <div class="pg">21 / 28</div>
   </section>
 
   <!-- SLIDE 17 — MARKETING BY REGION -->
@@ -710,7 +828,7 @@ svg text{font-family:var(--sans)}
     <div class="apx-cap reveal" style="--d:.2s">Q2 attainment vs plan. Line marks 100% of plan; bars cap at 200%.</div>
     <div class="apx-cards" id="apxRegion"></div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">18 / 24</div>
+    <div class="pg">22 / 28</div>
   </section>
 
   <!-- SLIDE 18 — MARKETING BY PRODUCT -->
@@ -722,7 +840,7 @@ svg text{font-family:var(--sans)}
     <div class="apx-cap reveal" style="--d:.2s">Q2 attainment vs plan. Line marks 100% of plan; bars cap at 200%.</div>
     <div class="apx-cards" id="apxProduct"></div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">19 / 24</div>
+    <div class="pg">23 / 28</div>
   </section>
 
   <!-- SLIDE 19 — TOFU BY REGION AND PRODUCT -->
@@ -768,7 +886,7 @@ svg text{font-family:var(--sans)}
       </div>
     </div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">20 / 24</div>
+    <div class="pg">24 / 28</div>
   </section>
 
   <!-- SLIDE 20 — AFFILIATES BY SUB-SOURCE -->
@@ -779,7 +897,7 @@ svg text{font-family:var(--sans)}
     <p class="dek reveal" style="--d:.16s">Core Affiliates is the volume base; Impact builds pipeline it does not convert. YTD actuals, no channel targets.</p>
     <div class="apx-cards" id="apxSub"></div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">21 / 24</div>
+    <div class="pg">25 / 28</div>
   </section>
 
   <!-- SLIDE 21 — AFFILIATES BY REGION -->
@@ -791,7 +909,7 @@ svg text{font-family:var(--sans)}
     <div class="apx-cap reveal" style="--d:.2s">Q2 attainment vs plan. Revenue is amplified by small targets and a May timing spike; read pipeline and deal quality alongside it.</div>
     <div class="apx-cards" id="apxAffRegion"></div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">22 / 24</div>
+    <div class="pg">26 / 28</div>
   </section>
 
   <!-- SLIDE 22 — AFFILIATES BY PRODUCT -->
@@ -803,7 +921,7 @@ svg text{font-family:var(--sans)}
     <div class="apx-cap reveal" style="--d:.2s">Q2 attainment vs plan. GP and AOR volumes are tiny, so their percentages swing on single deals. Read EOR as the signal.</div>
     <div class="apx-cards" id="apxAffProduct"></div>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">23 / 24</div>
+    <div class="pg">27 / 28</div>
   </section>
 
   <!-- SLIDE 23 — THANK YOU -->
@@ -814,7 +932,7 @@ svg text{font-family:var(--sans)}
     <p class="reveal" style="--d:.24s">Marketing fills the funnel, Referrals closes the value. We win the quarter at the close and on lead supply.</p>
     <p class="reveal" style="--d:.34s"><span style="color:var(--orange);font-weight:700;font-size:15px">Questions and discussion welcome</span></p>
     <div class="foot">Multiplier · Marketing MBR · Confidential</div>
-    <div class="pg">24 / 24</div>
+    <div class="pg">28 / 28</div>
   </section>
 
 </div>
@@ -1216,6 +1334,101 @@ buildMobile();
 buildScatter();
 orgBarCtr('orgTrend');
 partnerFunnel('partnerFunnel');
+
+/* ---------------- MONTHLY TREND SMALL MULTIPLES ---------------- */
+const trM = {
+  mql:{a:[558,593,643,688,566], t:[542,539,537,569,566]},
+  sql:{a:[317,271,332,407,325], t:[274,271,267,287,284]},
+  pipe:{a:[266067,289273,391127,532637,277820], t:[322501,322498,322494,338625,338624]},
+  rev:{a:[53670,49413,92838,69243,55791], t:[74195,74194,74191,77905,77903]},
+  m2s:{a:[56.8,45.7,51.6,59.2,57.4], t:[50.6,50.3,49.7,50.4,50.2]},
+  s2w:{a:[11.4,20.7,15.4,12.8,17.5], t:null},
+  p2r:{a:[20.2,17.1,23.7,13.0,20.1], t:[23.0,23.0,23.0,23.0,23.0]}
+};
+const trR = {
+  mql:{a:[31,49,58,50,37], t:[62,54,54,75,66]},
+  sql:{a:[18,26,43,36,27], t:[43,30,30,46,39]},
+  pipe:{a:[32050,53237,53136,87050,55675], t:[34036,34028,34028,43757,43751]},
+  rev:{a:[3080,9630,5699,10144,56998], t:[10215,10206,10206,13130,13124]},
+  m2s:{a:[58.1,53.1,74.1,72.0,73.0], t:[69.4,55.6,55.6,61.3,59.1]},
+  s2w:{a:[27.8,53.8,25.6,25.0,18.5], t:null},
+  p2r:{a:[9.6,18.1,10.7,11.7,102.4], t:[30.0,30.0,30.0,30.0,30.0]}
+};
+const TC = {
+  mql:{c:'#ff5c35',f:'int'}, sql:{c:'#e8a13c',f:'int'},
+  pipe:{c:'#2f9e8f',f:'usd'}, rev:{c:'#3a6ea5',f:'usd'},
+  m2s:{c:'#8a6fd4',f:'pct'}, s2w:{c:'#c75b8a',f:'pct'}, p2r:{c:'#5aa469',f:'pct'}
+};
+function fmtTrend(v,f){ return f==='usd' ? '$'+Math.round(v/1000)+'K' : f==='pct' ? v.toFixed(1)+'%' : Math.round(v).toString(); }
+function miniTrend(elId, type, a, t, color, fmt){
+  const W=230,H=120,pl=6,pr=6,pt=16,pb=18;
+  const iw=W-pl-pr, ih=H-pt-pb, n=a.length;
+  const vmax=Math.max(...a.concat(t||[]))*1.18 || 1;
+  const Y=v=>pt+ih-(v/vmax)*ih;
+  const slot=iw/n, cx=i=>pl+slot*(i+0.5);
+  let g='';
+  if(t){
+    const tl=t.map((v,i)=>(i?'L':'M')+cx(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');
+    g+=`<path d="${tl}" fill="none" stroke="${C.faint}" stroke-width="1.4" stroke-dasharray="3 3"/>`;
+  }
+  if(type==='bar'){
+    const bw=slot*0.5;
+    a.forEach((v,i)=>{const x=cx(i)-bw/2,y=Y(v);
+      g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(0)-y).toFixed(1)}" rx="2" fill="${color}"/>`;});
+  } else {
+    const ln=a.map((v,i)=>(i?'L':'M')+cx(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');
+    g+=`<path d="${ln}" fill="none" stroke="${color}" stroke-width="2.2"/>`;
+    a.forEach((v,i)=>{g+=`<circle cx="${cx(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="2.6" fill="${color}" stroke="#fff" stroke-width="1"/>`;});
+  }
+  const li=n-1, lx=Math.max(16,Math.min(W-16,cx(li))), ly=Math.max(11,Y(a[li])-6);
+  g+=`<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" font-size="10" font-weight="800" font-family="IBM Plex Mono" fill="${color}">${fmtTrend(a[li],fmt)}</text>`;
+  ['J','F','M','A','M'].forEach((m,i)=>{g+=`<text x="${cx(i).toFixed(1)}" y="${H-6}" text-anchor="middle" font-size="9" fill="${C.faint}">${m}</text>`;});
+  document.getElementById(elId).innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block">${g}</svg>`;
+}
+function buildTrends(p,d){
+  for(const k of ['mql','sql','pipe','rev','m2s','s2w','p2r']){
+    const type=(k==='mql'||k==='sql'||k==='pipe'||k==='rev')?'bar':'line';
+    miniTrend(p+k, type, d[k].a, d[k].t, TC[k].c, TC[k].f);
+  }
+}
+buildTrends('tM_',trM);
+buildTrends('tR_',trR);
+
+/* ---------------- SQL TO WIN GAP BY ACV ---------------- */
+function fmtUSD(v){ return v>=1000 ? '$'+Math.round(v/1000)+'K' : '$'+Math.round(v); }
+function lostBucketBars(elId, vals, hi, color, fmt){
+  const labels=['$0-100','$100-1K','$1-2K','$2-3K','$3-5K','$5-10K','$10K+'];
+  const W=520,H=250,pl=10,pr=10,pt=24,pb=30;
+  const iw=W-pl-pr, ih=H-pt-pb, n=vals.length;
+  const vmax=Math.max(...vals)*1.18||1, Y=v=>pt+ih-(v/vmax)*ih;
+  const slot=iw/n, cx=i=>pl+slot*(i+0.5), bw=slot*0.62;
+  let g=`<line x1="${pl}" y1="${Y(0).toFixed(1)}" x2="${pl+iw}" y2="${Y(0).toFixed(1)}" stroke="${C.line}"/>`;
+  vals.forEach((v,i)=>{const x=cx(i)-bw/2,y=Y(v); const lbl=(fmt==='int')?Math.round(v).toString():fmtUSD(v);
+    g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(0)-y).toFixed(1)}" rx="2" fill="${hi[i]?color:'#cbd0d7'}"/>`;
+    g+=`<text x="${cx(i).toFixed(1)}" y="${(y-6).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="800" font-family="IBM Plex Mono" fill="${hi[i]?color:C.muted}">${lbl}</text>`;
+    g+=`<text x="${cx(i).toFixed(1)}" y="${(H-12).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="${C.faint}">${labels[i]}</text>`;});
+  document.getElementById(elId).innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${g}</svg>`;
+}
+function lostMonthStack(elId, total, high, color){
+  const m=['Jan','Feb','Mar','Apr','May'];
+  const W=520,H=250,pl=10,pr=10,pt=24,pb=30;
+  const iw=W-pl-pr, ih=H-pt-pb, n=total.length;
+  const vmax=Math.max(...total)*1.18||1, Y=v=>pt+ih-(v/vmax)*ih;
+  const slot=iw/n, cx=i=>pl+slot*(i+0.5), bw=slot*0.5;
+  let g=`<line x1="${pl}" y1="${Y(0).toFixed(1)}" x2="${pl+iw}" y2="${Y(0).toFixed(1)}" stroke="${C.line}"/>`;
+  total.forEach((tv,i)=>{const x=cx(i)-bw/2, lo=tv-high[i], yLo=Y(lo), yTop=Y(tv);
+    g+=`<rect x="${x.toFixed(1)}" y="${yLo.toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(0)-yLo).toFixed(1)}" fill="#cbd0d7"/>`;
+    g+=`<rect x="${x.toFixed(1)}" y="${yTop.toFixed(1)}" width="${bw.toFixed(1)}" height="${(yLo-yTop).toFixed(1)}" rx="2" fill="${color}"/>`;
+    g+=`<text x="${cx(i).toFixed(1)}" y="${(yTop-6).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="800" font-family="IBM Plex Mono" fill="${C.ink}">${fmtUSD(tv)}</text>`;
+    g+=`<text x="${cx(i).toFixed(1)}" y="${(H-12).toFixed(1)}" text-anchor="middle" font-size="9" fill="${C.faint}">${m[i]}</text>`;});
+  document.getElementById(elId).innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${g}</svg>`;
+}
+lostBucketBars('mSqlBucket',[53,613,99,37,29,27,11],[false,false,false,false,true,true,true],C.orange,'int');
+lostBucketBars('mLostBucket',[3168,327628,153101,94838,119830,194828,295343],[false,false,false,false,true,true,true],C.orange,'usd');
+lostMonthStack('mLostMonth',[334675,197815,226226,192872,237147],[216350,103635,101241,63620,125155],C.orange);
+lostBucketBars('rSqlBucket',[3,56,11,6,4,6,1],[false,false,false,false,true,true,true],C.orange,'int');
+lostBucketBars('rLostBucket',[107,33053,15301,16450,15700,43713,19000],[false,false,false,false,true,true,true],C.orange,'usd');
+lostMonthStack('rLostMonth',[24707,23110,16282,23335,55890],[14000,8350,5538,8925,41600],C.orange);
 buildFunnel('rfbars', REF_KPI); buildConv('rconvList', REF_CONV);
 buildSovBars(); buildSovTrend();
 
