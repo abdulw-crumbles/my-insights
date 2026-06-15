@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="insight-title" content="Q2 2026 Marketing Pacing">
+<meta name="insight-date" content="2026-06-15">
+<meta name="insight-tldr" content="Quarter-pacing snapshot across Paid + Non-Paid, by region and metric, colour-coded by % pace to commit at Day 75 of 91.">
+<title>Q2 2026 Marketing Pacing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111111;
+    --muted:#6b6b6b;
+    --faint:#9a9a9a;
+    --rule:#e4e4e4;
+    --rule-strong:#c9c9c9;
+    --bg:#ffffff;
+    --accent:#c00000;
+    --green-bg:#e7f1ea; --green-tx:#1a6b3c;
+    --amber-bg:#fbf0dd; --amber-tx:#8a5a00;
+    --red-bg:#f7e4e4;   --red-tx:#c00000;
+    --serif:'Frank Ruhl Libre',Georgia,serif;
+    --sans:'Libre Franklin',-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-size:15px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 28px 90px}
+
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin:0 0 12px
+  }
+  h1{
+    font-family:var(--serif);font-weight:900;font-size:46px;line-height:1.04;
+    margin:0 0 10px;letter-spacing:-.01em
+  }
+  .dek{font-size:16px;color:var(--muted);max-width:680px;margin:0 0 4px}
+  .refresh{font-size:12px;color:var(--faint);margin-top:8px}
+  .rule{border:0;border-top:2px solid var(--ink);margin:26px 0 0}
+
+  /* ---- pacing strip ---- */
+  .strip{
+    display:flex;flex-wrap:wrap;gap:30px;align-items:flex-end;
+    padding:22px 0 24px;border-bottom:1px solid var(--rule)
+  }
+  .strip .stat .n{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1}
+  .strip .stat .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  .barwrap{flex:1;min-width:240px}
+  .barwrap .head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}
+  .bar{height:10px;background:#f0f0f0;position:relative;overflow:hidden}
+  .bar > i{position:absolute;inset:0;width:82.4%;background:var(--ink)}
+  .bar > b{position:absolute;top:0;bottom:0;left:82.4%;width:2px;background:var(--accent)}
+
+  /* ---- legend ---- */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:18px 0 6px;font-size:12px;color:var(--muted)}
+  .legend .lbl{letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:var(--faint)}
+  .chip{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:12px;height:12px;border-radius:2px;display:inline-block}
+
+  /* ---- channel tabs ---- */
+  .tabs{display:flex;gap:4px;margin:26px 0 4px;border-bottom:1px solid var(--rule-strong);flex-wrap:wrap}
+  .tab{
+    appearance:none;border:0;background:none;cursor:pointer;
+    font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--muted);
+    padding:11px 16px;position:relative;letter-spacing:.01em
+  }
+  .tab[aria-selected="true"]{color:var(--ink)}
+  .tab[aria-selected="true"]::after{
+    content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:3px;background:var(--accent)
+  }
+  .tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---- KPI cards ---- */
+  .cards{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);
+    border:1px solid var(--rule);margin:24px 0 8px}
+  .card{background:var(--bg);padding:15px 14px}
+  .card .ck{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .card .cv{font-family:var(--serif);font-weight:700;font-size:24px;line-height:1.05;margin:7px 0 2px}
+  .card .ct{font-size:11.5px;color:var(--faint)}
+  .card .pace{display:inline-block;margin-top:9px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:3px}
+
+  /* ---- region tables ---- */
+  .region{margin-top:30px}
+  .region h2{
+    font-family:var(--serif);font-weight:700;font-size:19px;margin:0 0 2px;
+    display:flex;align-items:baseline;gap:10px
+  }
+  .region h2 .sub{font-family:var(--sans);font-size:12px;color:var(--faint);font-weight:500;letter-spacing:.04em}
+  .tablescroll{overflow-x:auto;margin-top:10px;border-top:1px solid var(--ink)}
+  table{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
+  thead th{
+    font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    font-weight:600;text-align:right;padding:9px 12px 9px 8px;border-bottom:1px solid var(--rule-strong);
+    white-space:nowrap;vertical-align:bottom
+  }
+  thead th.metric{text-align:left}
+  tbody td{padding:9px 12px 9px 8px;text-align:right;border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+  tbody td.metric{text-align:left;font-weight:600;color:var(--ink);white-space:normal}
+  tbody tr:hover td{background:#fafafa}
+  tbody td.target{color:var(--muted)}
+  tbody td.forecast{color:var(--muted)}
+  tbody td.na{color:var(--faint)}
+  .pacecell{font-weight:600}
+  .g{background:var(--green-bg);color:var(--green-tx)}
+  .a{background:var(--amber-bg);color:var(--amber-tx)}
+  .r{background:var(--red-bg);color:var(--red-tx)}
+  .pos{color:var(--green-tx)}
+  .neg{color:var(--accent)}
+  .sep{border-bottom:2px solid var(--rule-strong)!important}
+
+  .foot{margin-top:46px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint);line-height:1.7}
+
+  @media (max-width:760px){
+    h1{font-size:34px}
+    .wrap{padding:34px 18px 70px}
+    .cards{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Marketing · Quarter Pacing</p>
+  <h1>Q2 2026 Pacing</h1>
+  <p class="dek">Where the quarter stands against AOP commit, by channel, region and metric. Pacing colour follows forecast pace to commit, not raw attainment, so a metric on track late in the quarter still reads green.</p>
+  <p class="refresh">Snapshot as of Day 75 of 91 · source refreshes daily 9am IST</p>
+  <hr class="rule">
+
+  <div class="strip">
+    <div class="stat"><div class="n">82.4%</div><div class="l">Time elapsed</div></div>
+    <div class="stat"><div class="n">75</div><div class="l">Days passed</div></div>
+    <div class="stat"><div class="n">16</div><div class="l">Days remaining</div></div>
+    <div class="barwrap">
+      <div class="head"><span>Quarter progress</span><span>Q2 2026 · 91 days</span></div>
+      <div class="bar"><i></i><b></b></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="lbl">Pace to commit</span>
+    <span class="chip"><span class="swatch" style="background:var(--green-bg);border:1px solid var(--green-tx)"></span> At / above 100%</span>
+    <span class="chip"><span class="swatch" style="background:var(--amber-bg);border:1px solid var(--amber-tx)"></span> 95% – 100%</span>
+    <span class="chip"><span class="swatch" style="background:var(--red-bg);border:1px solid var(--red-tx)"></span> Below 95%</span>
+  </div>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+
+  <div id="cards" class="cards"></div>
+
+  <div id="regions"></div>
+
+  <div class="foot">
+    Forecast EOQ is linear: actual ÷ time elapsed. Pace to commit is forecast ÷ target. Required daily pace is remaining gap ÷ 16 days left.
+    Spend and cost-per metrics are Paid-only, so they show N/A under Non-Paid. Rate metrics (MQL→SQL%, Avg Deal Size) carry no daily pace.
+    Recreated from the Q2-26 dashboard as a static snapshot. Numbers recompute from Target + Actual, so swapping in a live feed only means replacing the data block.
+  </div>
+
+</div>
+
+<script>
+const CFG = {daysPassed:75, totalDays:91, daysRemaining:16};
+const ELAPSED = CFG.daysPassed / CFG.totalDays;
+const PROJ = CFG.totalDays / CFG.daysPassed; // forecast multiplier
+
+// metric meta: cls = volume | rate | cost
+const METRICS = [
+  {k:'spend',   label:'Spend',          type:'cur', cls:'volume'},
+  {k:'mql',     label:'MQL',            type:'int', cls:'volume'},
+  {k:'sql',     label:'SQL',            type:'int', cls:'volume'},
+  {k:'m2s',     label:'MQL \u2192 SQL %',type:'pct', cls:'rate'},
+  {k:'cpmql',   label:'Cost / MQL',     type:'cur', cls:'cost'},
+  {k:'cpsql',   label:'Cost / SQL',     type:'cur', cls:'cost'},
+  {k:'ads',     label:'Avg Deal Size',  type:'cur', cls:'rate'},
+  {k:'pipe',    label:'Pipeline (MRR)', type:'cur', cls:'volume', sep:true},
+  {k:'wins',    label:'Wins',           type:'int', cls:'volume'},
+  {k:'rev',     label:'Revenue (MRR)',  type:'cur', cls:'volume'},
+];
+
+// data[channel][region][metric] = [target, actual]  (null = N/A)
+const D = {
+  combined: {
+    Global:{spend:[2080734,1139607],mql:[1530,1001],sql:[760,577],m2s:[50,58],cpmql:[1360,1138],cpsql:[2738,1975],ads:[1186,1011],pipe:[901168,583455],wins:[185,97],rev:[196824,107430]},
+    NAMER: {spend:[1038643,527061],mql:[633,366],sql:[311,201],m2s:[49,55],cpmql:[1641,1440],cpsql:[3340,2622],ads:[1269,900],pipe:[394536,180901],wins:[82,39],rev:[95573,54397]},
+    EMEA:  {spend:[646562,341623],mql:[528,332],sql:[275,207],m2s:[52,62],cpmql:[1225,1029],cpsql:[2351,1650],ads:[1289,1409],pipe:[354404,291651],wins:[63,27],rev:[65607,33085]},
+    APAC:  {spend:[395529,270923],mql:[369,293],sql:[174,169],m2s:[47,58],cpmql:[1072,925],cpsql:[2273,1603],ads:[875,656],pipe:[152228,110903],wins:[40,31],rev:[35644,19948]},
+  },
+  paid: {
+    Global:{spend:[2080734,1139607],mql:[774,486],sql:[331,215],m2s:[43,44],cpmql:[2688,2345],cpsql:[6286,5300],ads:[1238,803],pipe:[409940,172571],wins:[77,34],rev:[80033,46433]},
+    NAMER: {spend:[1038643,527061],mql:[349,209],sql:[150,88],m2s:[43,42],cpmql:[2976,2522],cpsql:[6924,5989],ads:[1274,751],pipe:[191100,66086],wins:[38,18],rev:[44185,30760]},
+    EMEA:  {spend:[646562,341623],mql:[243,133],sql:[112,69],m2s:[46,52],cpmql:[2661,2569],cpsql:[5773,4951],ads:[1415,961],pipe:[158512,66335],wins:[25,5],rev:[23853,9160]},
+    APAC:  {spend:[395529,270923],mql:[182,140],sql:[69,58],m2s:[38,41],cpmql:[2173,1935],cpsql:[5732,4671],ads:[874,692],pipe:[60328,40150],wins:[14,11],rev:[11995,6513]},
+  },
+  nonpaid: {
+    Global:{spend:null,mql:[756,515],sql:[429,362],m2s:[57,70],cpmql:null,cpsql:null,ads:[1145,1135],pipe:[491228,410884],wins:[108,63],rev:[116791,60997]},
+    NAMER: {spend:null,mql:[284,157],sql:[161,113],m2s:[57,72],cpmql:null,cpsql:null,ads:[1264,1016],pipe:[203436,114815],wins:[44,21],rev:[51388,23637]},
+    EMEA:  {spend:null,mql:[285,199],sql:[163,138],m2s:[57,69],cpmql:null,cpsql:null,ads:[1202,1633],pipe:[195892,225316],wins:[38,22],rev:[41754,23925]},
+    APAC:  {spend:null,mql:[187,153],sql:[105,111],m2s:[56,73],cpmql:null,cpsql:null,ads:[875,637],pipe:[91900,70753],wins:[26,20],rev:[23649,13435]},
+  },
+};
+
+const CHANNELS = [
+  {k:'combined', label:'Paid + Non-Paid'},
+  {k:'paid',     label:'Paid'},
+  {k:'nonpaid',  label:'Non-Paid'},
+];
+const REGIONS = ['Global','NAMER','EMEA','APAC'];
+
+// ---- formatting ----
+function fcur(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function fint(v){return Math.round(v).toLocaleString('en-US');}
+function fval(v,type){ if(type==='cur')return fcur(v); if(type==='pct')return Math.round(v)+'%'; return fint(v);}
+function fpct(x){return Math.round(x*100)+'%';}
+function fdiff(v,type){
+  const s = v>=0?'+':'\u2212';
+  const a = Math.abs(v);
+  const body = type==='cur'?fcur(a):fint(a);
+  return s+body.replace('$','')==s? body : s+(type==='cur'?'$'+fint(a):fint(a));
+}
+function paceClass(p){ if(p>=1)return 'g'; if(p>=0.95)return 'a'; return 'r'; }
+
+// compute a row's derived figures
+function compute(meta, pair){
+  if(!pair) return null;
+  const [t,a] = pair;
+  const o = {target:t, actual:a};
+  if(meta.cls==='volume'){
+    o.forecast = a*PROJ;
+    o.attain = a/t;
+    o.pace = o.forecast/t;
+    o.curDaily = a/CFG.daysPassed;
+    o.reqDaily = (t-a)/CFG.daysRemaining;
+    o.diff = o.forecast - t;
+    o.hasPace=true; o.hasDaily=true;
+  } else if(meta.cls==='rate'){
+    o.forecast = a;          // rate carries forward
+    o.attain = a/t;
+    o.pace = o.attain;
+    o.hasPace=true; o.hasDaily=false;
+  } else { // cost
+    o.forecast = a;
+    o.attain = a/t;
+    o.hasPace=false; o.hasDaily=false;
+  }
+  return o;
+}
+
+// ---- render tabs ----
+let active = 'combined';
+const tabsEl = document.getElementById('tabs');
+CHANNELS.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='tab'; b.role='tab'; b.textContent=c.label;
+  b.setAttribute('aria-selected', c.k===active);
+  b.onclick=()=>{active=c.k; render();};
+  b.dataset.k=c.k;
+  tabsEl.appendChild(b);
+});
+
+function render(){
+  [...tabsEl.children].forEach(b=>b.setAttribute('aria-selected', b.dataset.k===active));
+  renderCards();
+  renderRegions();
+}
+
+// ---- KPI cards (Global headline for active channel) ----
+function renderCards(){
+  const wrap=document.getElementById('cards');
+  wrap.innerHTML='';
+  const g = D[active].Global;
+  const order=['spend','mql','sql','pipe','wins','rev'];
+  order.forEach(k=>{
+    const meta=METRICS.find(m=>m.k===k);
+    const o=compute(meta,g[k]);
+    const card=document.createElement('div'); card.className='card';
+    if(!o){
+      card.innerHTML=`<div class="ck">${meta.label}</div><div class="cv na">N/A</div><div class="ct">Paid only</div>`;
+    } else {
+      const pc=paceClass(o.pace);
+      card.innerHTML=`
+        <div class="ck">${meta.label}</div>
+        <div class="cv">${fval(o.actual,meta.type)}</div>
+        <div class="ct">of ${fval(o.target,meta.type)} target</div>
+        <span class="pace ${pc}">${fpct(o.pace)} pace</span>`;
+    }
+    wrap.appendChild(card);
+  });
+}
+
+// ---- region tables ----
+function renderRegions(){
+  const host=document.getElementById('regions');
+  host.innerHTML='';
+  REGIONS.forEach(rg=>{
+    const sec=document.createElement('section'); sec.className='region';
+    const reg = D[active][rg];
+    let body='';
+    METRICS.forEach(meta=>{
+      const o=compute(meta, reg[meta.k]);
+      const sepCls = meta.sep?' sep':'';
+      if(!o){
+        body+=`<tr><td class="metric${sepCls}">${meta.label}</td>`+
+              Array(7).fill(`<td class="na${sepCls}">N/A</td>`).join('')+`</tr>`;
+        return;
+      }
+      const tgt=fval(o.target,meta.type);
+      const act=fval(o.actual,meta.type);
+      const fc = fval(o.forecast,meta.type);
+      const at = fpct(o.attain);
+      const pace = o.hasPace?`<td class="pacecell ${paceClass(o.pace)}${sepCls}">${fpct(o.pace)}</td>`:`<td class="na${sepCls}">\u2013</td>`;
+      let cd='\u2013', rq='\u2013', df='\u2013', dfcls='';
+      if(o.hasDaily){
+        cd = fval(o.curDaily,meta.type);
+        rq = o.reqDaily<=0?'\u2014':fval(o.reqDaily,meta.type);
+        const dval = o.diff;
+        dfcls = dval>=0?'pos':'neg';
+        df = (dval>=0?'+':'\u2212')+fval(Math.abs(dval),meta.type);
+      }
+      body+=`<tr>
+        <td class="metric${sepCls}">${meta.label}</td>
+        <td class="target${sepCls}">${tgt}</td>
+        <td${sepCls?' class="sep"':''}>${act}</td>
+        <td class="forecast${sepCls}">${fc}</td>
+        <td${sepCls?' class="sep"':''}>${at}</td>
+        ${pace}
+        <td class="${dfcls}${sepCls?' sep':''}">${cd==='\u2013'?'\u2013':cd}</td>
+        <td${sepCls?' class="sep"':''}>${rq}</td>
+        <td class="${dfcls}${sepCls?' sep':''}">${df}</td>
+      </tr>`;
+    });
+    sec.innerHTML=`
+      <h2>${rg} <span class="sub">${CHANNELS.find(c=>c.k===active).label}</span></h2>
+      <div class="tablescroll">
+        <table>
+          <thead><tr>
+            <th class="metric">Metric</th>
+            <th>Target</th><th>Actual</th><th>Forecast EOQ</th>
+            <th>Attain&#37;</th><th>Pace&#37;</th>
+            <th>Cur / day</th><th>Req / day</th><th>Diff to commit</th>
+          </tr></thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>`;
+    host.appendChild(sec);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
