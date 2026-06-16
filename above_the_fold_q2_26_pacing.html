@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="insight-title" content="Q2 2026 Marketing Pacing">
-<meta name="insight-date" content="2026-06-15">
-<meta name="insight-tldr" content="Quarter-pacing snapshot across Paid + Non-Paid, by region and metric, colour-coded by % pace to commit at Day 75 of 91.">
+<meta name="insight-date" content="2026-06-16">
+<meta name="insight-tldr" content="Quarter-pacing snapshot across Paid + Non-Paid, by region and metric, colour-coded by % pace to commit at Day 76 of 91.">
 <title>Q2 2026 Marketing Pacing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,8 +56,8 @@
   .barwrap{flex:1;min-width:240px}
   .barwrap .head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}
   .bar{height:10px;background:#f0f0f0;position:relative;overflow:hidden}
-  .bar > i{position:absolute;inset:0;width:82.4%;background:var(--ink)}
-  .bar > b{position:absolute;top:0;bottom:0;left:82.4%;width:2px;background:var(--accent)}
+  .bar > i{position:absolute;inset:0;width:83.5%;background:var(--ink)}
+  .bar > b{position:absolute;top:0;bottom:0;left:83.5%;width:2px;background:var(--accent)}
 
   /* ---- legend ---- */
   .legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:18px 0 6px;font-size:12px;color:var(--muted)}
@@ -132,13 +132,13 @@
   <p class="eyebrow">Marketing · Quarter Pacing</p>
   <h1>Q2 2026 Pacing</h1>
   <p class="dek">Where the quarter stands against AOP commit, by channel, region and metric. Pacing colour follows forecast pace to commit, not raw attainment, so a metric on track late in the quarter still reads green.</p>
-  <p class="refresh">Snapshot as of Day 75 of 91 · source refreshes daily 9am IST</p>
+  <p class="refresh">Snapshot as of Day 76 of 91 · source refreshes daily 9am IST</p>
   <hr class="rule">
 
   <div class="strip">
-    <div class="stat"><div class="n">82.4%</div><div class="l">Time elapsed</div></div>
-    <div class="stat"><div class="n">75</div><div class="l">Days passed</div></div>
-    <div class="stat"><div class="n">16</div><div class="l">Days remaining</div></div>
+    <div class="stat"><div class="n">83.5%</div><div class="l">Time elapsed</div></div>
+    <div class="stat"><div class="n">76</div><div class="l">Days passed</div></div>
+    <div class="stat"><div class="n">15</div><div class="l">Days remaining</div></div>
     <div class="barwrap">
       <div class="head"><span>Quarter progress</span><span>Q2 2026 · 91 days</span></div>
       <div class="bar"><i></i><b></b></div>
@@ -159,7 +159,7 @@
   <div id="regions"></div>
 
   <div class="foot">
-    Forecast EOQ is linear: actual ÷ time elapsed. Pace to commit is forecast ÷ target. Required daily pace is remaining gap ÷ 16 days left.
+    Forecast EOQ is linear: actual ÷ time elapsed. Pace to commit is forecast ÷ target. Required daily pace is remaining gap ÷ 15 days left.
     Spend and cost-per metrics are Paid-only, so they show N/A under Non-Paid. Rate metrics (MQL→SQL%, Avg Deal Size) carry no daily pace.
     Recreated from the Q2-26 dashboard as a static snapshot. Numbers recompute from Target + Actual, so swapping in a live feed only means replacing the data block.
   </div>
@@ -167,7 +167,7 @@
 </div>
 
 <script>
-const CFG = {daysPassed:75, totalDays:91, daysRemaining:16};
+const CFG = {daysPassed:76, totalDays:91, daysRemaining:15};
 const ELAPSED = CFG.daysPassed / CFG.totalDays;
 const PROJ = CFG.totalDays / CFG.daysPassed; // forecast multiplier
 
@@ -188,14 +188,14 @@ const METRICS = [
 // data[channel][region][metric] = [target, actual]  (null = N/A)
 const D = {
   combined: {
-    Global:{spend:[2080734,1139607],mql:[1530,1001],sql:[760,577],m2s:[50,58],cpmql:[1360,1138],cpsql:[2738,1975],ads:[1186,1011],pipe:[901168,583455],wins:[185,97],rev:[196824,107430]},
-    NAMER: {spend:[1038643,527061],mql:[633,366],sql:[311,201],m2s:[49,55],cpmql:[1641,1440],cpsql:[3340,2622],ads:[1269,900],pipe:[394536,180901],wins:[82,39],rev:[95573,54397]},
+    Global:{spend:[2080734,1139489],mql:[1530,1001],sql:[760,577],m2s:[50,58],cpmql:[1360,1138],cpsql:[2738,1975],ads:[1186,1011],pipe:[901168,583455],wins:[185,97],rev:[196824,107430]},
+    NAMER: {spend:[1038643,526943],mql:[633,366],sql:[311,201],m2s:[49,55],cpmql:[1641,1440],cpsql:[3340,2622],ads:[1269,900],pipe:[394536,180901],wins:[82,39],rev:[95573,54397]},
     EMEA:  {spend:[646562,341623],mql:[528,332],sql:[275,207],m2s:[52,62],cpmql:[1225,1029],cpsql:[2351,1650],ads:[1289,1409],pipe:[354404,291651],wins:[63,27],rev:[65607,33085]},
     APAC:  {spend:[395529,270923],mql:[369,293],sql:[174,169],m2s:[47,58],cpmql:[1072,925],cpsql:[2273,1603],ads:[875,656],pipe:[152228,110903],wins:[40,31],rev:[35644,19948]},
   },
   paid: {
-    Global:{spend:[2080734,1139607],mql:[774,486],sql:[331,215],m2s:[43,44],cpmql:[2688,2345],cpsql:[6286,5300],ads:[1238,803],pipe:[409940,172571],wins:[77,34],rev:[80033,46433]},
-    NAMER: {spend:[1038643,527061],mql:[349,209],sql:[150,88],m2s:[43,42],cpmql:[2976,2522],cpsql:[6924,5989],ads:[1274,751],pipe:[191100,66086],wins:[38,18],rev:[44185,30760]},
+    Global:{spend:[2080734,1139489],mql:[774,486],sql:[331,215],m2s:[43,44],cpmql:[2688,2345],cpsql:[6286,5300],ads:[1238,803],pipe:[409940,172571],wins:[77,34],rev:[80033,46433]},
+    NAMER: {spend:[1038643,526943],mql:[349,209],sql:[150,88],m2s:[43,42],cpmql:[2976,2522],cpsql:[6924,5989],ads:[1274,751],pipe:[191100,66086],wins:[38,18],rev:[44185,30760]},
     EMEA:  {spend:[646562,341623],mql:[243,133],sql:[112,69],m2s:[46,52],cpmql:[2661,2569],cpsql:[5773,4951],ads:[1415,961],pipe:[158512,66335],wins:[25,5],rev:[23853,9160]},
     APAC:  {spend:[395529,270923],mql:[182,140],sql:[69,58],m2s:[38,41],cpmql:[2173,1935],cpsql:[5732,4671],ads:[874,692],pipe:[60328,40150],wins:[14,11],rev:[11995,6513]},
   },
