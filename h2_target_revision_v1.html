@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FY26 Marketing AOP — H2 Target Revision</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --before:#9aa5b1; --after:#2563eb; --res-after:#0d9488;
+    --ink:#1a2230; --muted:#64748b; --line:#e6e9ef; --bg:#f7f8fa;
+    --neg:#c0392b; --pos:#177245; --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;font-size:15px}
+  .wrap{max-width:1120px;margin:0 auto;padding:40px 28px 64px}
+  header h1{font-size:26px;margin:0 0 6px}
+  header .sub{color:var(--muted);font-size:15px;margin:0 0 4px}
+  header .stamp{color:var(--muted);font-size:13px}
+  .context{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 20px;margin:24px 0 28px;font-size:14px}
+  .context b{color:var(--ink)}
+  h2{font-size:19px;margin:36px 0 4px;padding-top:10px}
+  .secsub{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0 8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .card .v{font-size:22px;font-weight:650;margin-top:6px}
+  .card .d{font-size:13px;margin-top:4px}
+  .neg{color:var(--neg)} .pos{color:var(--pos)} .flat{color:var(--muted)}
+  table{width:100%;border-collapse:collapse;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:8px 0 6px;font-size:13.5px}
+  th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f0f2f6;font-weight:600;color:#3a4658}
+  tbody tr:last-child td{border-bottom:none}
+  .grp td{background:#fbfcfe;font-weight:600}
+  .state{color:var(--muted)}
+  .charts{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:18px 0 8px}
+  .chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px 8px}
+  .chart h3{font-size:14px;margin:2px 0 2px}
+  .chart .cs{font-size:12px;color:var(--muted);margin:0 0 8px}
+  .chart .cv{position:relative;height:230px}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--muted)}
+  footer li{margin:3px 0}
+  @media(max-width:780px){.cards{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>FY26 Marketing AOP — H2 Target Revision</h1>
+    <p class="sub">Before vs after, full year 2026 · Sales Attainment targets (Tableau funnel feed)</p>
+    <p class="stamp">GTM Analytics · Multiplier</p>
+  </header>
+
+  <div class="context">
+    <b>What changed.</b> H1 (Q1–Q2) is frozen as actuals and is unchanged. Only H2 (Q3–Q4)
+    targets were revised: the FY25 MQL over-credit was removed from Marketing, and the resulting
+    pipeline gap was reallocated to Resellers. Total revenue are held flat.
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="k">Mktg MQL · H2</div><div class="v">4,776 → 4,375</div><div class="d neg">−401</div></div>
+    <div class="card"><div class="k">Mktg SQL · H2</div><div class="v">2,395 → 2,230</div><div class="d neg">−165</div></div>
+    <div class="card"><div class="k">Mktg Pipeline · H2</div><div class="v">−$91.7K</div><div class="d neg">2.85M → 2.76M</div></div>
+    <div class="card"><div class="k">Reseller Pipeline · H2</div><div class="v">+$92.0K</div><div class="d pos">66.1K → 158.1K</div></div>
+  </div>
+  <p class="secsub">Net pipeline movement: −$91.7K Marketing + $92.0K Resellers ≈ flat. Revenue unchanged.</p>
+
+  <h2>Marketing</h2>
+  <p class="secsub">MQL, SQL, Pipeline, and average SQL deal size (Pipeline ÷ SQL). H1 flat, step-down in H2.</p>
+
+  <table>
+    <thead><tr><th>Metric</th><th>State</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>FY</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td>MQL</td><td class="state">before</td><td>1,618</td><td>1,700</td><td>2,348</td><td>2,428</td><td>8,094</td></tr>
+      <tr><td></td><td class="state">after</td><td>1,618</td><td>1,700</td><td>2,150</td><td>2,225</td><td>7,693</td></tr>
+      <tr><td></td><td class="state">Δ</td><td class="flat">0</td><td class="flat">0</td><td class="neg">−198</td><td class="neg">−203</td><td class="neg">−401</td></tr>
+
+      <tr class="grp"><td>SQL</td><td class="state">before</td><td>812</td><td>852</td><td>1,177</td><td>1,218</td><td>4,059</td></tr>
+      <tr><td></td><td class="state">after</td><td>812</td><td>852</td><td>1,096</td><td>1,134</td><td>3,894</td></tr>
+      <tr><td></td><td class="state">Δ</td><td class="flat">0</td><td class="flat">0</td><td class="neg">−81</td><td class="neg">−84</td><td class="neg">−165</td></tr>
+
+      <tr class="grp"><td>Pipeline ($)</td><td class="state">before</td><td>967,493</td><td>1,015,868</td><td>1,402,867</td><td>1,451,241</td><td>4,837,469</td></tr>
+      <tr><td></td><td class="state">after</td><td>967,493</td><td>1,015,868</td><td>1,357,791</td><td>1,404,611</td><td>4,745,763</td></tr>
+      <tr><td></td><td class="state">Δ</td><td class="flat">0</td><td class="flat">0</td><td class="neg">−45,076</td><td class="neg">−46,630</td><td class="neg">−91,706</td></tr>
+
+      <tr class="grp"><td>Avg SQL deal ($)</td><td class="state">before</td><td>1,192</td><td>1,192</td><td>1,192</td><td>1,192</td><td>1,192</td></tr>
+      <tr><td></td><td class="state">after</td><td>1,192</td><td>1,192</td><td>1,239</td><td>1,239</td><td>1,219</td></tr>
+      <tr><td></td><td class="state">Δ</td><td class="flat">0</td><td class="flat">0</td><td class="pos">+47</td><td class="pos">+47</td><td class="pos">+27</td></tr>
+    </tbody>
+  </table>
+
+  <div class="charts">
+    <div class="chart"><h3>Marketing MQL</h3><p class="cs">monthly · before vs after</p><div class="cv"><canvas id="c_mql"></canvas></div></div>
+    <div class="chart"><h3>Marketing SQL</h3><p class="cs">monthly · before vs after</p><div class="cv"><canvas id="c_sql"></canvas></div></div>
+    <div class="chart"><h3>Marketing Pipeline</h3><p class="cs">monthly · before vs after</p><div class="cv"><canvas id="c_pipe"></canvas></div></div>
+    <div class="chart"><h3>Marketing Avg SQL Deal Size</h3><p class="cs">Pipeline ÷ SQL · before vs after</p><div class="cv"><canvas id="c_deal"></canvas></div></div>
+  </div>
+
+  <h2>Resellers</h2>
+  <p class="secsub">Pipeline and average SQL deal size. SQL counts were not changed, so deal size moves purely with the reallocated pipeline.</p>
+
+  <table>
+    <thead><tr><th>Metric</th><th>State</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>FY</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td>Pipeline ($)</td><td class="state">before</td><td>76,005</td><td>60,613</td><td>46,101</td><td>19,994</td><td>202,713</td></tr>
+      <tr><td></td><td class="state">after</td><td>76,005</td><td>60,613</td><td>110,251</td><td>47,815</td><td>294,684</td></tr>
+      <tr><td></td><td class="state">Δ</td><td class="flat">0</td><td class="flat">0</td><td class="pos">+64,150</td><td class="pos">+27,821</td><td class="pos">+91,971</td></tr>
+
+      <tr class="grp"><td>Avg SQL deal ($)</td><td class="state">before</td><td>603</td><td>497</td><td>329</td><td>167</td><td>399</td></tr>
+      <tr><td></td><td class="state">after</td><td>603</td><td>497</td><td>788</td><td>399</td><td>580</td></tr>
+      <tr><td></td><td class="state">Δ</td><td class="flat">0</td><td class="flat">0</td><td class="pos">+459</td><td class="pos">+232</td><td class="pos">+181</td></tr>
+    </tbody>
+  </table>
+
+  <div class="charts">
+    <div class="chart"><h3>Reseller Pipeline</h3><p class="cs">monthly · before vs after</p><div class="cv"><canvas id="c_rpipe"></canvas></div></div>
+    <div class="chart"><h3>Reseller Avg SQL Deal Size</h3><p class="cs">Pipeline ÷ SQL · before vs after</p><div class="cv"><canvas id="c_rdeal"></canvas></div></div>
+  </div>
+
+  <footer>
+    <b>Methodology &amp; notes</b>
+    <ul>
+      <li>Before = pre-revision targets (last Postgres load). After = values now live in the sheet; H1 identical, H2 revised. Quarter totals reconcile exactly to the consolidated AOP (C/D).</li>
+      <li>Avg SQL deal size = Pipeline ÷ SQL. Marketing deal size rises in H2 because SQL falls faster than pipeline; Reseller deal size rises because pipeline scales up while SQL is held.</li>
+      <li>Small ±1–2 unit differences are rounding from even monthly splits and are immaterial.</li>
+      <li>Revenue and mapping keys unchanged. Figures update on the dashboard after the Airflow reload.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const D={
+  mqlB:[542,539,537,569,566,565,784,782,782,814,807,807],
+  mqlA:[542,539,537,569,566,565,714,716,720,741,742,742],
+  sqlB:[274,271,267,287,284,281,394,395,388,409,405,404],
+  sqlA:[274,271,267,287,284,281,362,365,369,377,378,379],
+  pipeB:[322501,322498,322494,338625,338624,338619,467625,467622,467620,483748,483747,483746],
+  pipeA:[322501,322498,322494,338625,338624,338619,452593,452597,452601,468202,468204,468205],
+  rpipeB:[25341,25332,25332,20209,20202,20202,15373,15364,15364,6668,6663,6663],
+  rpipeA:[25341,25332,25332,20209,20202,20202,36749,36750,36752,15938,15938,15939],
+  rsql:[50,38,38,48,37,37,54,43,43,48,36,36]
+};
+const div=(a,b)=>a.map((v,i)=>+(v/b[i]).toFixed(0));
+D.dealB=div(D.pipeB,D.sqlB); D.dealA=div(D.pipeA,D.sqlA);
+D.rdealB=div(D.rpipeB,D.rsql); D.rdealA=div(D.rpipeA,D.rsql);
+
+const BEFORE='#9aa5b1';
+function mk(id,before,after,afterColor,money){
+  new Chart(document.getElementById(id),{
+    type:'line',
+    data:{labels:M,datasets:[
+      {label:'Before',data:before,borderColor:BEFORE,backgroundColor:BEFORE,
+        borderWidth:2,borderDash:[5,4],pointRadius:2,tension:.25},
+      {label:'After',data:after,borderColor:afterColor,backgroundColor:afterColor,
+        borderWidth:2.5,pointRadius:2.5,tension:.25}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{position:'top',labels:{boxWidth:14,font:{size:11}}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+(money?'$':'')+c.parsed.y.toLocaleString()}}},
+      scales:{y:{ticks:{callback:v=>(money?'$':'')+v.toLocaleString(),font:{size:11}},grid:{color:'#eef1f5'}},
+        x:{grid:{display:false},ticks:{font:{size:11}}}}}
+  });
+}
+mk('c_mql',D.mqlB,D.mqlA,'#2563eb',false);
+mk('c_sql',D.sqlB,D.sqlA,'#2563eb',false);
+mk('c_pipe',D.pipeB,D.pipeA,'#2563eb',true);
+mk('c_deal',D.dealB,D.dealA,'#2563eb',true);
+mk('c_rpipe',D.rpipeB,D.rpipeA,'#0d9488',true);
+mk('c_rdeal',D.rdealB,D.rdealA,'#0d9488',true);
+</script>
+</body>
+</html>
