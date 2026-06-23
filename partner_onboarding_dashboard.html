@@ -61,6 +61,8 @@
   .search-box { width:220px; padding:6px 10px; font-size:12px; border:1px solid #ECDDC0; border-radius:6px; background:#FBF6EE; font-family:inherit; }
   .close-btn { background:none; border:1px solid #ECDDC0; border-radius:6px; padding:6px 12px; font-size:12px; cursor:pointer; color:#696563; font-family:inherit; }
   .close-btn:hover { background:#FBF6EE; color:#0E0500; }
+  .csv-btn { background:#fff; border:1px solid #ECDDC0; border-radius:6px; padding:6px 12px; font-size:12px; cursor:pointer; color:#017947; font-family:inherit; font-weight:600; }
+  .csv-btn:hover { background:#E7F5EE; border-color:#017947; }
   .tbl-wrap { max-height:500px; overflow-y:auto; border:1px solid #F0E4CD; border-radius:6px; }
   .dd-tbl { width:100%; border-collapse:collapse; font-size:12px; }
   .dd-tbl thead { position:sticky; top:0; background:#FBF6EE; z-index:1; }
@@ -83,17 +85,17 @@
 
 <div class="header">
   <h1>Impact Referral Partner Onboarding Funnel</h1>
-  <p>Data range Feb 25 to Jun 16, 2026 · Refreshed Jun 16, 2026 · 398 unique partners.</p>
+  <p>Data range Feb 25 to Jun 23, 2026 · Refreshed Jun 23, 2026 · 412 unique partners.</p>
 </div>
 
 <div class="filters">
   <div class="filter-group">
     <label>From</label>
-    <input type="date" id="dateFrom" value="2026-02-25" min="2026-02-25" max="2026-06-16">
+    <input type="date" id="dateFrom" value="2026-02-25" min="2026-02-25" max="2026-06-23">
   </div>
   <div class="filter-group">
     <label>To</label>
-    <input type="date" id="dateTo" value="2026-06-16" min="2026-02-25" max="2026-06-16">
+    <input type="date" id="dateTo" value="2026-06-23" min="2026-02-25" max="2026-06-23">
   </div>
   <div class="filter-group">
     <label>Quick</label>
@@ -164,6 +166,7 @@
     </div>
     <div class="controls">
       <input type="text" class="search-box" id="search" placeholder="Search partner...">
+      <button class="csv-btn" id="csv-btn" title="Download visible rows as CSV">⤓ CSV</button>
       <button class="close-btn" id="close-btn">✕ Close</button>
     </div>
   </div>
@@ -285,13 +288,13 @@ const RAW = [
 ["4779947","Recruiting Guy","2026-03-02","Accepted","2026-03-02","2026-02-27","2026-03-13",11],
 ["7054250","nicholaspch","2026-03-02","Publisher Accepted Offer","2026-03-06",null,null,0],
 ["6955226","DINOLEE","2026-03-03","Rejected",null,null,null,0],
-["6988047","Employsome","2026-03-03","Accepted","2026-03-04","2026-02-21","2026-06-13",21],
+["6988047","Employsome","2026-03-03","Accepted","2026-03-04","2026-02-21","2026-06-23",22],
 ["7044789","Hollyn Laine","2026-03-03","Accepted","2026-03-05","2026-02-20","2026-02-20",1],
 ["6972497","Ruggedoutfits","2026-03-04","Rejected",null,null,null,0],
 ["7048037","Prime PEO Brokers","2026-03-04","Accepted","2026-03-04","2025-10-08","2025-11-07",2],
 ["2056358","Ibotta, powered by Button","2026-03-05","Accepted","2026-03-05",null,null,0],
 ["3522274","Refbackbonus","2026-03-05","Rejected",null,null,null,0],
-["7050060","Strego Ventures UG","2026-03-05","Accepted","2026-03-06","2025-10-22","2026-06-16",84],
+["7050060","Strego Ventures UG","2026-03-05","Accepted","2026-03-06","2025-10-22","2026-06-23",99],
 ["7079739","JackieSalalila","2026-03-05","Publisher Accepted Offer","2026-03-14",null,null,0],
 ["1377810","Bernard Haug","2026-03-06","Publisher Accepted Offer","2026-03-06","2026-03-13","2026-06-09",22],
 ["1815208","First Alliance Limited","2026-03-06","Accepted","2026-03-09",null,null,0],
@@ -328,7 +331,7 @@ const RAW = [
 ["3697348","Seven Company","2026-03-20","Rejected",null,null,null,0],
 ["3887247","Nguyen Van Nhu","2026-03-20","Rejected",null,null,null,0],
 ["4956702","Dao Van Giang","2026-03-20","Rejected",null,null,null,0],
-["5379566","Startup Grind","2026-03-20","Publisher Accepted Offer","2026-03-20","2026-05-29","2026-06-13",16],
+["5379566","Startup Grind","2026-03-20","Publisher Accepted Offer","2026-03-20","2026-05-29","2026-06-18",17],
 ["7087717","www.solarstatedata.com","2026-03-20","Pending",null,null,null,0],
 ["7087972","WorkQuiet","2026-03-20","Pending",null,null,null,0],
 ["7096549","Rand Capital","2026-03-20","Pending",null,null,null,0],
@@ -363,7 +366,7 @@ const RAW = [
 ["7122544","Shi Mei","2026-03-27","Rejected",null,null,null,0],
 ["7124742","Leon Alexander Schardin","2026-03-27","Rejected",null,null,null,0],
 ["7067377","Earnytics","2026-03-28","Accepted","2026-04-23",null,null,0],
-["7077106","One Global Payroll","2026-03-28","Accepted","2026-03-28","2026-02-10","2026-06-11",22],
+["7077106","One Global Payroll","2026-03-28","Accepted","2026-03-28","2026-02-10","2026-06-23",26],
 ["7086512","CROZDESK LTD","2026-03-28","Accepted","2026-03-28",null,null,0],
 ["7126855","Sourcific Talent","2026-03-28","Accepted","2026-03-30","2025-11-26","2026-03-31",2],
 ["6387960","Prefer Tech INC","2026-03-30","Accepted","2026-04-03",null,null,0],
@@ -565,7 +568,7 @@ const RAW = [
 ["6514240","Yond Advisory","2026-05-28","Rejected",null,null,null,0],
 ["6859520","DealCouponTop","2026-05-28","Rejected",null,null,null,0],
 ["7340974","Tran Linh","2026-05-28","Rejected",null,null,null,0],
-["7355111","Hire Emerald","2026-05-29","Publisher Accepted Offer","2026-05-29",null,null,0],
+["7355111","Hire Emerald","2026-06-18","Publisher Accepted Offer","2026-06-19",null,null,0],
 ["7368861","BALANCED HR","2026-05-29","Publisher Accepted Offer","2026-06-03",null,null,0],
 ["5227181","Digital Consulting Ventures","2026-05-30","Accepted","2026-06-04",null,null,0],
 ["3802732","tranhlinh","2026-06-01","Rejected",null,null,null,0],
@@ -586,12 +589,26 @@ const RAW = [
 ["7391141","AESC","2026-06-09","Publisher Accepted Offer","2026-06-10",null,null,0],
 ["7392922","Mohammed Sayeed","2026-06-10","Rejected",null,null,null,0],
 ["7188402","DANG HUYNH MINH ANH","2026-06-16","Pending",null,null,null,0],
-["7411830","Indexdev","2026-06-16","Pending",null,null,null,0]
+["7411830","Indexdev","2026-06-16","Pending",null,null,null,0],
+["485701","CPAR Media Corp","2026-06-17","Pending",null,null,null,0],
+["7408978","hongson150293","2026-06-17","Pending",null,null,null,0],
+["7036246","Matchy","2026-06-18","Pending",null,null,null,0],
+["7415131","WealthWave LLC","2026-06-18","Pending",null,null,null,0],
+["7417868","Quantum Mindset Solutions","2026-06-18","Pending",null,null,null,0],
+["7420263","Hire Emerald","2026-06-18","Publisher Accepted Offer","2026-06-19",null,null,0],
+["7375907","Nita Swanson","2026-06-20","Pending",null,null,null,0],
+["7415791","thanthuythao","2026-06-20","Pending",null,null,null,0],
+["7375993","Marco Bennett","2026-06-21","Pending",null,null,null,0],
+["7420209","Muhamad Abdullah","2026-06-21","Pending",null,null,null,0],
+["7420550","Marktechsol LTD","2026-06-21","Pending",null,null,null,0],
+["7422472","Aasim Ghaffar","2026-06-21","Pending",null,null,null,0],
+["7428402","Farhan Hazarika","2026-06-23","Pending",null,null,null,0],
+["7429640","Ricky Graf","2026-06-23","Pending",null,null,null,0]
 ];
 
 const PARTNERS = RAW.map(r => ({pid:r[0], pn:r[1], ad:r[2], as:r[3], acd:r[4], fl:r[5], ll:r[6], tl:r[7]}));
 const ACCEPTED = ['Accepted','Publisher Accepted Offer'];
-const TODAY = '2026-06-16';
+const TODAY = '2026-06-23';
 
 function parseDate(s) { return new Date(s + 'T00:00:00'); }
 function toISO(d) {
@@ -890,6 +907,47 @@ document.getElementById('close-btn').addEventListener('click', () => {
   document.getElementById('drilldown').classList.remove('show');
   document.querySelectorAll('td.clickable').forEach(c => c.classList.remove('active'));
   state.currentCells = null;
+});
+
+document.getElementById('csv-btn').addEventListener('click', () => {
+  if (!state.currentCells) return;
+  const search = document.getElementById('search').value.toLowerCase();
+  let rows = state.currentCells.partners.filter(p =>
+    !search || p.pn.toLowerCase().includes(search) || p.pid.includes(search));
+  // Apply current sort
+  rows.sort((a, b) => {
+    let va = a[state.sortKey], vb = b[state.sortKey];
+    if (va === null) va = state.sortDir === 'asc' ? '9999' : '';
+    if (vb === null) vb = state.sortDir === 'asc' ? '9999' : '';
+    if (state.sortKey === 'pid') { va = parseInt(va); vb = parseInt(vb); }
+    if (state.sortKey === 'tl') { va = +va; vb = +vb; }
+    if (state.sortKey === 'pn' || state.sortKey === 'as') { va = String(va).toLowerCase(); vb = String(vb).toLowerCase(); }
+    if (va < vb) return state.sortDir === 'asc' ? -1 : 1;
+    if (va > vb) return state.sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+  // Escape CSV field: wrap in quotes if contains comma, quote or newline; double internal quotes
+  const esc = v => {
+    if (v === null || v === undefined) return '';
+    const s = String(v);
+    return /[,"\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+  const headers = ['Partner ID','Partner Name','Application Date','Status','Accepted Date','First Lead','Last Lead','Total Leads'];
+  const lines = [headers.join(',')];
+  rows.forEach(p => {
+    lines.push([p.pid, p.pn, p.ad, p.as, p.acd, p.fl, p.ll, p.tl].map(esc).join(','));
+  });
+  const csv = '\ufeff' + lines.join('\r\n'); // BOM for Excel UTF-8
+  const b = state.currentCells.bucket;
+  const metric = state.currentCells.metric.key;
+  const safeLabel = b.label.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+  const fname = `partner_${metric}_${safeLabel}_${b.startISO}.csv`;
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 100);
 });
 document.querySelectorAll('.dd-tbl th').forEach(th => {
   th.addEventListener('click', () => {
