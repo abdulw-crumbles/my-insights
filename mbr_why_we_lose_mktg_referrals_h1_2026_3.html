@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why we lose — Marketing + Referrals, H1 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Libre+Franklin:wght@300;400;500;600;700&display=swap');
+:root{
+  --ink:#141414;--ink2:#454545;--ink3:#7d7d7d;--line:#e6e6e6;--line2:#cdcdcd;
+  --bg:#fff;--red:#c00000;--redsoft:#f6e7e7;--grey:#b9b9b9;--pos:#2a7d4f;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:#000;font-family:'Libre Franklin',sans-serif;-webkit-font-smoothing:antialiased;}
+.deck{display:flex;height:100vh;width:100vw;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scroll-behavior:smooth;}
+.deck::-webkit-scrollbar{display:none;}
+.slide{flex:0 0 100vw;height:100vh;scroll-snap-align:center;background:var(--bg);
+  position:relative;display:flex;flex-direction:column;justify-content:center;
+  padding:64px 84px 72px;overflow:hidden;}
+.inner{max-width:1180px;margin:0 auto;width:100%;}
+h1,h2,h3{font-family:'Frank Ruhl Libre',serif;color:var(--ink);line-height:1.1;}
+.kicker{font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:12.5px;color:var(--red);margin-bottom:18px;}
+.head{font-size:46px;font-weight:800;letter-spacing:-.015em;margin-bottom:14px;max-width:1000px;}
+.dek{font-size:20px;color:var(--ink2);font-weight:300;line-height:1.45;max-width:880px;}
+.dek b{font-weight:600;color:var(--ink);}
+p{line-height:1.55;color:var(--ink2);}
+
+/* footer/brand */
+.brand{position:absolute;top:30px;left:84px;font-family:'Frank Ruhl Libre';font-weight:700;font-size:15px;color:var(--ink);}
+.brand span{color:var(--red);}
+.foot{position:absolute;bottom:26px;left:84px;font-size:11.5px;color:var(--ink3);letter-spacing:.02em;}
+.pageno{position:absolute;bottom:26px;right:84px;font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;}
+.src{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--ink3);}
+
+/* section divider */
+.divider{background:var(--ink);}
+.divider .head,.divider .kicker,.divider .dek{color:#fff;}
+.divider .kicker{color:#ff8a8a;}
+.divider .big{font-family:'Frank Ruhl Libre';font-weight:900;font-size:150px;color:var(--red);line-height:.8;margin-bottom:22px;}
+.divider .brand{color:#fff;} .divider .brand span{color:#ff8a8a;}
+.divider .foot,.divider .pageno{color:#888;}
+
+/* title */
+.title .multi{font-family:'Frank Ruhl Libre';font-weight:700;font-size:20px;margin-bottom:60px;}
+.title .multi span{color:var(--red);}
+.title .head{font-size:62px;font-weight:900;letter-spacing:-.02em;max-width:1040px;}
+.title .sub{font-size:18px;color:var(--ink3);margin-top:22px;}
+
+/* cards */
+.cards{display:grid;gap:22px;margin-top:30px;}
+.cards.c2{grid-template-columns:1fr 1fr;}
+.cards.c3{grid-template-columns:repeat(3,1fr);}
+.card{border-top:3px solid var(--ink);padding:18px 4px 4px;}
+.card.red{border-top-color:var(--red);}
+.card.pos{border-top-color:var(--pos);}
+.card h3{font-size:17px;margin-bottom:8px;}
+.card p{font-size:14.5px;line-height:1.5;}
+.card p b{color:var(--ink);}
+.card .lead{color:var(--red);font-weight:700;}
+
+/* pills */
+.pills{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap;}
+.pill .pl{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);font-weight:600;}
+.pill .pv{font-family:'Frank Ruhl Libre';font-size:30px;font-weight:700;margin-top:3px;}
+.pill .pv.r{color:var(--red);}
+
+/* layout split */
+.split{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;margin-top:24px;}
+.split.even{grid-template-columns:1fr 1fr;}
+.note h3{font-size:16px;margin:0 0 7px;}
+.note p{font-size:14px;line-height:1.5;margin-bottom:16px;}
+.note p b{color:var(--ink);}
+.chartwrap svg{width:100%;height:auto;display:block;}
+.clabel{font-size:12.5px;font-weight:600;color:var(--ink3);margin-bottom:6px;}
+.legend{display:flex;gap:18px;font-size:12px;color:var(--ink2);margin-top:8px;flex-wrap:wrap;}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.sw{width:11px;height:11px;border-radius:2px;display:inline-block;}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{text-align:right;padding:7px 9px;border-bottom:1px solid var(--line);}
+th:first-child,td:first-child{text-align:left;}
+thead th{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);border-bottom:1.5px solid var(--ink);}
+tr.grp td{background:#fafafa;font-weight:600;}
+td.r{color:var(--red);font-weight:600;}
+
+/* takeaway two-col */
+.tk{display:grid;grid-template-columns:1fr 1fr;gap:54px;margin-top:18px;}
+.tk h3.lbl{font-family:'Frank Ruhl Libre';font-size:15px;color:var(--ink3);font-weight:500;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:8px;}
+.tkitem{margin-bottom:20px;}
+.tkitem h4{font-family:'Frank Ruhl Libre';font-size:16px;font-weight:700;margin-bottom:5px;}
+.tkitem p{font-size:13.5px;line-height:1.5;}
+.target{display:inline-block;margin-top:7px;font-size:11.5px;font-weight:600;color:var(--red);background:var(--redsoft);padding:3px 9px;border-radius:2px;}
+
+/* nav */
+.navbtn{position:fixed;top:50%;transform:translateY(-50%);z-index:50;width:42px;height:42px;border-radius:50%;
+  background:rgba(20,20,20,.82);color:#fff;border:0;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.navbtn:hover{background:#000;}
+#prev{left:16px;}#next{right:16px;}
+.hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:50;font-size:11px;color:#bbb;letter-spacing:.05em;}
+@media(max-width:900px){.slide{padding:54px 30px 64px;}.head{font-size:32px;}.brand,.foot,.pageno{left:30px;}.split,.tk,.cards.c3,.cards.c2{grid-template-columns:1fr;gap:22px;}}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- 1 TITLE -->
+<section class="slide title">
+  <div class="inner">
+    <div class="multi">Multiplier<span>.</span></div>
+    <p class="kicker">Marketing + Referrals · Loss Diagnostic</p>
+    <h1 class="head">Why we lose: the close, not the funnel</h1>
+    <p class="sub">SQL to Win and Pipe to Revenue, QoQ H1 2026 · Marketing and Referrals (Affiliates)</p>
+    <p class="sub" style="margin-top:6px">Reporting period January to June 2026 · Confidential</p>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · H1 2026</div>
+  <div class="pageno">01 / 13</div>
+</section>
+
+<!-- 2 EXEC SUMMARY -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">Executive summary</p>
+    <h2 class="head">Deals don't fail fast. They fade.</h2>
+    <p class="dek">Q2 added 32% more pipeline but only 4% more wins. The reason is not competition or price. <b>Half of everything we lost in Q2 was pipeline that simply went cold</b>, and that slow-death loss grew 56% in a single quarter.</p>
+    <div class="cards c3">
+      <div class="card red">
+        <h3>The pattern</h3>
+        <p><span class="lead">Slow death.</span> Gone Cold and CRM Clean-up are the biggest lost buckets and sit unworked for 47 to 97 days before we give up.</p>
+      </div>
+      <div class="card red">
+        <h3>It is growing</h3>
+        <p>Slow-death lost pipeline rose from <b>$275K to $430K</b> QoQ on flat deal count. Competitive losses actually shrank.</p>
+      </div>
+      <div class="card">
+        <h3>It is worst on big deals</h3>
+        <p>The higher the ACV, the slower the death. <b>$5K+ deals take 56 days</b> to lose, and high-ACV is half of all lost value.</p>
+      </div>
+    </div>
+    <div class="pills">
+      <div class="pill"><div class="pl">Q2 pipeline QoQ</div><div class="pv">+32%</div></div>
+      <div class="pill"><div class="pl">Q2 wins QoQ</div><div class="pv r">+4%</div></div>
+      <div class="pill"><div class="pl">Slow death · share of Q2 lost pipe</div><div class="pv r">51%</div></div>
+      <div class="pill"><div class="pl">Slow-death pipe · QoQ</div><div class="pv r">+56%</div></div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="pageno">02 / 13</div>
+</section>
+
+<!-- 3 SECTION 01 -->
+<section class="slide divider">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <div class="big">01</div>
+    <h2 class="head">The shape of the loss</h2>
+    <p class="dek">What we lose, why it is recorded as lost, and how long it sits before we call it.</p>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="pageno">03 / 13</div>
+</section>
+
+<!-- 4 LOST ANATOMY -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">The anatomy of lost pipeline · Q1 vs Q2</p>
+    <h2 class="head">Q2's losses turned controllable</h2>
+    <p class="dek">Candidate drop-offs dominated Q1 lost value at 25%. In Q2 they vanished to 5% and <b>Gone Cold jumped to 36% of all lost pipeline</b>.</p>
+    <div class="split">
+      <div class="chartwrap">
+        <div class="clabel">Lost pipeline by sub-reason · $ with share of quarter total</div>
+        <div id="anatomy"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--grey)"></i>Q1</span><span><i class="sw" style="background:var(--red)"></i>Q2</span></div>
+      </div>
+      <div class="note">
+        <h3>Same cold deals, bigger value</h3>
+        <p><b>Gone Cold held ~33% of lost deals both quarters</b> but its pipeline share rose 23% to 36%. The cold deals we lost in Q2 were larger ones.</p>
+        <p><b>Candidate Dropped was lumpy.</b> A few big drop-offs skewed Q1 value, then disappeared, exposing the cold-deal problem underneath.</p>
+        <table style="margin-top:12px">
+          <thead><tr><th>Sub-reason</th><th>Q1 #·%</th><th>Q2 #·%</th></tr></thead>
+          <tbody id="anatomyTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: gtm.full_funnel_details · share = % of quarter lost pipeline / deals</div>
+  <div class="pageno">04 / 13</div>
+</section>
+
+<!-- 5 ONE REASSIGNED BOOK -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">Drilling into the Q2 spike</p>
+    <h2 class="head">Almost the entire Q2 cold spike is one book</h2>
+    <p class="dek">A single NAMER South West book, reassigned in April and never worked, was bulk-closed in June. It alone is <b>54% of all Q2 Gone Cold pipeline</b>.</p>
+    <div class="split">
+      <div class="chartwrap">
+        <div class="clabel">Q2 Gone Cold pipeline · narrowing to one book</div>
+        <div id="cascade"></div>
+      </div>
+      <div class="note">
+        <h3>Three facts, one conclusion</h3>
+        <p><b>Reassigned.</b> 39 of the 65 deals moved from a NAMER South West sales director to one AE in April. They were inherited, not originated.</p>
+        <p><b>Unworked.</b> The owner's last login was mid-May. The book then sat untouched.</p>
+        <p><b>Bulk closed.</b> 46 of the 65 were marked Gone Cold on a single day, 7 June. A CRM sweep, not 65 separate losses.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: full_funnel_details · opportunity_field_history_v2 · salesforce.user · names withheld</div>
+  <div class="pageno">05 / 14</div>
+</section>
+
+<!-- 6 CORRECTED TREND -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">The underlying trend</p>
+    <h2 class="head">Strip out that book and cold losses fell</h2>
+    <p class="dek">The headline reads +64% QoQ. Remove the one reassigned book and Gone Cold <b>dropped 24%</b> across the other 37 reps. Competitive losses fell too.</p>
+    <div class="split even">
+      <div class="chartwrap">
+        <div class="clabel">Gone Cold pipeline · Q1 vs Q2 2026 · $K</div>
+        <div id="exoutlier"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--grey)"></i>Q1</span><span><i class="sw" style="background:var(--red)"></i>Q2</span></div>
+      </div>
+      <div class="note">
+        <h3>The real picture</h3>
+        <p><b>All reps: $186K → $305K.</b> One reassigned book drives the entire increase.</p>
+        <p><b>Excluding it: $186K → $141K, down 24%.</b> Post-demo follow-up is holding, not collapsing.</p>
+        <p><b>We are not losing to rivals more.</b> Competitive losses fell from $195K to $161K. The genuine cold tail is modest and warrants a light follow-up SLA, not a crisis response.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: gtm.full_funnel_details</div>
+  <div class="pageno">06 / 14</div>
+</section>
+
+<!-- 6 VELOCITY BY REASON -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">Demo to closed-lost velocity</p>
+    <h2 class="head">The losses we can fix are the slow ones</h2>
+    <p class="dek">Decisive losses close in days. The addressable ones drift for two to three months.</p>
+    <div class="split">
+      <div class="chartwrap">
+        <div class="clabel">Median days from demo delivered to closed-lost · by reason</div>
+        <div id="velreason"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--red)"></i>Slow / addressable</span><span><i class="sw" style="background:var(--ink)"></i>Fast / decisive</span><span><i class="sw" style="background:var(--grey)"></i>Won baseline</span></div>
+      </div>
+      <div class="note">
+        <h3>Two clocks</h3>
+        <p><b>Gone Cold takes 54 days, CRM Clean-up 47</b> (and 97 on average). These deals were never decisively worked, they decayed.</p>
+        <p><b>Candidate Dropped closes in 7 days, competitive pricing in 18.</b> When the answer is real, it comes fast.</p>
+        <p>A won deal closes in 28 days. Anything drifting past 35 to 40 days post-demo is at high risk of going cold.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: agent.opportunity_details · demo-delivered closed deals</div>
+  <div class="pageno">06 / 13</div>
+</section>
+
+<!-- 7 ACV DISTRIBUTION OF GONE COLD -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">By deal size · Q2 Gone Cold</p>
+    <h2 class="head">A few big deals, not many small ones</h2>
+    <p class="dek">$3K+ deals are 9% of cold deals but <b>46% of the lost value</b>. Most of the whales sit in the one book, though a real tail remains outside it.</p>
+    <div class="split">
+      <div class="chartwrap">
+        <div class="clabel">Q2 Gone Cold pipeline by ACV bucket · $K</div>
+        <div id="acvdist"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--red)"></i>The one book</span><span><i class="sw" style="background:var(--grey)"></i>Rest of bench</span></div>
+      </div>
+      <div class="note">
+        <h3>Where the value hides</h3>
+        <p><b>The tail carries it.</b> $3K+ is 17 deals, 9% of count, but $140K, 46% of all cold value. Averaging deal size hides this completely.</p>
+        <p><b>Mostly the one book.</b> It holds $94K of that $140K across 10 deals, including the single $37.6K deal that went cold.</p>
+        <p><b>But not only.</b> $46K across 7 deals over $3K sits outside the book, two of them $10K+. That tail is independent and ongoing, and it is what a manager review on $3K+ deals should target.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: gtm.full_funnel_details</div>
+  <div class="pageno">07 / 15</div>
+</section>
+
+<!-- 7 SECTION 02 -->
+<section class="slide divider">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <div class="big">02</div>
+    <h2 class="head">Who and where</h2>
+    <p class="dek">The loss by deal size, by region and segment, and by source.</p>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="pageno">07 / 13</div>
+</section>
+
+<!-- 8 ACV -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">By ACV bucket</p>
+    <h2 class="head">We win small and fast, we lose big and slow</h2>
+    <p class="dek">Win rate is highest on small deals. Bigger deals convert worse and take longest to lose.</p>
+    <div class="split even">
+      <div class="chartwrap">
+        <div class="clabel">Win rate vs demo-to-lost days · by ACV bucket · H1 2026</div>
+        <div id="acv"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--ink)"></i>Win rate %</span><span><i class="sw" style="background:var(--red)"></i>Median days to lose</span></div>
+      </div>
+      <div class="note">
+        <h3>Where to lean in</h3>
+        <p><b>$100 to $1K converts at 23%</b> and loses fastest. The engine works on small EOR deals.</p>
+        <p><b>The $1K to $2K band sags to 14%</b> on heavy volume, and $5K+ deals take 56 days to lose. The bigger the deal, the longer it drifts.</p>
+        <p>High-ACV deals over $3K are a thin slice of count but roughly half of lost value. Slow follow-up is most expensive exactly where deals are largest.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: agent.opportunity_details</div>
+  <div class="pageno">08 / 13</div>
+</section>
+
+<!-- 9 REGION x SEG -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">By region and segment · Q2 2026</p>
+    <h2 class="head">EMEA AEs lose decisively, APAC SEs let deals drift</h2>
+    <p class="dek">Win rates are close across the board. The real difference is how fast each segment cuts a dead deal.</p>
+    <div class="split">
+      <div class="chartwrap">
+        <div class="clabel">Median demo-to-lost days · AE vs SE by region · Q2</div>
+        <div id="regseg"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--ink)"></i>AE</span><span><i class="sw" style="background:var(--red)"></i>SE</span></div>
+      </div>
+      <div class="note">
+        <h3>Discipline, not headcount</h3>
+        <p><b>EMEA AEs close lost deals in 13 days</b> at a 17% win rate, the cleanest pipeline hygiene in the org.</p>
+        <p><b>APAC SE and EMEA SE drift to 40 to 42 days.</b> Their deals do not get worse, they get older. That ageing is where cold sets in.</p>
+        <p>The fix is a follow-up SLA by segment, not reallocation. NAMER AEs sit in the middle at 35 days with room to tighten.</p>
+        <table style="margin-top:14px">
+          <thead><tr><th>Region · seg</th><th>Win %</th><th>Lost days</th></tr></thead>
+          <tbody id="regtable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: agent.opportunity_details · win rate on closed deals</div>
+  <div class="pageno">09 / 13</div>
+</section>
+
+<!-- 10 SOURCE -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">By source</p>
+    <h2 class="head">Once it gets a demo, Referrals closes better</h2>
+    <p class="dek">Affiliates win a higher share of demo-delivered deals than Marketing, with a shorter lost tail.</p>
+    <div class="split even">
+      <div class="chartwrap">
+        <div class="clabel">Q2 win rate and lost-deal ageing · Marketing vs Referrals</div>
+        <div id="source"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--ink)"></i>Win rate %</span><span><i class="sw" style="background:var(--grey)"></i>Avg days to lose</span></div>
+      </div>
+      <div class="note">
+        <h3>Different problems</h3>
+        <p><b>Referrals: 21% win rate</b> post-demo, lost deals average 45 days. Strong close, the constraint is lead supply, not conversion.</p>
+        <p><b>Marketing: 16% win rate</b> with a longer 51-day lost tail. The volume is there, the close discipline is not.</p>
+        <p>Marketing carries 87% of revenue, so its longer tail is the larger absolute prize.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="src">Source: agent.opportunity_details</div>
+  <div class="pageno">10 / 13</div>
+</section>
+
+<!-- 11 SECTION 03 -->
+<section class="slide divider">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <div class="big">03</div>
+    <h2 class="head">Diagnosis and where to act</h2>
+    <p class="dek">What the data says, and the three moves that recover Q2 and de-risk Q3.</p>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="pageno">11 / 13</div>
+</section>
+
+<!-- 12 DIAGNOSIS + ACTION -->
+<section class="slide">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">Takeaways and where to act</p>
+    <h2 class="head">Work the pipeline before adding to it</h2>
+    <div class="tk">
+      <div>
+        <h3 class="lbl">The diagnosis</h3>
+        <div class="tkitem"><h4>The loss is self-inflicted</h4><p>Half of Q2 lost pipeline went cold rather than to a competitor. Gone Cold and CRM Clean-up sit 47 to 97 days unworked.</p></div>
+        <div class="tkitem"><h4>It scales with deal size</h4><p>Win rate falls and ageing rises as ACV grows. $5K+ deals take 56 days to lose, and high-ACV is half of all lost value.</p></div>
+        <div class="tkitem"><h4>It is a velocity gap, not a routing gap</h4><p>EMEA AEs cut dead deals in 13 days. APAC and EMEA SEs drift past 40. The differentiator is follow-up cadence by segment.</p></div>
+      </div>
+      <div>
+        <h3 class="lbl">Where to act</h3>
+        <div class="tkitem"><h4>Put an SLA on post-demo follow-up</h4><p>Flag any demo-delivered deal with no activity past 21 days. Force a next step or a fast disqualification. Targets the $430K slow-death bucket.</p><span class="target">Target · halve Gone Cold pipeline</span></div>
+        <div class="tkitem"><h4>Protect high-ACV deals</h4><p>Manager review on every $3K+ deal at 30 days post-demo. This is where the slow death is most expensive.</p><span class="target">Target · lift $3K+ win rate above 17%</span></div>
+        <div class="tkitem"><h4>Borrow EMEA AE discipline</h4><p>Apply the EMEA AE close cadence to APAC and EMEA SE benches. Faster decisions free capacity and cut cold losses.</p><span class="target">Target · SE lost-deal age under 25 days</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="pageno">12 / 13</div>
+</section>
+
+<!-- 13 THANK YOU -->
+<section class="slide divider">
+  <div class="brand">Multiplier<span>.</span></div>
+  <div class="inner">
+    <p class="kicker">Marketing + Referrals · H1 2026</p>
+    <h2 class="head">We don't need more leads. We need to stop letting deals go cold.</h2>
+    <p class="dek">The funnel fills. The pipeline ages. The close is where Q3 is won.</p>
+    <p class="dek" style="margin-top:30px;font-size:16px;color:#888">Questions and discussion welcome.</p>
+  </div>
+  <div class="foot">Multiplier · Loss Diagnostic · Confidential</div>
+  <div class="pageno">13 / 13</div>
+</section>
+
+</div>
+
+<button class="navbtn" id="prev">&#8249;</button>
+<button class="navbtn" id="next">&#8250;</button>
+<div class="hint">← → to navigate</div>
+
+<script>
+const C={ink:'#141414',ink3:'#7d7d7d',red:'#c00000',grey:'#b9b9b9',pos:'#2a7d4f',line:'#e6e6e6'};
+
+/* horizontal bars: [{label, v, sub, color}] */
+function hbar(data,opts){
+  const w=opts.w||520,rh=38,pl=opts.pl||168,pr=64,pt=8;
+  const h=pt+data.length*rh+8;
+  const max=Math.max(...data.map(d=>d.v));
+  let s=`<svg viewBox="0 0 ${w} ${h}">`;
+  data.forEach((d,i)=>{
+    const y=pt+i*rh, bw=(w-pl-pr)*(d.v/max);
+    s+=`<text x="${pl-10}" y="${y+rh/2+1}" text-anchor="end" font-size="12.5" fill="#454545" font-family="Libre Franklin" font-weight="500">${d.label}</text>`;
+    s+=`<rect x="${pl}" y="${y+6}" width="${bw}" height="${rh-16}" fill="${d.color}" rx="1"/>`;
+    s+=`<text x="${pl+bw+8}" y="${y+rh/2+1}" font-size="12.5" fill="#141414" font-family="Libre Franklin" font-weight="700">${opts.fmt(d.v)}</text>`;
+    if(d.sub)s+=`<text x="${pl+bw+8}" y="${y+rh/2+15}" font-size="10.5" fill="#7d7d7d" font-family="Libre Franklin">${d.sub}</text>`;
+  });
+  return s+`</svg>`;
+}
+
+/* grouped vertical bars: groups[{label,bars:[{v,color,lbl}]}] */
+function gbar(groups,opts){
+  const w=opts.w||520,h=opts.h||300,pl=44,pr=14,pt=26,pb=opts.pb||44;
+  const iw=w-pl-pr,ih=h-pt-pb;
+  const max=opts.max||Math.max(...groups.flatMap(g=>g.bars.map(b=>b.v)))*1.12;
+  const gw=iw/groups.length,nb=groups[0].bars.length,bw=Math.min(opts.bw||40,(gw*0.6)/nb),gap=6;
+  let s=`<svg viewBox="0 0 ${w} ${h}">`;
+  for(let i=0;i<=4;i++){const y=pt+ih-ih*i/4;s+=`<line x1="${pl}" y1="${y}" x2="${w-pr}" y2="${y}" stroke="#eee"/>`;
+    s+=`<text x="${pl-7}" y="${y+4}" text-anchor="end" font-size="9.5" fill="#aaa" font-family="Libre Franklin">${opts.fmtAxis?opts.fmtAxis(max*i/4):Math.round(max*i/4)}</text>`;}
+  groups.forEach((g,gi)=>{
+    const cx=pl+gw*gi+gw/2, tot=nb*bw+(nb-1)*gap;
+    g.bars.forEach((b,bi)=>{
+      const x=cx-tot/2+bi*(bw+gap), bh=ih*(b.v/max), y=pt+ih-bh;
+      s+=`<rect x="${x}" y="${y}" width="${bw}" height="${Math.max(bh,0)}" fill="${b.color}" rx="1"/>`;
+      if(b.lbl!==undefined)s+=`<text x="${x+bw/2}" y="${y-4}" text-anchor="middle" font-size="10.5" font-weight="700" fill="${b.color}" font-family="Libre Franklin">${b.lbl}</text>`;
+    });
+    const lines=g.label.split('|');
+    lines.forEach((ln,li)=>s+=`<text x="${cx}" y="${h-pb+15+li*12}" text-anchor="middle" font-size="11" fill="#454545" font-family="Libre Franklin" font-weight="500">${ln}</text>`);
+  });
+  return s+`</svg>`;
+}
+
+const k=v=>'$'+Math.round(v/1000)+'K';
+
+/* grouped horizontal bars: rows[{label, q1:{v,lbl}, q2:{v,lbl}}] two bars per row */
+function ghbar(rows,opts){
+  const w=opts.w||560,rh=46,pl=opts.pl||156,pr=78,pt=6;
+  const h=pt+rows.length*rh+4;
+  const max=Math.max(...rows.flatMap(r=>[r.q1.v,r.q2.v]));
+  let s=`<svg viewBox="0 0 ${w} ${h}">`;
+  rows.forEach((r,i)=>{
+    const y=pt+i*rh;
+    s+=`<text x="${pl-9}" y="${y+rh/2+1}" text-anchor="end" font-size="11.5" fill="#454545" font-family="Libre Franklin" font-weight="500">${r.label}</text>`;
+    const bh=12, b1=(w-pl-pr)*(r.q1.v/max), b2=(w-pl-pr)*(r.q2.v/max);
+    s+=`<rect x="${pl}" y="${y+5}" width="${b1}" height="${bh}" fill="${C.grey}" rx="1"/>`;
+    s+=`<text x="${pl+b1+6}" y="${y+5+bh-2}" font-size="10" fill="#8a8a8a" font-family="Libre Franklin">${r.q1.lbl}</text>`;
+    s+=`<rect x="${pl}" y="${y+5+bh+3}" width="${b2}" height="${bh}" fill="${C.red}" rx="1"/>`;
+    s+=`<text x="${pl+b2+6}" y="${y+5+2*bh+1}" font-size="10.5" fill="#141414" font-family="Libre Franklin" font-weight="700">${r.q2.lbl}</text>`;
+  });
+  return s+`</svg>`;
+}
+
+// 4 anatomy — Q1 vs Q2, $ with quarter share
+const an=[
+  {label:'Gone Cold',          q1:{p:185582,s:22.8,n:201}, q2:{p:304854,s:36.2,n:197}},
+  {label:'All other reasons',  q1:{p:143184,s:17.6,n:117}, q2:{p:126769,s:15.1,n:120}},
+  {label:'Deprioritized (int.)',q1:{p:80338,s:9.9,n:89},   q2:{p:121102,s:14.4,n:84}},
+  {label:'CRM Clean-up',       q1:{p:41847,s:5.1,n:30},    q2:{p:97928,s:11.6,n:34}},
+  {label:'Competitor · Price', q1:{p:56390,s:6.9,n:65},    q2:{p:61666,s:7.3,n:49}},
+  {label:'Competitor · Product',q1:{p:58902,s:7.2,n:21},   q2:{p:58124,s:6.9,n:27}},
+  {label:'Candidate Dropped',  q1:{p:198876,s:24.5,n:48},  q2:{p:42926,s:5.1,n:41}},
+  {label:'Competitor · Unresp.',q1:{p:48064,s:5.9,n:32},   q2:{p:27645,s:3.3,n:23}},
+];
+const Q1D=an.reduce((a,r)=>a+r.q1.n,0), Q2D=an.reduce((a,r)=>a+r.q2.n,0);
+document.getElementById('anatomy').innerHTML=ghbar(an.map(r=>({
+  label:r.label,
+  q1:{v:r.q1.p,lbl:k(r.q1.p)+' · '+r.q1.s+'%'},
+  q2:{v:r.q2.p,lbl:k(r.q2.p)+' · '+r.q2.s+'%'}
+})),{w:600,pl:148});
+document.getElementById('anatomyTable').innerHTML=an.map((r,i)=>
+  `<tr class="${i%2===0?'grp':''}"><td>${r.label}</td>`+
+  `<td>${r.q1.n} · ${Math.round(100*r.q1.n/Q1D)}%</td>`+
+  `<td class="${r.label==='Gone Cold'?'r':''}">${r.q2.n} · ${Math.round(100*r.q2.n/Q2D)}%</td></tr>`).join('');
+
+/* stacked horizontal bars: rows[{label, book, rest, dealsB, dealsR}] */
+function shbar(rows,opts){
+  const w=opts.w||560,rh=44,pl=opts.pl||92,pr=72,pt=6;
+  const h=pt+rows.length*rh+4;
+  const max=Math.max(...rows.map(r=>r.book+r.rest));
+  const sc=(w-pl-pr)/max;
+  let s=`<svg viewBox="0 0 ${w} ${h}">`;
+  rows.forEach((r,i)=>{
+    const y=pt+i*rh, bh=18, bw=r.book*sc, rw=r.rest*sc, tot=r.book+r.rest;
+    s+=`<text x="${pl-9}" y="${y+rh/2}" text-anchor="end" font-size="12" fill="#454545" font-family="Libre Franklin" font-weight="600">${r.label}</text>`;
+    s+=`<rect x="${pl}" y="${y+8}" width="${bw}" height="${bh}" fill="${C.red}" rx="1"/>`;
+    s+=`<rect x="${pl+bw}" y="${y+8}" width="${rw}" height="${bh}" fill="${C.grey}" rx="1"/>`;
+    if(bw>34)s+=`<text x="${pl+bw/2}" y="${y+8+13}" text-anchor="middle" font-size="10" fill="#fff" font-family="Libre Franklin" font-weight="700">$${Math.round(r.book)}K</text>`;
+    if(rw>34)s+=`<text x="${pl+bw+rw/2}" y="${y+8+13}" text-anchor="middle" font-size="10" fill="#fff" font-family="Libre Franklin" font-weight="700">$${Math.round(r.rest)}K</text>`;
+    s+=`<text x="${pl+bw+rw+7}" y="${y+8+13}" font-size="11.5" fill="#141414" font-family="Libre Franklin" font-weight="700">$${Math.round(tot)}K</text>`;
+    s+=`<text x="${pl-9}" y="${y+rh/2+13}" text-anchor="end" font-size="9.5" fill="#9a9a9a" font-family="Libre Franklin">${r.dealsB+r.dealsR} deals</text>`;
+  });
+  return s+`</svg>`;
+}
+
+// 7 ACV distribution of Gone Cold, book vs rest
+document.getElementById('acvdist').innerHTML=shbar([
+  {label:'$100-1K',book:25.9,rest:52.5,dealsB:27,dealsR:97},
+  {label:'$1K-2K', book:27.7,rest:23.3,dealsB:22,dealsR:15},
+  {label:'$2K-3K', book:16.1,rest:18.9,dealsB:6, dealsR:7},
+  {label:'$3K-5K', book:18.0,rest:16.7,dealsB:4, dealsR:4},
+  {label:'$5K-10K',book:38.3,rest:6.8, dealsB:5, dealsR:1},
+  {label:'$10K+',  book:37.6,rest:22.9,dealsB:1, dealsR:2},
+],{w:580,pl:84});
+document.getElementById('cascade').innerHTML=hbar([
+  {label:'All Q2 Gone Cold',v:305,sub:'100%',color:C.grey},
+  {label:'NAMER',v:216,sub:'71% of total',color:C.ink},
+  {label:'NAMER · Mktg · AE',v:204,sub:'67% of total',color:C.ink},
+  {label:'One reassigned book',v:163,sub:'54% of total',color:C.red},
+],{fmt:v=>'$'+v+'K',w:560,pl:172});
+
+// 6 ex-outlier trend
+document.getElementById('exoutlier').innerHTML=gbar([
+  {label:'All reps',bars:[{v:186,color:C.grey,lbl:186},{v:305,color:C.red,lbl:305}]},
+  {label:'Excluding|the one book',bars:[{v:186,color:C.grey,lbl:186},{v:141,color:C.red,lbl:141}]},
+],{w:520,h:320,max:340,fmtAxis:v=>'$'+Math.round(v)+'K',bw:46,pb:52});
+
+// 6 velocity by reason
+document.getElementById('velreason').innerHTML=hbar([
+  {label:'CRM Clean-up',v:47,sub:'97 day average',color:C.red},
+  {label:'Gone Cold',v:54,sub:'81 day average',color:C.red},
+  {label:'Deprioritized',v:38,color:C.red},
+  {label:'No EOR need (DQ)',v:34,color:C.red},
+  {label:'Unresponsive',v:28,color:C.red},
+  {label:'Won (baseline)',v:28,color:C.grey},
+  {label:'Competitor · Product',v:21,color:C.ink},
+  {label:'Competitor · Pricing',v:18,color:C.ink},
+  {label:'Candidate Dropped',v:7,color:C.ink},
+].sort((a,b)=>b.v-a.v),{fmt:v=>v+'d',w:560,pl:172});
+
+// 8 ACV win rate vs days (two bars per bucket)
+document.getElementById('acv').innerHTML=gbar([
+  {label:'$100-1K',bars:[{v:23.3,color:C.ink,lbl:'23'},{v:35,color:C.red,lbl:'35'}]},
+  {label:'$1K-2K',bars:[{v:13.9,color:C.ink,lbl:'14'},{v:39,color:C.red,lbl:'39'}]},
+  {label:'$2K-3K',bars:[{v:22.0,color:C.ink,lbl:'22'},{v:48,color:C.red,lbl:'48'}]},
+  {label:'$3K-5K',bars:[{v:14.5,color:C.ink,lbl:'15'},{v:46,color:C.red,lbl:'46'}]},
+  {label:'$5K-10K',bars:[{v:14.3,color:C.ink,lbl:'14'},{v:56,color:C.red,lbl:'56'}]},
+  {label:'$10K+',bars:[{v:17.2,color:C.ink,lbl:'17'},{v:56,color:C.red,lbl:'56'}]},
+],{w:560,h:320,max:62,bw:18,pb:36});
+
+// 9 region x seg median lost days
+document.getElementById('regseg').innerHTML=gbar([
+  {label:'NAMER',bars:[{v:35,color:C.ink,lbl:35},{v:21,color:C.red,lbl:21}]},
+  {label:'EMEA',bars:[{v:13,color:C.ink,lbl:13},{v:40,color:C.red,lbl:40}]},
+  {label:'APAC',bars:[{v:28,color:C.ink,lbl:28},{v:42,color:C.red,lbl:42}]},
+],{w:520,h:300,max:50,bw:34});
+document.getElementById('regtable').innerHTML=[
+  ['NAMER · AE','16.7','35'],['NAMER · SE','16.0','21'],
+  ['EMEA · AE','16.8','13'],['EMEA · SE','19.6','40'],
+  ['APAC · AE','14.1','28'],['APAC · SE','11.7','42'],
+].map((r,i)=>`<tr class="${i%2===0?'grp':''}"><td>${r[0]}</td><td>${r[1]}%</td><td class="${+r[2]>=40?'r':''}">${r[2]}d</td></tr>`).join('');
+
+// 10 source
+document.getElementById('source').innerHTML=gbar([
+  {label:'Marketing',bars:[{v:16.0,color:C.ink,lbl:'16%'},{v:51,color:C.grey,lbl:'51d'}]},
+  {label:'Referrals|(Affiliates)',bars:[{v:20.8,color:C.ink,lbl:'21%'},{v:45,color:C.grey,lbl:'45d'}]},
+],{w:480,h:300,max:60,bw:40,pb:52});
+
+/* nav */
+const deck=document.getElementById('deck');
+const slides=document.querySelectorAll('.slide');
+let idx=0;
+function go(i){idx=Math.max(0,Math.min(slides.length-1,i));deck.scrollTo({left:idx*window.innerWidth,behavior:'smooth'});}
+document.getElementById('next').onclick=()=>go(idx+1);
+document.getElementById('prev').onclick=()=>go(idx-1);
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(idx+1);}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(idx-1);}
+});
+deck.addEventListener('scroll',()=>{idx=Math.round(deck.scrollLeft/window.innerWidth);});
+window.addEventListener('resize',()=>deck.scrollTo({left:idx*window.innerWidth}));
+
+/* dynamic page numbers */
+const total=slides.length;
+slides.forEach((s,i)=>{const pn=s.querySelector('.pageno');if(pn)pn.textContent=String(i+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');});
+</script>
+</body>
+</html>

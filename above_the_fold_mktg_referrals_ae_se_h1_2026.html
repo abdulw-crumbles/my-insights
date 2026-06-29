@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="report-title" content="SQL to Win and Pipe to Revenue: Marketing + Referrals, AE vs SE, QoQ H1 2026">
+<meta name="report-date" content="2026-06-24">
+<title>Marketing + Referrals: SQL to Win and Pipe to Revenue, H1 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Libre+Franklin:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--line2:#cfcfcf;
+  --bg:#fff;--red:#c00000;--redsoft:#f7e9e9;--ae:#222;--se:#c00000;
+  --pos:#2a7d4f;--neg:#c00000;--amber:#b07400;--chartw:940px;--bodyw:720px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+  font-family:'Libre Franklin',sans-serif;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:var(--chartw);margin:0 auto;padding:0 24px;}
+.body{max-width:var(--bodyw);margin:0 auto;}
+h1,h2,h3{font-family:'Frank Ruhl Libre',serif;font-weight:700;color:var(--ink);line-height:1.15;}
+p{line-height:1.62;color:var(--ink2);font-size:16px;}
+a{color:var(--red);}
+.kicker{font-family:'Libre Franklin';font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  font-size:12px;color:var(--red);margin:0 0 14px;}
+
+/* header */
+header{border-bottom:3px solid var(--ink);padding:54px 0 26px;margin-bottom:8px;}
+header h1{font-size:42px;font-weight:900;letter-spacing:-.01em;margin:0 0 16px;max-width:880px;}
+.dek{font-size:19px;color:var(--ink2);max-width:760px;line-height:1.5;font-weight:300;}
+.meta{margin-top:22px;font-size:13px;color:var(--ink3);display:flex;gap:22px;flex-wrap:wrap;}
+.meta b{color:var(--ink2);font-weight:600;}
+
+/* section */
+section{padding:40px 0;border-bottom:1px solid var(--line);}
+section h2{font-size:28px;margin:0 0 6px;letter-spacing:-.01em;}
+.sub{font-size:14px;color:var(--ink3);margin:0 0 26px;font-weight:500;}
+
+/* toggle */
+.toggle-bar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:0;}
+.toggle-bar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.toggle-lbl{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:2px;overflow:hidden;}
+.seg button{font-family:'Libre Franklin';font-size:13px;font-weight:600;border:0;background:#fff;
+  color:var(--ink);padding:8px 18px;cursor:pointer;border-right:1px solid var(--line);}
+.seg button:last-child{border-right:0;}
+.seg button.on{background:var(--ink);color:#fff;}
+.viewnote{font-size:12px;color:var(--ink3);}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.kpi{background:#fff;padding:18px 18px 16px;}
+.kpi .lab{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);}
+.kpi .val{font-family:'Frank Ruhl Libre';font-size:30px;font-weight:700;margin:6px 0 2px;}
+.kpi .q1{font-size:12px;color:var(--ink3);}
+.kpi .delta{font-size:12.5px;font-weight:600;margin-top:4px;}
+.up{color:var(--pos);}.down{color:var(--neg);}.flat{color:var(--ink3);}
+
+/* charts */
+.chart{margin:8px 0 4px;}
+.chart svg{width:100%;height:auto;display:block;}
+.legend{display:flex;gap:20px;font-size:12.5px;color:var(--ink2);margin:6px 0 0;flex-wrap:wrap;}
+.legend span{display:inline-flex;align-items:center;gap:7px;}
+.sw{width:12px;height:12px;display:inline-block;border-radius:2px;}
+.cap{font-size:12.5px;color:var(--ink3);margin-top:12px;font-style:italic;line-height:1.5;}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px;}
+th,td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line);}
+th:first-child,td:first-child{text-align:left;}
+thead th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;border-bottom:1.5px solid var(--ink);}
+tbody tr.grp td{background:#fafafa;font-weight:600;color:var(--ink);}
+td.hi{color:var(--red);font-weight:600;}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 6px;border-radius:2px;}
+.tag.ae{background:#eee;color:#222;}
+.tag.se{background:var(--redsoft);color:var(--red);}
+
+/* takeaways */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.box{border:1px solid var(--line);border-top:3px solid var(--ink);padding:20px 22px;}
+.box.good{border-top-color:var(--pos);}
+.box.bad{border-top-color:var(--neg);}
+.box h3{font-size:16px;margin:0 0 12px;}
+.box ul{margin:0;padding-left:18px;}
+.box li{font-size:14px;color:var(--ink2);line-height:1.55;margin-bottom:10px;}
+.box li b{color:var(--ink);}
+
+.rec{border-left:3px solid var(--red);padding:4px 0 4px 20px;margin:0 0 22px;}
+.rec h3{font-size:17px;margin:0 0 6px;}
+.rec p{font-size:14.5px;margin:0;}
+.rec .meta{margin-top:6px;font-size:12px;display:flex;gap:14px;}
+
+.callout{background:#fafafa;border:1px solid var(--line);border-left:3px solid var(--red);
+  padding:18px 22px;margin:22px 0;}
+.callout p{margin:0;font-size:15px;color:var(--ink);}
+.callout b{color:var(--red);}
+
+footer{padding:40px 0 70px;color:var(--ink3);font-size:12.5px;line-height:1.6;}
+footer b{color:var(--ink2);}
+.hr-num{font-family:'Frank Ruhl Libre';font-weight:700;}
+@media(max-width:780px){
+  header h1{font-size:30px;} .kpis{grid-template-columns:repeat(2,1fr);}
+  .cols{grid-template-columns:1fr;} .dek{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap body">
+    <p class="kicker">GTM Analytics &middot; Mid-Quarter Business Review</p>
+    <h1>Pipeline is scaling. Conversion is not.</h1>
+    <p class="dek">Marketing and Referrals routed 32% more pipeline into Q2, yet wins rose just 4% and revenue efficiency slipped. The fix is not more pipeline. It is where the pipeline lands.</p>
+    <div class="meta">
+      <span><b>Scope</b> Marketing + Referrals (Affiliates)</span>
+      <span><b>Period</b> Q1 vs Q2 2026, H1 drill-down</span>
+      <span><b>Lens</b> AE vs SE assignment &amp; conversion</span>
+      <span><b>Source</b> gtm.full_funnel_details</span>
+    </div>
+  </div>
+</header>
+
+<div class="toggle-bar">
+  <div class="wrap">
+    <span class="toggle-lbl">View</span>
+    <div class="seg" id="seg">
+      <button data-v="Overall" class="on">Overall</button>
+      <button data-v="Marketing">Marketing</button>
+      <button data-v="Referrals">Referrals</button>
+    </div>
+    <span class="viewnote" id="viewnote">Marketing + Referrals combined</span>
+  </div>
+</div>
+
+<!-- 1. Topline -->
+<section>
+  <div class="wrap body">
+    <h2>The headline</h2>
+    <p class="sub" id="s1sub">Q1 vs Q2 2026 &middot; SQL created, wins, and revenue recognised in period</p>
+    <div class="kpis" id="kpis"></div>
+    <p class="cap" id="kpicap"></p>
+  </div>
+  <div class="wrap">
+    <div class="chart" id="lagchart"></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--line2)"></i>Pipeline $</span>
+      <span><i class="sw" style="background:var(--ae)"></i>Wins (count)</span>
+      <span><i class="sw" style="background:var(--red)"></i>Revenue $</span>
+    </div>
+    <div class="body"><p class="cap">Indexed to Q1 = 100. The gap between the pipeline bar and the win bar is the conversion problem: volume in, not enough out.</p></div>
+  </div>
+</section>
+
+<!-- 2. AE vs SE hypothesis -->
+<section>
+  <div class="wrap body">
+    <h2>Testing the hypothesis: AEs get the pipeline, SEs convert it</h2>
+    <p class="sub">Assignment share and conversion, AE vs SE</p>
+    <p id="h2text"></p>
+  </div>
+  <div class="wrap">
+    <div class="chart" id="aeseShare"></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--ae)"></i>AE</span>
+      <span><i class="sw" style="background:var(--red)"></i>SE</span>
+    </div>
+    <div class="chart" id="aeseConv" style="margin-top:30px"></div>
+    <div class="body"><p class="cap">SQL&rarr;Win is wins divided by SQLs created in the period. Pipe&rarr;Rev is revenue recognised divided by SQL pipeline created. Both are period ratios, directional rather than true cohort conversion.</p></div>
+  </div>
+</section>
+
+<!-- 3. Region reveal -->
+<section>
+  <div class="wrap body">
+    <h2>Where the SE edge is real, and where it is not</h2>
+    <p class="sub">Q2 2026 &middot; AE vs SE conversion by region</p>
+    <p id="h3text"></p>
+  </div>
+  <div class="wrap">
+    <div class="chart" id="regionChart"></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--ae)"></i>AE</span>
+      <span><i class="sw" style="background:var(--red)"></i>SE</span>
+    </div>
+    <div class="body">
+      <table id="regionTable"></table>
+      <p class="cap">SE SQL counts are small in every region (Q2: NAMER 39, EMEA 62, APAC 80). Dollar ratios swing on single deals, so treat the size of each gap as directional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Monthly drill -->
+<section>
+  <div class="wrap body">
+    <h2>Month by month</h2>
+    <p class="sub" id="s4sub">Jan&ndash;Jun 2026 &middot; SQL, wins and revenue</p>
+  </div>
+  <div class="wrap">
+    <div class="chart" id="monthChart"></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--line2)"></i>SQL (count)</span>
+      <span><i class="sw" style="background:var(--ae)"></i>Wins (count)</span>
+      <span><i class="sw" style="background:var(--red)"></i>Revenue $</span>
+    </div>
+    <div class="chart" id="monthShare" style="margin-top:30px"></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--ae)"></i>AE share of SQL</span>
+      <span><i class="sw" style="background:var(--red)"></i>SE share of SQL</span>
+    </div>
+    <div class="body"><p class="cap" id="monthcap"></p></div>
+  </div>
+</section>
+
+<!-- 5. Takeaways -->
+<section>
+  <div class="wrap body">
+    <h2>What worked, what did not</h2>
+    <p class="sub">Marketing + Referrals, H1 2026</p>
+    <div class="cols">
+      <div class="box good">
+        <h3>What worked</h3>
+        <ul>
+          <li><b>Pipeline supply held up.</b> SQL volume grew 14% and SQL pipeline grew 32% QoQ. Top of funnel is not the constraint.</li>
+          <li><b>EMEA AE closing rate jumped in June</b> to 36% SQL&rarr;Win, the strongest single cell in H1.</li>
+          <li><b>Referrals revenue spiked in Q2</b> on a handful of larger wins, lifting the blended revenue number.</li>
+          <li><b>APAC SE punch above weight.</b> On a real base of 80 SQLs they out-convert APAC AEs on both metrics.</li>
+        </ul>
+      </div>
+      <div class="box bad">
+        <h3>What did not</h3>
+        <ul>
+          <li><b>Wins went flat</b> (+4%) while pipeline grew 32%. The funnel is leaking at the close.</li>
+          <li><b>Marketing Pipe&rarr;Rev fell</b> from 19.7% to 15.3%. Marketing is 87% of revenue, so this is the biggest absolute drag.</li>
+          <li><b>SE pipeline share shrank</b> from 21% to 17% of SQLs, concentrating more volume on the AE bench.</li>
+          <li><b>Referrals win count dropped</b> 30 to 20 even as revenue rose, a thin and volatile base for Q3 planning.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Recommendations -->
+<section>
+  <div class="wrap body">
+    <h2>Recommendations for Q3</h2>
+    <p class="sub">Prescriptive, ranked by expected revenue impact</p>
+
+    <div class="rec">
+      <h3>1. Fix Marketing close efficiency before adding pipeline</h3>
+      <p>Marketing Pipe&rarr;Rev dropped 4.4 points QoQ on the largest revenue base. Recovering Q1 efficiency on the current Q2 pipeline is worth more than any routing change. Diagnose the AE bench: capacity, deal quality, or stage hygiene.</p>
+      <p class="meta"><span class="up">Largest absolute lever</span><span class="flat">Owner: Sales leadership + RevOps</span></p>
+    </div>
+
+    <div class="rec">
+      <h3>2. Run a controlled APAC SE reallocation test</h3>
+      <p>APAC routes 74% of marketing SQLs to AEs, yet APAC SEs convert pipeline to revenue far more efficiently on a non-trivial base. Move a defined slice of APAC marketing SQLs to SE and measure SQL&rarr;Win over a full quarter. This is the clearest mis-routing signal in the data.</p>
+      <p class="meta"><span class="up">Highest-confidence routing test</span><span class="flat">Owner: APAC Sales Manager</span></p>
+    </div>
+
+    <div class="rec">
+      <h3>3. Keep NAMER AE-led</h3>
+      <p>The hypothesis does not hold in NAMER. AEs out-convert SEs on both SQL&rarr;Win and Pipe&rarr;Rev, so the AE-heavy routing there is correct. Do not reallocate NAMER pipeline to SE on the strength of the aggregate number.</p>
+      <p class="meta"><span class="flat">Hold, do not change</span><span class="flat">Owner: NAMER Sales</span></p>
+    </div>
+
+    <div class="rec">
+      <h3>4. Treat Referrals revenue as volatile, not a trend</h3>
+      <p>The Q2 referrals jump is a few large deals on a tiny base. Plan Q3 referrals revenue off win count and a multi-quarter average, not the Q2 dollar figure.</p>
+      <p class="meta"><span class="flat">Planning hygiene</span><span class="flat">Owner: Partnerships + Analytics</span></p>
+    </div>
+
+    <div class="callout">
+      <p><b>Bottom line.</b> The Q2 revenue lag is a conversion problem, not a pipeline problem. Q3 targets are steep, and more SQLs alone will not close the gap. The two highest-value moves are recovering Marketing close efficiency and testing a measured APAC SE reallocation. NAMER stays as is.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap body">
+    <p><b>Method.</b> Source table gtm.full_funnel_details, funnel_date in Jan&ndash;Jun 2026. Marketing = grouped_source 'Marketing'; Referrals = grouped_source 'Affiliates' (per scope). AE vs SE is parsed from the raw role text (role_category collapses both into "AE" and cannot be used). SE = roles tagged (SE), "Sales Executive", or a standalone SE token; AE = (AE), "Account Executive", or a standalone AE token. AE/SE-mixed, BDR, SDR, CSM, partnerships and null roles are grouped as Other and excluded from the AE vs SE comparison.</p>
+    <p><b>Metric definitions.</b> SQL and Win are row counts at those funnel stages. Pipeline is SUM(pipeline) on SQL rows. Revenue is SUM(revenue) on Revenue rows. SQL&rarr;Win and Pipe&rarr;Rev are within-period ratios, not opportunity-level cohorts, so a Q2 win may originate from a Q1 SQL. SE sample sizes are small and dollar ratios are sensitive to individual deals; gaps are directional, not tested for significance.</p>
+    <p><b>Generated</b> 24 Jun 2026 &middot; Above the Fold &middot; GTM Analytics &amp; Data Science</p>
+  </div>
+</footer>
+
+<script>
+const DATA = [{"channel":"Marketing","mth":1,"region":"APAC","seg":"AE","sql":26,"win":6,"pipe":17673,"won_pipe":1730,"rev":2450},{"channel":"Marketing","mth":1,"region":"APAC","seg":"Other","sql":5,"win":1,"pipe":9494,"won_pipe":630,"rev":3136},{"channel":"Marketing","mth":1,"region":"APAC","seg":"SE","sql":40,"win":1,"pipe":38182,"won_pipe":600,"rev":1925},{"channel":"Marketing","mth":1,"region":"EMEA","seg":"AE","sql":81,"win":8,"pipe":50097,"won_pipe":14820,"rev":28775},{"channel":"Marketing","mth":1,"region":"EMEA","seg":"Other","sql":2,"win":0,"pipe":300,"won_pipe":0,"rev":400},{"channel":"Marketing","mth":1,"region":"EMEA","seg":"SE","sql":22,"win":5,"pipe":26040,"won_pipe":5170,"rev":6680},{"channel":"Marketing","mth":1,"region":"NAMER","seg":"AE","sql":136,"win":14,"pipe":85099,"won_pipe":12967,"rev":10795},{"channel":"Marketing","mth":1,"region":"NAMER","seg":"SE","sql":5,"win":1,"pipe":39182,"won_pipe":450,"rev":460},{"channel":"Marketing","mth":2,"region":"APAC","seg":"AE","sql":43,"win":9,"pipe":34864,"won_pipe":2980,"rev":4535},{"channel":"Marketing","mth":2,"region":"APAC","seg":"Other","sql":7,"win":3,"pipe":2627,"won_pipe":390,"rev":418},{"channel":"Marketing","mth":2,"region":"APAC","seg":"SE","sql":24,"win":9,"pipe":18489,"won_pipe":4085,"rev":6585},{"channel":"Marketing","mth":2,"region":"EMEA","seg":"AE","sql":72,"win":17,"pipe":114643,"won_pipe":18655,"rev":14357},{"channel":"Marketing","mth":2,"region":"EMEA","seg":"Other","sql":1,"win":0,"pipe":100,"won_pipe":0,"rev":0},{"channel":"Marketing","mth":2,"region":"EMEA","seg":"SE","sql":18,"win":3,"pipe":39653,"won_pipe":1390,"rev":2690},{"channel":"Marketing","mth":2,"region":"NAMER","seg":"AE","sql":99,"win":14,"pipe":63210,"won_pipe":8930,"rev":16750},{"channel":"Marketing","mth":2,"region":"NAMER","seg":"SE","sql":7,"win":1,"pipe":12760,"won_pipe":550,"rev":2010},{"channel":"Marketing","mth":3,"region":"APAC","seg":"AE","sql":54,"win":7,"pipe":42606,"won_pipe":4410,"rev":3850},{"channel":"Marketing","mth":3,"region":"APAC","seg":"Other","sql":6,"win":2,"pipe":5691,"won_pipe":360,"rev":826},{"channel":"Marketing","mth":3,"region":"APAC","seg":"SE","sql":39,"win":6,"pipe":22835,"won_pipe":4415,"rev":1982},{"channel":"Marketing","mth":3,"region":"EMEA","seg":"AE","sql":84,"win":14,"pipe":91650,"won_pipe":11260,"rev":6998},{"channel":"Marketing","mth":3,"region":"EMEA","seg":"SE","sql":20,"win":2,"pipe":89293,"won_pipe":970,"rev":8699},{"channel":"Marketing","mth":3,"region":"NAMER","seg":"AE","sql":86,"win":19,"pipe":132643,"won_pipe":55373,"rev":52418},{"channel":"Marketing","mth":3,"region":"NAMER","seg":"Other","sql":1,"win":0,"pipe":0,"won_pipe":0,"rev":0},{"channel":"Marketing","mth":3,"region":"NAMER","seg":"SE","sql":3,"win":1,"pipe":1960,"won_pipe":2500,"rev":7907},{"channel":"Marketing","mth":4,"region":"APAC","seg":"AE","sql":73,"win":13,"pipe":32645,"won_pipe":5345,"rev":7205},{"channel":"Marketing","mth":4,"region":"APAC","seg":"Other","sql":2,"win":3,"pipe":225,"won_pipe":4275,"rev":650},{"channel":"Marketing","mth":4,"region":"APAC","seg":"SE","sql":35,"win":4,"pipe":22022,"won_pipe":4289,"rev":3212},{"channel":"Marketing","mth":4,"region":"EMEA","seg":"AE","sql":121,"win":7,"pipe":159749,"won_pipe":4110,"rev":8101},{"channel":"Marketing","mth":4,"region":"EMEA","seg":"SE","sql":18,"win":5,"pipe":56288,"won_pipe":8480,"rev":5750},{"channel":"Marketing","mth":4,"region":"NAMER","seg":"AE","sql":145,"win":19,"pipe":218599,"won_pipe":34485,"rev":40323},{"channel":"Marketing","mth":4,"region":"NAMER","seg":"SE","sql":10,"win":1,"pipe":26443,"won_pipe":660,"rev":1200},{"channel":"Marketing","mth":5,"region":"APAC","seg":"AE","sql":76,"win":12,"pipe":62597,"won_pipe":5208,"rev":4598},{"channel":"Marketing","mth":5,"region":"APAC","seg":"Other","sql":1,"win":0,"pipe":1250,"won_pipe":0,"rev":700},{"channel":"Marketing","mth":5,"region":"APAC","seg":"SE","sql":21,"win":3,"pipe":23614,"won_pipe":3992,"rev":5895},{"channel":"Marketing","mth":5,"region":"EMEA","seg":"AE","sql":92,"win":13,"pipe":87140,"won_pipe":15285,"rev":22207},{"channel":"Marketing","mth":5,"region":"EMEA","seg":"SE","sql":23,"win":3,"pipe":19810,"won_pipe":3680,"rev":4077},{"channel":"Marketing","mth":5,"region":"NAMER","seg":"AE","sql":114,"win":24,"pipe":127838,"won_pipe":17234,"rev":17210},{"channel":"Marketing","mth":5,"region":"NAMER","seg":"Other","sql":0,"win":0,"pipe":0,"won_pipe":0,"rev":0},{"channel":"Marketing","mth":5,"region":"NAMER","seg":"SE","sql":8,"win":0,"pipe":9096,"won_pipe":0,"rev":2200},{"channel":"Marketing","mth":6,"region":"APAC","seg":"AE","sql":62,"win":6,"pipe":36902,"won_pipe":1839,"rev":2329},{"channel":"Marketing","mth":6,"region":"APAC","seg":"Other","sql":2,"win":2,"pipe":5250,"won_pipe":5250,"rev":16110},{"channel":"Marketing","mth":6,"region":"APAC","seg":"SE","sql":17,"win":4,"pipe":25600,"won_pipe":3514,"rev":2680},{"channel":"Marketing","mth":6,"region":"EMEA","seg":"AE","sql":70,"win":25,"pipe":107699,"won_pipe":23319,"rev":16327},{"channel":"Marketing","mth":6,"region":"EMEA","seg":"Other","sql":0,"win":0,"pipe":0,"won_pipe":0,"rev":0},{"channel":"Marketing","mth":6,"region":"EMEA","seg":"SE","sql":16,"win":3,"pipe":65700,"won_pipe":4994,"rev":10517},{"channel":"Marketing","mth":6,"region":"NAMER","seg":"AE","sql":91,"win":11,"pipe":127101,"won_pipe":9148,"rev":9905},{"channel":"Marketing","mth":6,"region":"NAMER","seg":"Other","sql":0,"win":0,"pipe":0,"won_pipe":0,"rev":600},{"channel":"Marketing","mth":6,"region":"NAMER","seg":"SE","sql":8,"win":2,"pipe":19300,"won_pipe":6129,"rev":6129},{"channel":"Marketing","mth":6,"region":"Other","seg":"Other","sql":0,"win":0,"pipe":0,"won_pipe":0,"rev":488},{"channel":"Referrals","mth":1,"region":"APAC","seg":"AE","sql":1,"win":0,"pipe":700,"won_pipe":0,"rev":200},{"channel":"Referrals","mth":1,"region":"APAC","seg":"SE","sql":3,"win":0,"pipe":5380,"won_pipe":0,"rev":0},{"channel":"Referrals","mth":1,"region":"EMEA","seg":"AE","sql":4,"win":1,"pipe":3250,"won_pipe":600,"rev":0},{"channel":"Referrals","mth":1,"region":"EMEA","seg":"SE","sql":4,"win":1,"pipe":1570,"won_pipe":400,"rev":400},{"channel":"Referrals","mth":1,"region":"NAMER","seg":"AE","sql":3,"win":3,"pipe":1050,"won_pipe":1720,"rev":2080},{"channel":"Referrals","mth":1,"region":"NAMER","seg":"SE","sql":2,"win":0,"pipe":19600,"won_pipe":0,"rev":600},{"channel":"Referrals","mth":2,"region":"APAC","seg":"AE","sql":2,"win":3,"pipe":1050,"won_pipe":1450,"rev":1850},{"channel":"Referrals","mth":2,"region":"APAC","seg":"Other","sql":0,"win":1,"pipe":0,"won_pipe":540,"rev":540},{"channel":"Referrals","mth":2,"region":"APAC","seg":"SE","sql":2,"win":0,"pipe":13490,"won_pipe":0,"rev":3640},{"channel":"Referrals","mth":2,"region":"EMEA","seg":"AE","sql":5,"win":3,"pipe":3061,"won_pipe":2150,"rev":1900},{"channel":"Referrals","mth":2,"region":"EMEA","seg":"SE","sql":0,"win":3,"pipe":0,"won_pipe":1034,"rev":600},{"channel":"Referrals","mth":2,"region":"NAMER","seg":"AE","sql":11,"win":3,"pipe":17330,"won_pipe":1300,"rev":1100},{"channel":"Referrals","mth":2,"region":"NAMER","seg":"SE","sql":3,"win":1,"pipe":8675,"won_pipe":600,"rev":0},{"channel":"Referrals","mth":3,"region":"APAC","seg":"AE","sql":8,"win":1,"pipe":8737,"won_pipe":432,"rev":509},{"channel":"Referrals","mth":3,"region":"APAC","seg":"Other","sql":1,"win":1,"pipe":1890,"won_pipe":1890,"rev":1350},{"channel":"Referrals","mth":3,"region":"APAC","seg":"SE","sql":7,"win":3,"pipe":12326,"won_pipe":5480,"rev":1580},{"channel":"Referrals","mth":3,"region":"EMEA","seg":"AE","sql":2,"win":2,"pipe":800,"won_pipe":1050,"rev":980},{"channel":"Referrals","mth":3,"region":"NAMER","seg":"AE","sql":20,"win":3,"pipe":24498,"won_pipe":780,"rev":780},{"channel":"Referrals","mth":3,"region":"NAMER","seg":"SE","sql":2,"win":1,"pipe":3500,"won_pipe":500,"rev":500},{"channel":"Referrals","mth":4,"region":"APAC","seg":"AE","sql":11,"win":3,"pipe":11350,"won_pipe":940,"rev":940},{"channel":"Referrals","mth":4,"region":"APAC","seg":"Other","sql":0,"win":0,"pipe":0,"won_pipe":0,"rev":0},{"channel":"Referrals","mth":4,"region":"APAC","seg":"SE","sql":2,"win":1,"pipe":6500,"won_pipe":4500,"rev":4500},{"channel":"Referrals","mth":4,"region":"EMEA","seg":"AE","sql":7,"win":2,"pipe":15710,"won_pipe":1500,"rev":1420},{"channel":"Referrals","mth":4,"region":"EMEA","seg":"SE","sql":2,"win":0,"pipe":2600,"won_pipe":0,"rev":0},{"channel":"Referrals","mth":4,"region":"NAMER","seg":"AE","sql":10,"win":3,"pipe":46650,"won_pipe":1748,"rev":3284},{"channel":"Referrals","mth":4,"region":"NAMER","seg":"SE","sql":1,"win":0,"pipe":400,"won_pipe":0,"rev":0},{"channel":"Referrals","mth":5,"region":"APAC","seg":"AE","sql":3,"win":0,"pipe":3500,"won_pipe":0,"rev":40},{"channel":"Referrals","mth":5,"region":"APAC","seg":"SE","sql":4,"win":1,"pipe":26950,"won_pipe":6750,"rev":7200},{"channel":"Referrals","mth":5,"region":"EMEA","seg":"AE","sql":11,"win":1,"pipe":24502,"won_pipe":600,"rev":300},{"channel":"Referrals","mth":5,"region":"EMEA","seg":"SE","sql":2,"win":0,"pipe":3500,"won_pipe":0,"rev":0},{"channel":"Referrals","mth":5,"region":"NAMER","seg":"AE","sql":6,"win":3,"pipe":11000,"won_pipe":36650,"rev":37448},{"channel":"Referrals","mth":5,"region":"NAMER","seg":"SE","sql":8,"win":0,"pipe":8425,"won_pipe":0,"rev":0},{"channel":"Referrals","mth":6,"region":"APAC","seg":"AE","sql":5,"win":0,"pipe":2000,"won_pipe":0,"rev":0},{"channel":"Referrals","mth":6,"region":"APAC","seg":"SE","sql":1,"win":1,"pipe":720,"won_pipe":19500,"rev":19500},{"channel":"Referrals","mth":6,"region":"EMEA","seg":"AE","sql":11,"win":4,"pipe":6230,"won_pipe":2590,"rev":1225},{"channel":"Referrals","mth":6,"region":"EMEA","seg":"SE","sql":1,"win":0,"pipe":500,"won_pipe":0,"rev":540},{"channel":"Referrals","mth":6,"region":"NAMER","seg":"AE","sql":3,"win":0,"pipe":2310,"won_pipe":0,"rev":1150},{"channel":"Referrals","mth":6,"region":"NAMER","seg":"SE","sql":4,"win":1,"pipe":4475,"won_pipe":400,"rev":1300}];
+
+const fmtUSD = v => v>=1e6 ? '$'+(v/1e6).toFixed(2)+'M' : v>=1e3 ? '$'+(v/1e3).toFixed(0)+'K' : '$'+Math.round(v);
+const fmtN = v => v.toLocaleString('en-US');
+const pct = (n,d) => d>0 ? (100*n/d) : 0;
+const r1 = v => Math.round(v*10)/10;
+const MN = {1:'Jan',2:'Feb',3:'Mar',4:'Apr',5:'May',6:'Jun'};
+
+let VIEW = 'Overall';
+
+function rows(view){
+  return DATA.filter(d => view==='Overall' ? true : d.channel===view);
+}
+function agg(arr, filt){
+  let o={sql:0,win:0,pipe:0,rev:0,won_pipe:0};
+  arr.forEach(d=>{ if(!filt||filt(d)){o.sql+=d.sql;o.win+=d.win;o.pipe+=d.pipe;o.rev+=d.rev;o.won_pipe+=d.won_pipe;} });
+  return o;
+}
+const isQ1 = d=>d.mth<=3, isQ2 = d=>d.mth>=4;
+
+/* ---------- KPI ---------- */
+function renderKPI(){
+  const a = rows(VIEW);
+  const q1 = agg(a, isQ1), q2 = agg(a, isQ2);
+  const cards = [
+    {lab:'SQL created', q2:fmtN(q2.sql), q1:fmtN(q1.sql), d:pct(q2.sql-q1.sql,q1.sql), good:'up'},
+    {lab:'Wins', q2:fmtN(q2.win), q1:fmtN(q1.win), d:pct(q2.win-q1.win,q1.win), good:'up'},
+    {lab:'SQL → Win', q2:r1(pct(q2.win,q2.sql))+'%', q1:r1(pct(q1.win,q1.sql))+'%', d:pct(q2.win,q2.sql)-pct(q1.win,q1.sql), good:'up', ppt:true},
+    {lab:'SQL Pipeline', q2:fmtUSD(q2.pipe), q1:fmtUSD(q1.pipe), d:pct(q2.pipe-q1.pipe,q1.pipe), good:'up'},
+    {lab:'Revenue', q2:fmtUSD(q2.rev), q1:fmtUSD(q1.rev), d:pct(q2.rev-q1.rev,q1.rev), good:'up'},
+    {lab:'Pipe → Rev', q2:r1(pct(q2.rev,q2.pipe))+'%', q1:r1(pct(q1.rev,q1.pipe))+'%', d:pct(q2.rev,q2.pipe)-pct(q1.rev,q1.pipe), good:'up', ppt:true},
+  ];
+  document.getElementById('kpis').innerHTML = cards.map(c=>{
+    const dv = c.ppt ? (c.d>=0?'+':'')+r1(c.d)+' pts' : (c.d>=0?'+':'')+r1(c.d)+'%';
+    const cls = Math.abs(c.d)<0.6 && c.ppt ? 'flat' : (c.d>=0 ? 'up':'down');
+    return `<div class="kpi"><div class="lab">${c.lab}</div>
+      <div class="val">${c.q2}</div>
+      <div class="q1">Q1: ${c.q1}</div>
+      <div class="delta ${cls}">${dv} QoQ</div></div>`;
+  }).join('');
+
+  const q1c=pct(q1.win,q1.sql), q2c=pct(q2.win,q2.sql);
+  document.getElementById('kpicap').textContent =
+    `Pipeline grew ${r1(pct(q2.pipe-q1.pipe,q1.pipe))}% QoQ while wins moved ${r1(pct(q2.win-q1.win,q1.win))}%. SQL→Win went ${r1(q1c)}% → ${r1(q2c)}%.`;
+}
+
+/* ---------- generic grouped bar ---------- */
+function barSVG(groups, opts){
+  // groups: [{label, bars:[{v,color,tip}]}]   opts:{w,h,max,fmt,unit}
+  const w=opts.w||940,h=opts.h||300,pl=46,pr=20,pt=24,pb=46;
+  const iw=w-pl-pr, ih=h-pt-pb;
+  const max=opts.max||Math.max(...groups.flatMap(g=>g.bars.map(b=>b.v)),1);
+  const gw=iw/groups.length, nb=groups[0].bars.length, bw=Math.min(46,(gw*0.62)/nb), gap=6;
+  let s=`<svg viewBox="0 0 ${w} ${h}" role="img">`;
+  // gridlines
+  for(let i=0;i<=4;i++){const y=pt+ih-(ih*i/4);const val=max*i/4;
+    s+=`<line x1="${pl}" y1="${y}" x2="${w-pr}" y2="${y}" stroke="#eee"/>`;
+    s+=`<text x="${pl-8}" y="${y+4}" text-anchor="end" font-size="10" fill="#999" font-family="Libre Franklin">${opts.fmtAxis?opts.fmtAxis(val):Math.round(val)}</text>`;}
+  groups.forEach((g,gi)=>{
+    const cx=pl+gw*gi+gw/2;
+    const totalW=nb*bw+(nb-1)*gap;
+    g.bars.forEach((b,bi)=>{
+      const x=cx-totalW/2+bi*(bw+gap);
+      const bh=ih*(b.v/max);
+      const y=pt+ih-bh;
+      s+=`<rect x="${x}" y="${y}" width="${bw}" height="${Math.max(bh,0)}" fill="${b.color}"><title>${b.tip||''}</title></rect>`;
+      if(b.lbl!==undefined)s+=`<text x="${x+bw/2}" y="${y-5}" text-anchor="middle" font-size="11" font-weight="600" fill="${b.color}" font-family="Libre Franklin">${b.lbl}</text>`;
+    });
+    s+=`<text x="${cx}" y="${h-pb+18}" text-anchor="middle" font-size="12.5" fill="#444" font-family="Libre Franklin" font-weight="500">${g.label}</text>`;
+    if(g.sub)s+=`<text x="${cx}" y="${h-pb+33}" text-anchor="middle" font-size="10.5" fill="#999" font-family="Libre Franklin">${g.sub}</text>`;
+  });
+  s+=`</svg>`;
+  return s;
+}
+
+/* ---------- lag chart (indexed) ---------- */
+function renderLag(){
+  const a=rows(VIEW); const q1=agg(a,isQ1),q2=agg(a,isQ2);
+  const idx=(v2,v1)=>v1>0?100*v2/v1:0;
+  const groups=[
+    {label:'Q1 2026',sub:'baseline',bars:[
+      {v:100,color:'var(--line2)',lbl:'100'},{v:100,color:'var(--ae)',lbl:'100'},{v:100,color:'var(--red)',lbl:'100'}]},
+    {label:'Q2 2026',sub:'indexed to Q1',bars:[
+      {v:idx(q2.pipe,q1.pipe),color:'var(--line2)',lbl:Math.round(idx(q2.pipe,q1.pipe)),tip:'Pipeline'},
+      {v:idx(q2.win,q1.win),color:'var(--ae)',lbl:Math.round(idx(q2.win,q1.win)),tip:'Wins'},
+      {v:idx(q2.rev,q1.rev),color:'var(--red)',lbl:Math.round(idx(q2.rev,q1.rev)),tip:'Revenue'}]}
+  ];
+  const max=Math.max(140,...groups.flatMap(g=>g.bars.map(b=>b.v)))*1.05;
+  document.getElementById('lagchart').innerHTML=barSVG(groups,{h:300,max,fmtAxis:v=>Math.round(v)});
+}
+
+/* ---------- AE vs SE share ---------- */
+function renderAESEshare(){
+  const a=rows(VIEW);
+  function share(filt){const ae=agg(a,d=>filt(d)&&d.seg==='AE').sql;const se=agg(a,d=>filt(d)&&d.seg==='SE').sql;const t=ae+se;return [pct(ae,t),pct(se,t),ae,se];}
+  const [a1,s1,ae1,se1]=share(isQ1),[a2,s2,ae2,se2]=share(isQ2);
+  const groups=[
+    {label:'Q1 2026',sub:`${ae1+se1} SQLs`,bars:[{v:a1,color:'var(--ae)',lbl:r1(a1)+'%'},{v:s1,color:'var(--red)',lbl:r1(s1)+'%'}]},
+    {label:'Q2 2026',sub:`${ae2+se2} SQLs`,bars:[{v:a2,color:'var(--ae)',lbl:r1(a2)+'%'},{v:s2,color:'var(--red)',lbl:r1(s2)+'%'}]}
+  ];
+  document.getElementById('aeseShare').innerHTML=
+    `<div style="font-size:13px;font-weight:600;color:#777;margin:0 0 4px 46px">SQL assignment share (AE vs SE)</div>`+
+    barSVG(groups,{h:250,max:100,fmtAxis:v=>Math.round(v)+'%'});
+
+  // conversion: 4 groups (Q1 AE, Q1 SE, Q2 AE, Q2 SE) x two metrics shown as two charts side concept -> one grouped per quarter
+  function conv(filt,seg){const g=agg(a,d=>filt(d)&&d.seg===seg);return [pct(g.win,g.sql),pct(g.rev,g.pipe)];}
+  const c=[['Q1',isQ1],['Q2',isQ2]];
+  const cg=[];
+  c.forEach(([q,f])=>{
+    const ae=conv(f,'AE'),se=conv(f,'SE');
+    cg.push({label:q+' · SQL→Win',bars:[{v:ae[0],color:'var(--ae)',lbl:r1(ae[0])+'%'},{v:se[0],color:'var(--red)',lbl:r1(se[0])+'%'}]});
+    cg.push({label:q+' · Pipe→Rev',bars:[{v:ae[1],color:'var(--ae)',lbl:r1(ae[1])+'%'},{v:se[1],color:'var(--red)',lbl:r1(se[1])+'%'}]});
+  });
+  const max=Math.max(...cg.flatMap(g=>g.bars.map(b=>b.v)),25)*1.15;
+  document.getElementById('aeseConv').innerHTML=
+    `<div style="font-size:13px;font-weight:600;color:#777;margin:0 0 4px 46px">Conversion rate by segment</div>`+
+    barSVG(cg,{h:280,max,fmtAxis:v=>Math.round(v)+'%'});
+
+  // narrative
+  const dir1 = s2<s1 ? 'fell' : 'rose';
+  document.getElementById('h2text').innerHTML =
+    `Assignment is exactly as suspected. AEs hold <b>${r1(a2)}%</b> of Q2 SQLs and the SE share <b>${dir1}</b> to ${r1(s2)}% from ${r1(s1)}% in Q1. `+
+    `On conversion the edge is mixed: SEs led SQL&rarr;Win in Q1, the two converged in Q2, and on Pipe&rarr;Rev SEs pulled ahead in Q2. So the "SEs convert better" claim is directionally supported, but it is an aggregate that hides a sharp regional split. That split is the real story.`;
+}
+
+/* ---------- region ---------- */
+function renderRegion(){
+  const a=rows(VIEW).filter(isQ2);
+  const regs=['NAMER','EMEA','APAC'];
+  const groups=[];
+  regs.forEach(rg=>{
+    const ae=agg(a,d=>d.region===rg&&d.seg==='AE');
+    const se=agg(a,d=>d.region===rg&&d.seg==='SE');
+    groups.push({label:rg,sub:'Pipe→Rev',bars:[
+      {v:pct(ae.rev,ae.pipe),color:'var(--ae)',lbl:r1(pct(ae.rev,ae.pipe))+'%'},
+      {v:pct(se.rev,se.pipe),color:'var(--red)',lbl:r1(pct(se.rev,se.pipe))+'%'}]});
+  });
+  const max=Math.max(...groups.flatMap(g=>g.bars.map(b=>b.v)),20)*1.12;
+  document.getElementById('regionChart').innerHTML=
+    `<div style="font-size:13px;font-weight:600;color:#777;margin:0 0 4px 46px">Q2 Pipe→Rev efficiency, AE vs SE by region</div>`+
+    barSVG(groups,{h:300,max,fmtAxis:v=>Math.round(v)+'%'});
+
+  // table
+  let t=`<thead><tr><th>Region</th><th>Seg</th><th>SQL</th><th>Win</th><th>SQL→Win</th><th>Pipe→Rev</th></tr></thead><tbody>`;
+  regs.forEach(rg=>{
+    [['AE','ae'],['SE','se']].forEach(([seg,cls],i)=>{
+      const g=agg(a,d=>d.region===rg&&d.seg===seg);
+      const better = cls==='se';
+      t+=`<tr ${i===0?'class="grp"':''}>`+
+         `<td>${i===0?rg:''}</td>`+
+         `<td><span class="tag ${cls}">${seg}</span></td>`+
+         `<td>${g.sql}</td><td>${g.win}</td>`+
+         `<td>${r1(pct(g.win,g.sql))}%</td>`+
+         `<td class="${cls==='se'?'':''}">${r1(pct(g.rev,g.pipe))}%</td></tr>`;
+    });
+  });
+  t+=`</tbody>`;
+  document.getElementById('regionTable').innerHTML=t;
+
+  document.getElementById('h3text').innerHTML=
+    `This is where the hypothesis breaks. In <b>APAC</b>, SEs convert pipeline to revenue several times more efficiently than AEs and win a higher share of SQLs, yet only a quarter of APAC pipeline reaches them. In <b>EMEA</b> the SE edge is modest. In <b>NAMER</b> the picture inverts: AEs out-convert SEs on both metrics, so the AE-heavy routing there is justified. The mis-allocation the hypothesis points to is in APAC, not NAMER.`;
+}
+
+/* ---------- monthly ---------- */
+function renderMonth(){
+  const a=rows(VIEW);
+  const ms=[1,2,3,4,5,6];
+  const m=ms.map(x=>({mth:x,...agg(a,d=>d.mth===x)}));
+  // chart 1: SQL, Win, Rev — dual scale. Show SQL & Win as counts (left implied), Rev as $ bar scaled separately by its own max via second color group.
+  // Simplify: three indexed-free grouped bars but counts vs $ differ; use normalized to each metric max so shape is visible.
+  const maxSql=Math.max(...m.map(d=>d.sql)), maxWin=Math.max(...m.map(d=>d.win)), maxRev=Math.max(...m.map(d=>d.rev));
+  const groups=m.map(d=>({label:MN[d.mth],bars:[
+    {v:d.sql/maxSql*100,color:'var(--line2)',tip:'SQL '+d.sql,lbl:d.sql},
+    {v:d.win/maxWin*100,color:'var(--ae)',tip:'Win '+d.win,lbl:d.win},
+    {v:d.rev/maxRev*100,color:'var(--red)',tip:'Rev '+fmtUSD(d.rev),lbl:fmtUSD(d.rev)}
+  ]}));
+  document.getElementById('monthChart').innerHTML=
+    `<div style="font-size:13px;font-weight:600;color:#777;margin:0 0 4px 46px">Monthly SQL, Wins, Revenue — each series scaled to its own peak</div>`+
+    barSVG(groups,{h:300,max:118});
+
+  // chart 2: AE vs SE share stacked-ish (two bars)
+  const sg=m.map(d=>{
+    const ae=agg(a,x=>x.mth===d.mth&&x.seg==='AE').sql;
+    const se=agg(a,x=>x.mth===d.mth&&x.seg==='SE').sql;const t=ae+se;
+    return {label:MN[d.mth],bars:[{v:pct(ae,t),color:'var(--ae)',lbl:r1(pct(ae,t))+'%'},{v:pct(se,t),color:'var(--red)',lbl:r1(pct(se,t))+'%'}]};
+  });
+  document.getElementById('monthShare').innerHTML=
+    `<div style="font-size:13px;font-weight:600;color:#777;margin:0 0 4px 46px">AE vs SE share of SQL by month</div>`+
+    barSVG(sg,{h:240,max:100,fmtAxis:v=>Math.round(v)+'%'});
+
+  const junRev=m[5].rev, marRev=m[2].rev;
+  document.getElementById('monthcap').textContent=
+    `SQL volume is steady to rising, but monthly wins and revenue are choppy, the signature of a close-stage bottleneck rather than a supply problem.`;
+}
+
+function renderAll(){
+  document.getElementById('viewnote').textContent =
+    VIEW==='Overall' ? 'Marketing + Referrals combined' :
+    VIEW==='Marketing' ? 'Marketing-sourced only' : 'Referrals (Affiliates) only';
+  renderKPI(); renderLag(); renderAESEshare(); renderRegion(); renderMonth();
+}
+
+document.getElementById('seg').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  document.querySelectorAll('#seg button').forEach(b=>b.classList.remove('on'));
+  e.target.classList.add('on');
+  VIEW=e.target.dataset.v;
+  renderAll();
+});
+
+renderAll();
+</script>
+</body>
+</html>
