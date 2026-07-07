@@ -88,6 +88,7 @@ th.gh-q2{color:var(--orange-deep)}
 th.gh-qoq{color:var(--ink-soft);border-left:1px solid var(--line);border-right:1px solid var(--line)}
 td.qoq-l{border-left:1px solid var(--line-soft)}
 td.qoq-r{border-right:1px solid var(--line-soft)}
+table.ov th.qc,table.ov td.qoq-l,table.ov td.qoq-r{width:11%}
 .att{font-weight:700;border-radius:4px;padding:1px 5px!important}
 .att.g{color:var(--green);background:var(--green-soft)}
 .att.a{color:var(--amber);background:var(--amber-soft)}
@@ -122,6 +123,55 @@ tr.conv-first td{border-top:1px dashed var(--line)}
 .map-story p{font-size:12.5px;line-height:1.6;color:var(--ink-soft);font-weight:500}
 .map-story p+p{margin-top:11px}
 .map-story b{color:var(--ink);font-weight:700}
+
+/* ---------- CHANNEL EXEC SUMMARY (scorecards + high/low) ---------- */
+.s-exec{padding:52px 56px 48px}
+.exec-cards{display:flex;gap:15px;margin-top:20px}
+.ecard{flex:1;background:#fff;border-radius:10px;border:1px solid var(--line);border-top:3px solid var(--orange);padding:15px 16px 14px;box-shadow:0 3px 10px rgba(0,0,0,.04)}
+.ecard .lab{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.01em}
+.ecard .val{font-size:31px;font-weight:800;letter-spacing:-.02em;margin-top:8px;line-height:1;font-family:var(--sans)}
+.ecard .val.g{color:var(--green)} .ecard .val.r{color:var(--red)} .ecard .val.a{color:var(--amber)} .ecard .val.n{color:var(--ink)}
+.ecard .sub{font-size:10.5px;color:var(--muted);margin-top:9px;line-height:1.35;font-family:var(--mono)}
+.ecard .sub .up{color:var(--green);font-weight:600} .ecard .sub .dn{color:var(--red);font-weight:600}
+.exec-panels{display:flex;gap:18px;margin-top:20px;flex:1}
+.hlpanel{flex:1;border-radius:12px;padding:20px 22px}
+.hlpanel.hi{background:var(--green-soft);border:1px solid #cfe8dc}
+.hlpanel.lo{background:var(--amber-soft);border:1px solid #f0dcc0}
+.hlpanel h3{font-size:13px;font-weight:800;letter-spacing:.02em;margin-bottom:13px}
+.hlpanel.hi h3{color:var(--green)} .hlpanel.lo h3{color:var(--amber)}
+.hlpanel ul{list-style:none}
+.hlpanel li{position:relative;padding-left:16px;font-size:13px;line-height:1.5;color:var(--ink-soft);font-weight:500;margin-bottom:12px}
+.hlpanel li:last-child{margin-bottom:0}
+.hlpanel li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%}
+.hlpanel.hi li:before{background:var(--green)} .hlpanel.lo li:before{background:var(--amber)}
+.hlpanel li b{color:var(--ink);font-weight:700}
+
+/* ---------- DUO slide: metrics table + chart ---------- */
+.s-duo{padding:50px 56px 46px}
+.duo-wrap{display:flex;gap:34px;margin-top:16px;flex:1}
+.duo-l{flex:1} .duo-r{flex:1.12}
+.panel-lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-deep);font-weight:700;margin-bottom:10px}
+table.kv{width:100%;border-collapse:collapse;font-family:var(--mono)}
+table.kv th{font-family:var(--sans);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:right;padding:5px 8px;border-bottom:1px solid var(--line)}
+table.kv th:first-child{text-align:left}
+table.kv td{font-size:13.5px;padding:8px 8px;text-align:right;border-bottom:1px solid var(--line-soft)}
+table.kv td:first-child{text-align:left;font-family:var(--sans);font-weight:700;color:var(--ink-soft);font-size:12.5px}
+table.kv .up{color:var(--green);font-weight:700}
+table.kv .dn{color:var(--red);font-weight:700}
+table.kv .nu{color:var(--ink-soft);font-weight:600}
+.chartcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 18px 12px;box-shadow:0 3px 10px rgba(0,0,0,.04)}
+.chartcard .ct{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.leg{display:flex;gap:18px;margin-top:4px;font-size:11px;color:var(--muted);font-family:var(--sans)}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.leg i{width:13px;height:3px;border-radius:2px;display:inline-block}
+.callout{margin-top:13px;background:var(--warm);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:12.5px;color:var(--ink-soft);font-weight:500;line-height:1.45}
+.callout b{color:var(--ink)}
+
+/* ---------- SECTION DIVIDER ---------- */
+.s-divider{justify-content:center}
+.s-divider .div-title{font-size:64px;font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1;margin-top:6px}
+.s-divider .div-rule{width:80px;height:4px;background:var(--orange);border-radius:2px;margin:22px 0}
+.s-divider .div-dek{font-size:16px;color:var(--ink-soft);font-weight:500;max-width:560px;line-height:1.5}
 </style>
 </head>
 <body>
@@ -163,7 +213,7 @@ tr.conv-first td{border-top:1px dashed var(--line)}
           <tr>
             <th class="sub sub-q1">Tgt</th><th class="sub sub-q1">Act</th><th class="sub sub-q1">Att</th>
             <th class="sub sub-q2">Tgt</th><th class="sub sub-q2">Act</th><th class="sub sub-q2">Att</th>
-            <th class="sub">&#916; Act</th><th class="sub">&#916; Act %</th>
+            <th class="sub qc">&#916; Act</th><th class="sub qc">&#916; Act %</th>
           </tr>
         </thead>
         <tbody>
@@ -197,7 +247,7 @@ tr.conv-first td{border-top:1px dashed var(--line)}
           <tr>
             <th class="sub sub-q1">Tgt</th><th class="sub sub-q1">Act</th><th class="sub sub-q1">Att</th>
             <th class="sub sub-q2">Tgt</th><th class="sub sub-q2">Act</th><th class="sub sub-q2">Att</th>
-            <th class="sub">&#916; Act</th><th class="sub">&#916; Act %</th>
+            <th class="sub qc">&#916; Act</th><th class="sub qc">&#916; Act %</th>
           </tr>
         </thead>
         <tbody>
@@ -216,68 +266,191 @@ tr.conv-first td{border-top:1px dashed var(--line)}
     <div class="pg">02</div>
   </section>
 
-  <!-- SLIDE 3 — CONTENTS / NAVIGATOR -->
-  <!-- NOTE: when building a section, tag its first slide with data-section="KEY"
-       keys: cac | sem | seo | events | referrals | brand | appendix
-       the navigator below auto-links to it. -->
-  <section class="slide s-map" data-section="contents">
+  <!-- SEM — EXEC SUMMARY (channel section opener) -->
+  <section class="slide s-exec" data-section="sem">
     <div class="accent"></div>
-    <div class="reveal"><div class="eyebrow">Contents</div></div>
-    <h2 class="title reveal" style="--d:.06s">How to read Q2</h2>
-    <p class="dek reveal" style="--d:.12s">Seven stops, in the order the quarter makes sense. Click any stop to jump to its section.</p>
+    <div class="reveal"><div class="eyebrow">Channel 02 &middot; SEM &middot; Exec Summary</div></div>
+    <h2 class="title reveal" style="--d:.06s">SEM built more pipeline but closed less of it</h2>
+    <p class="dek reveal" style="--d:.12s">Paid demand held on roughly flat spend. Pipeline grew 12%, yet <b>revenue fell 17% as conversion softened</b>.</p>
 
-    <div class="map-wrap">
-      <div class="map-spine reveal" style="--d:.2s">
-        <div class="map-line"></div>
-        <div class="map-item" data-target="cac">
-          <div class="map-node"><span class="map-num">01</span></div>
-          <div class="map-body"><div class="map-t">Marketing Spend & CAC</div><div class="map-d">What we spent this quarter and what it cost to win a customer</div></div>
-          <div class="map-chev">&#8250;</div>
-        </div>
-        <div class="map-item" data-target="sem">
-          <div class="map-node"><span class="map-num">02</span></div>
-          <div class="map-body"><div class="map-t">SEM</div><div class="map-d">Paid search: spend, clicks, and what it returned</div></div>
-          <div class="map-chev">&#8250;</div>
-        </div>
-        <div class="map-item" data-target="seo">
-          <div class="map-node"><span class="map-num">03</span></div>
-          <div class="map-body"><div class="map-t">SEO</div><div class="map-d">Organic and non-paid: traffic, rankings, and pipeline</div></div>
-          <div class="map-chev">&#8250;</div>
-        </div>
-        <div class="map-item" data-target="events">
-          <div class="map-node"><span class="map-num">04</span></div>
-          <div class="map-body"><div class="map-t">Events</div><div class="map-d">Field and events: pipeline created on the ground</div></div>
-          <div class="map-chev">&#8250;</div>
-        </div>
-        <div class="map-item" data-target="referrals">
-          <div class="map-node"><span class="map-num">05</span></div>
-          <div class="map-body"><div class="map-t">Referrals</div><div class="map-d">Affiliate and referral partners: small base, outsized deals</div></div>
-          <div class="map-chev">&#8250;</div>
-        </div>
-        <div class="map-item" data-target="brand">
-          <div class="map-node"><span class="map-num">06</span></div>
-          <div class="map-body"><div class="map-t">Brand</div><div class="map-d">Awareness, share of voice, and visibility in AI answers</div></div>
-          <div class="map-chev">&#8250;</div>
-        </div>
-        <div class="map-item" data-target="appendix">
-          <div class="map-node"><span class="map-num">07</span></div>
-          <div class="map-body"><div class="map-t">Appendix</div><div class="map-d">Definitions, data sources, and the fine print</div></div>
-          <div class="map-chev">&#8250;</div>
-        </div>
+    <div class="exec-cards reveal" style="--d:.2s">
+      <div class="ecard"><div class="lab">SEM Revenue</div><div class="val r">$86.0K</div><div class="sub">$103.6K in Q1 &middot; <span class="dn">down 17% QoQ</span></div></div>
+      <div class="ecard"><div class="lab">Pipeline</div><div class="val g">$371.8K</div><div class="sub">$331.8K in Q1 &middot; <span class="up">up 12% QoQ</span></div></div>
+      <div class="ecard"><div class="lab">New Wins</div><div class="val r">53</div><div class="sub">60 in Q1 &middot; <span class="dn">down 12% QoQ</span></div></div>
+      <div class="ecard"><div class="lab">SQL &#8594; Win</div><div class="val a">14.6%</div><div class="sub">16.9% in Q1 &middot; <span class="dn">down 2.4 pts</span></div></div>
+      <div class="ecard"><div class="lab">Pipe &#8594; Revenue</div><div class="val r">23.1%</div><div class="sub">31.2% in Q1 &middot; <span class="dn">down 8.1 pts</span></div></div>
+    </div>
+
+    <div class="exec-panels">
+      <div class="hlpanel hi reveal" style="--d:.3s">
+        <h3>Highlights</h3>
+        <ul>
+          <li>Pipeline grew <b>12% to $372K</b> on roughly flat paid spend. Cheaper clicks (CPC $22.88 to $18.58) fed more top of funnel.</li>
+          <li>Lead quality into sales held up: <b>MQL to SQL rose to 43%</b> and SQL edged up 3% even as MQL volume dipped.</li>
+        </ul>
       </div>
-
-      <div class="map-story reveal" style="--d:.34s">
-        <h3>The thread</h3>
-        <p>Start with the money. <b>What we spent and what a customer cost</b> sets the frame for everything after.</p>
-        <p>Then walk the engines one at a time, <b>SEM, SEO, Events, and Referrals</b>, to see where growth came from and where it leaked.</p>
-        <p><b>Brand</b> closes the picture with reach and how often we surface in AI answers. The <b>appendix</b> holds the definitions and sources.</p>
+      <div class="hlpanel lo reveal" style="--d:.38s">
+        <h3>Lowlights</h3>
+        <ul>
+          <li>Revenue fell <b>17% to $86K</b> and wins dropped 60 to 53. The extra pipeline isn't closing.</li>
+          <li><b>Pipe to Revenue slid 31% to 23%</b> and SQL to Win 17% to 15%. Conversion, not demand, is the SEM constraint this quarter.</li>
+        </ul>
       </div>
     </div>
 
     <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26</div>
-    <div class="pg">03</div>
+    <div class="pg">04</div>
   </section>
+  <!-- SEM — EFFICIENCY / PAID vs ORGANIC -->
+  <section class="slide s-duo">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">SEM &middot; Efficiency</div></div>
+    <h2 class="title reveal" style="--d:.06s">Cheaper clicks, but paid is displacing organic</h2>
+    <p class="dek reveal" style="--d:.12s">Spend held flat while clicks jumped 27% at a lower CPC. On queries where we show up both ways, <b>paid's gains came out of organic</b>.</p>
+
+    <div class="duo-wrap">
+      <div class="duo-l reveal" style="--d:.2s">
+        <div class="panel-lab">Paid delivery &middot; Google Ads</div>
+        <table class="kv">
+          <thead><tr><th>Metric</th><th>Q1</th><th>Q2</th><th>QoQ</th></tr></thead>
+          <tbody>
+            <tr><td>Spend</td><td>$2.39M</td><td>$2.47M</td><td class="nu">+4%</td></tr>
+            <tr><td>Impressions</td><td>5.09M</td><td>5.38M</td><td class="nu">+6%</td></tr>
+            <tr><td>Clicks</td><td>104.4K</td><td>133.1K</td><td class="up">+27%</td></tr>
+            <tr><td>CPC</td><td>$22.88</td><td>$18.58</td><td class="up">&#8722;19%</td></tr>
+            <tr><td>CTR</td><td>2.05%</td><td>2.47%</td><td class="up">+0.4 pts</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">More clicks at a lower CPC is real efficiency. The question the next slides answer is why that didn't turn into revenue.</div>
+      </div>
+
+      <div class="duo-r reveal" style="--d:.3s">
+        <div class="panel-lab">Paid vs organic, same queries</div>
+        <div class="chartcard">
+          <div class="ct">Clicks on queries where we appear both ways</div>
+          <svg viewBox="0 0 470 250" width="100%">
+            <!-- baseline -->
+            <line x1="100" y1="228" x2="370" y2="228" stroke="#e8e2da" stroke-width="1"/>
+            <text x="100" y="245" text-anchor="middle" font-size="12" fill="#7a808c" font-weight="600">Q1</text>
+            <text x="370" y="245" text-anchor="middle" font-size="12" fill="#7a808c" font-weight="600">Q2</text>
+            <!-- paid line -->
+            <line x1="100" y1="104" x2="370" y2="60" stroke="#ff5c35" stroke-width="3"/>
+            <circle cx="100" cy="104" r="4.5" fill="#ff5c35"/><circle cx="370" cy="60" r="4.5" fill="#ff5c35"/>
+            <text x="90" y="98" text-anchor="end" font-size="12.5" fill="#1c1f26" font-weight="700">59.1K</text>
+            <text x="380" y="55" text-anchor="start" font-size="12.5" fill="#1c1f26" font-weight="700">79.2K</text>
+            <text x="380" y="72" text-anchor="start" font-size="11" fill="#1f9d6b" font-weight="700">+34%</text>
+            <!-- organic line -->
+            <line x1="100" y1="190" x2="370" y2="205" stroke="#7a808c" stroke-width="3"/>
+            <circle cx="100" cy="190" r="4.5" fill="#7a808c"/><circle cx="370" cy="205" r="4.5" fill="#7a808c"/>
+            <text x="90" y="185" text-anchor="end" font-size="12.5" fill="#1c1f26" font-weight="700">19.8K</text>
+            <text x="380" y="203" text-anchor="start" font-size="12.5" fill="#1c1f26" font-weight="700">13.1K</text>
+            <text x="380" y="220" text-anchor="start" font-size="11" fill="#d6454a" font-weight="700">&#8722;34%</text>
+          </svg>
+          <div class="leg"><span><i style="background:#ff5c35"></i>Paid clicks</span><span><i style="background:#7a808c"></i>Organic clicks</span></div>
+        </div>
+        <div class="callout">On the same queries, <b>organic impressions fell 43%</b> (2.55M to 1.46M). As paid pressed harder, organic lost ground, so part of the paid gain is shifted demand, not net new.</div>
+      </div>
+    </div>
+
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26</div>
+    <div class="pg">05</div>
+  </section>
+  <!-- SEO — EXEC SUMMARY -->
+  <section class="slide s-exec" data-section="seo">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Channel 03 &middot; SEO &middot; Exec Summary</div></div>
+    <h2 class="title reveal" style="--d:.06s">SEO is the quarter's growth engine</h2>
+    <p class="dek reveal" style="--d:.12s">Revenue up 70% and wins up 57%, with conversion improving at every step. The catch: it rode on <b>shrinking organic reach</b>.</p>
+    <div class="exec-cards reveal" style="--d:.2s"><div class="ecard"><div class="lab">SEO Revenue</div><div class="val g">$136.7K</div><div class="sub">$80.7K in Q1 &middot; <span class="up">up 70% QoQ</span></div></div><div class="ecard"><div class="lab">Pipeline</div><div class="val g">$719.7K</div><div class="sub">$622.6K in Q1 &middot; <span class="up">up 16% QoQ</span></div></div><div class="ecard"><div class="lab">New Wins</div><div class="val g">129</div><div class="sub">82 in Q1 &middot; <span class="up">up 57% QoQ</span></div></div><div class="ecard"><div class="lab">SQL &#8594; Win</div><div class="val g">20.4%</div><div class="sub">16.0% in Q1 &middot; <span class="up">up 4.4 pts</span></div></div><div class="ecard"><div class="lab">Pipe &#8594; Revenue</div><div class="val g">19.0%</div><div class="sub">13.0% in Q1 &middot; <span class="up">up 6.0 pts</span></div></div></div>
+    <div class="exec-panels">
+      <div class="hlpanel hi reveal" style="--d:.3s"><h3>Highlights</h3><ul><li>Revenue jumped <b>70% to $137K</b> and wins 57% to 129, the largest revenue contribution of any Marketing channel.</li><li>Conversion improved at every step: MQL to SQL 68%, SQL to Win 20%, Pipe to Revenue 19%.</li></ul></div>
+      <div class="hlpanel lo reveal" style="--d:.38s"><h3>Lowlights</h3><ul><li>The gains came from <b>conversion, not reach</b>. Organic impressions fell 37% and clicks 34% (GSC); if ranking erosion continues, the lift may not hold.</li><li>Revenue leans on EMEA ($68K of $137K); NAMER organic is underweight at $38K.</li></ul></div>
+    </div>
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26</div>
+    <div class="pg"></div>
+  </section>
+
+  <!-- EVENTS — EXEC SUMMARY -->
+  <section class="slide s-exec" data-section="events">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Channel 04 &middot; Events &middot; Exec Summary</div></div>
+    <h2 class="title reveal" style="--d:.06s">Events stood up a real pipeline motion, closing comes next</h2>
+    <p class="dek reveal" style="--d:.12s">From almost nothing in Q1, Events built <b>$227K of pipeline and 117 SQLs</b>. Only $6K has closed, so read Q2 as investment.</p>
+    <div class="exec-cards reveal" style="--d:.2s"><div class="ecard"><div class="lab">Pipeline</div><div class="val g">$226.6K</div><div class="sub">~$3K in Q1 &middot; <span class="up">new motion</span></div></div><div class="ecard"><div class="lab">MQL</div><div class="val g">271</div><div class="sub">74 in Q1</div></div><div class="ecard"><div class="lab">SQL</div><div class="val g">117</div><div class="sub">15 in Q1</div></div><div class="ecard"><div class="lab">New Wins</div><div class="val r">2</div><div class="sub">1 in Q1 &middot; <span class="dn">not closing yet</span></div></div><div class="ecard"><div class="lab">Revenue</div><div class="val a">$6.4K</div><div class="sub">pipeline still to convert</div></div></div>
+    <div class="exec-panels">
+      <div class="hlpanel hi reveal" style="--d:.3s"><h3>Highlights</h3><ul><li>Events went from a standing start to <b>$227K pipeline and 117 SQLs</b> in one quarter, a genuine new motion led by NAMER ($181K).</li><li>MQL to SQL landed at 43%, so the leads events produced were largely sales-ready.</li></ul></div>
+      <div class="hlpanel lo reveal" style="--d:.38s"><h3>Lowlights</h3><ul><li>Almost none has closed: <b>2 wins, $6.4K revenue, 1.7% SQL to Win</b>. This is Q3 pipeline to prove out.</li><li>EMEA generated 121 MQL but $0 revenue; conversion is unproven outside NAMER.</li></ul></div>
+    </div>
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26</div>
+    <div class="pg"></div>
+  </section>
+
+  <!-- REFERRALS — EXEC SUMMARY -->
+  <section class="slide s-exec" data-section="referrals">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Channel 05 &middot; Referrals &middot; Exec Summary</div></div>
+    <h2 class="title reveal" style="--d:.06s">Referrals beat plan on revenue, on the back of bigger deals</h2>
+    <p class="dek reveal" style="--d:.12s">Revenue hit <b>200% of target</b> and pipeline 140%, but win count fell 30 to 22. The beat rides on deal size, not volume.</p>
+    <div class="exec-cards reveal" style="--d:.2s"><div class="ecard"><div class="lab">Referrals Revenue</div><div class="val g">$78.8K</div><div class="sub">200% of $39K target</div></div><div class="ecard"><div class="lab">Pipeline</div><div class="val g">$184.2K</div><div class="sub">140% of plan &middot; <span class="up">+46% QoQ</span></div></div><div class="ecard"><div class="lab">New Wins</div><div class="val r">22</div><div class="sub">30 in Q1 &middot; <span class="dn">down 27% QoQ</span></div></div><div class="ecard"><div class="lab">SQL &#8594; Win</div><div class="val r">21.6%</div><div class="sub">37.5% in Q1 &middot; <span class="dn">down 15.9 pts</span></div></div><div class="ecard"><div class="lab">MQL</div><div class="val a">145</div><div class="sub">70% of plan &middot; lead-light</div></div></div>
+    <div class="exec-panels">
+      <div class="hlpanel hi reveal" style="--d:.3s"><h3>Highlights</h3><ul><li>Revenue was <b>200% of a $39K target</b> ($79K); APAC and NAMER carried it ($32K and $43K).</li><li>Pipeline reached 140% of plan and grew 46% QoQ, so the top of the referral funnel is healthy.</li></ul></div>
+      <div class="hlpanel lo reveal" style="--d:.38s"><h3>Lowlights</h3><ul><li>Win count fell <b>30 to 22</b> and SQL to Win dropped to 22%; revenue leans on a few large deals, not repeatable volume.</li><li>Still lead-light at 70% of the MQL plan; EMEA revenue is thin ($3.5K) despite 39 SQLs.</li></ul></div>
+    </div>
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26</div>
+    <div class="pg"></div>
+  </section>
+
   <!-- @@INSERT_SLIDES_HERE@@ -->
+  <!-- APPENDIX — SECTION DIVIDER -->
+  <section class="slide s-divider" data-section="appendix">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Section</div></div>
+    <h1 class="div-title reveal" style="--d:.1s">Appendix</h1>
+    <div class="div-rule reveal" style="--d:.2s"></div>
+    <p class="div-dek reveal" style="--d:.28s">Q2 KPIs by region and product for each channel, plus definitions and data sources.</p>
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26 &middot; Appendix</div>
+    <div class="pg"></div>
+  </section>
+
+  <!-- APPENDIX — SEO by Region & Product -->
+  <section class="slide s-duo">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Appendix &middot; SEO</div></div>
+    <h2 class="title reveal" style="--d:.06s">SEO: Q2 KPIs by region and product</h2>
+    <div class="duo-wrap">
+      <div class="duo-l reveal" style="--d:.18s"><div class="panel-lab">By region</div><table class="kv"><thead><tr><th>Region</th><th>MQL</th><th>SQL</th><th>Pipe</th><th>Rev</th></tr></thead><tbody><tr><td>EMEA</td><td>355</td><td>240</td><td>$325.1K</td><td>$68.4K</td></tr><tr><td>NAMER</td><td>294</td><td>200</td><td>$251.5K</td><td>$38.1K</td></tr><tr><td>APAC</td><td>276</td><td>193</td><td>$143.1K</td><td>$30.2K</td></tr></tbody></table></div>
+      <div class="duo-r reveal" style="--d:.26s"><div class="panel-lab">By product</div><table class="kv"><thead><tr><th>Product</th><th>MQL</th><th>SQL</th><th>Pipe</th><th>Rev</th></tr></thead><tbody><tr><td>EOR</td><td>679</td><td>526</td><td>$602.6K</td><td>$117.3K</td></tr><tr><td>AOR</td><td>113</td><td>65</td><td>$57.6K</td><td>$16.3K</td></tr><tr><td>GP</td><td>75</td><td>28</td><td>$48.4K</td><td>$3.1K</td></tr><tr><td>Unknown</td><td>63</td><td>14</td><td>$11.1K</td><td>$0</td></tr></tbody></table></div>
+    </div>
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26 &middot; Appendix</div>
+    <div class="pg"></div>
+  </section>
+
+  <!-- APPENDIX — Events by Region & Product -->
+  <section class="slide s-duo">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Appendix &middot; Events</div></div>
+    <h2 class="title reveal" style="--d:.06s">Events: Q2 KPIs by region and product</h2>
+    <div class="duo-wrap">
+      <div class="duo-l reveal" style="--d:.18s"><div class="panel-lab">By region</div><table class="kv"><thead><tr><th>Region</th><th>MQL</th><th>SQL</th><th>Pipe</th><th>Rev</th></tr></thead><tbody><tr><td>NAMER</td><td>120</td><td>59</td><td>$180.5K</td><td>$5.6K</td></tr><tr><td>EMEA</td><td>121</td><td>45</td><td>$28.0K</td><td>$0</td></tr><tr><td>APAC</td><td>30</td><td>13</td><td>$18.2K</td><td>$0.8K</td></tr></tbody></table></div>
+      <div class="duo-r reveal" style="--d:.26s"><div class="panel-lab">By product</div><table class="kv"><thead><tr><th>Product</th><th>MQL</th><th>SQL</th><th>Pipe</th><th>Rev</th></tr></thead><tbody><tr><td>GP</td><td>24</td><td>22</td><td>$108.2K</td><td>$5.1K</td></tr><tr><td>EOR</td><td>37</td><td>36</td><td>$85.6K</td><td>$1.3K</td></tr><tr><td>Unknown</td><td>209</td><td>58</td><td>$31.8K</td><td>$0</td></tr><tr><td>AOR</td><td>1</td><td>1</td><td>$1.0K</td><td>$0</td></tr></tbody></table></div>
+    </div>
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26 &middot; Appendix</div>
+    <div class="pg"></div>
+  </section>
+
+  <!-- APPENDIX — Referrals by Region & Product -->
+  <section class="slide s-duo">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Appendix &middot; Referrals</div></div>
+    <h2 class="title reveal" style="--d:.06s">Referrals: Q2 KPIs by region and product</h2>
+    <div class="duo-wrap">
+      <div class="duo-l reveal" style="--d:.18s"><div class="panel-lab">By region</div><table class="kv"><thead><tr><th>Region</th><th>MQL</th><th>SQL</th><th>Pipe</th><th>Rev</th></tr></thead><tbody><tr><td>NAMER</td><td>54</td><td>35</td><td>$76.5K</td><td>$42.8K</td></tr><tr><td>APAC</td><td>42</td><td>28</td><td>$54.6K</td><td>$32.2K</td></tr><tr><td>EMEA</td><td>49</td><td>39</td><td>$53.1K</td><td>$3.5K</td></tr></tbody></table></div>
+      <div class="duo-r reveal" style="--d:.26s"><div class="panel-lab">By product</div><table class="kv"><thead><tr><th>Product</th><th>MQL</th><th>SQL</th><th>Pipe</th><th>Rev</th></tr></thead><tbody><tr><td>EOR</td><td>106</td><td>88</td><td>$158.6K</td><td>$71.7K</td></tr><tr><td>GP</td><td>15</td><td>7</td><td>$22.9K</td><td>$0</td></tr><tr><td>AOR</td><td>9</td><td>5</td><td>$2.1K</td><td>$6.8K</td></tr><tr><td>Unknown</td><td>16</td><td>2</td><td>$0.6K</td><td>$0</td></tr></tbody></table><div class="callout" style="margin-top:12px">From the live funnel table; may differ from dashboard-locked headlines by rounding.</div></div>
+    </div>
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26 &middot; Appendix</div>
+    <div class="pg"></div>
+  </section>
+
 
 </div>
 <div class="hint">← → to navigate</div>
