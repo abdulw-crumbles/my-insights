@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketing QBR — Q2 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c1f26; --ink-soft:#3a3f4a; --muted:#7a808c; --faint:#a8adb6;
+  --line:#e8e2da; --line-soft:#f0ebe4;
+  --paper:#f7f3ee; --card:#ffffff; --warm:#f4efe8;
+  --orange:#ff5c35; --orange-deep:#e84a26; --orange-soft:#ffe7df;
+  --green:#1f9d6b; --green-soft:#e2f2ea;
+  --amber:#dd8a2a; --amber-soft:#f9ead6;
+  --red:#d6454a; --red-soft:#fae4e4;
+  --sans:'Hanken Grotesk',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:#26282d;font-family:var(--sans);color:var(--ink);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+}
+#stage{
+  position:absolute;top:50%;left:50%;
+  width:1280px;height:720px;
+  transform:translate(-50%,-50%);transform-origin:center center;
+  background:var(--paper);box-shadow:0 40px 120px rgba(0,0,0,.55);overflow:hidden;
+}
+.slide{
+  position:absolute;inset:0;padding:64px 72px 56px;
+  opacity:0;visibility:hidden;transition:opacity .45s ease;
+  display:flex;flex-direction:column;
+}
+.slide.active{opacity:1;visibility:visible}
+.foot{position:absolute;left:72px;bottom:30px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.pg{position:absolute;right:72px;bottom:30px;font-family:var(--mono);font-size:12px;color:var(--faint)}
+.accent{position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--orange)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange-deep);font-weight:700;margin-bottom:14px}
+.title{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.04;color:var(--ink)}
+.dek{font-size:16px;line-height:1.45;color:var(--ink-soft);font-weight:500;max-width:880px;margin-top:12px}
+.dek b{color:var(--ink);font-weight:700}
+.reveal{opacity:0;transform:translateY(14px)}
+.active .reveal{animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:var(--d,0s)}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---------- COVER ---------- */
+.cover{justify-content:center;background:
+  radial-gradient(120% 90% at 82% 18%, rgba(255,92,53,.10), transparent 55%),var(--paper)}
+.cover .bgline{position:absolute;inset:0;opacity:.5}
+.cover-eyebrow{font-size:14px;letter-spacing:.34em;color:var(--orange-deep);font-weight:700;text-transform:uppercase}
+.cover h1{font-size:72px;font-weight:800;letter-spacing:-.035em;line-height:.98;margin:22px 0 0;max-width:900px}
+.cover .month{font-family:var(--mono);font-size:22px;color:var(--orange-deep);margin-top:26px;font-weight:500}
+.cover .meta{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);letter-spacing:.04em;font-weight:500;max-width:720px}
+.cover .wm{position:absolute;right:72px;top:60px;font-weight:800;letter-spacing:-.02em;font-size:18px;color:var(--ink)}
+.cover .wm span{color:var(--orange)}
+svg text{font-family:var(--sans)}
+
+/* nav hint */
+.hint{position:fixed;bottom:20px;right:24px;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--mono);z-index:50}
+
+/* ---------- SLIDE 2: segmented overview ---------- */
+.s2{padding:44px 56px 48px}
+.s2 .title{font-size:27px}
+.s2 .dek{font-size:14px;margin-top:8px}
+.ov-panel{margin-top:16px}
+.ov-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.ov-name{font-size:14px;font-weight:800;letter-spacing:.02em;color:var(--ink);text-transform:uppercase}
+.ov-name .sq{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:baseline}
+.ov-take{font-size:11.5px;color:var(--ink-soft);font-weight:500;line-height:1.3}
+.ov-take b{color:var(--ink);font-weight:700}
+table.ov{width:100%;border-collapse:collapse;font-family:var(--mono)}
+table.ov th,table.ov td{padding:3.5px 6px;text-align:right;font-size:11px;font-weight:500}
+table.ov th{font-family:var(--sans);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--line)}
+table.ov td.m,table.ov th.m{text-align:left;font-family:var(--sans);font-weight:700;color:var(--ink-soft);font-size:11px}
+table.ov td{border-bottom:1px solid var(--line-soft)}
+.grp-q1{color:var(--faint)!important}
+table.ov th.sub{font-size:9px;border-bottom:1px solid var(--line);padding-top:1px}
+table.ov th.sub-q1{color:var(--faint)}
+table.ov th.sub-q2{color:var(--orange-deep)}
+table.ov th.gh{text-align:center;font-size:9px;letter-spacing:.12em;padding-bottom:1px;border-bottom:none}
+th.gh-q1{color:var(--faint)}
+th.gh-q2{color:var(--orange-deep)}
+th.gh-qoq{color:var(--ink-soft);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+td.qoq-l{border-left:1px solid var(--line-soft)}
+td.qoq-r{border-right:1px solid var(--line-soft)}
+.att{font-weight:700;border-radius:4px;padding:1px 5px!important}
+.att.g{color:var(--green);background:var(--green-soft)}
+.att.a{color:var(--amber);background:var(--amber-soft)}
+.att.r{color:var(--red);background:var(--red-soft)}
+.q2v{color:var(--ink);font-weight:600}
+.up{color:var(--green);font-weight:700}
+.dn{color:var(--red);font-weight:700}
+tr.conv td{border-bottom:none;font-size:10.5px}
+tr.conv td.m{color:var(--orange-deep);font-weight:700}
+tr.conv-first td{border-top:1px dashed var(--line)}
+.ov-sep{height:10px}
+
+/* ---------- SLIDE 3: contents / navigator ---------- */
+.s-map{padding:56px 64px 52px}
+.map-wrap{display:flex;gap:38px;margin-top:22px;flex:1}
+.map-spine{flex:1.55;position:relative}
+.map-line{position:absolute;left:21px;top:20px;bottom:20px;width:2px;background:var(--line);z-index:1}
+.map-item{position:relative;display:flex;align-items:flex-start;gap:15px;padding:8px 14px 8px 0;cursor:pointer;border-radius:9px;transition:background .18s,transform .18s,box-shadow .18s;z-index:2}
+.map-item:hover{background:#fff;transform:translateX(3px);box-shadow:0 5px 16px rgba(0,0,0,.06)}
+.map-item.pending{animation:nudge .42s}
+@keyframes nudge{0%,100%{transform:translateX(3px)}40%{transform:translateX(-3px)}70%{transform:translateX(2px)}}
+.map-node{flex:none;width:44px;text-align:center}
+.map-num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--orange-deep);background:var(--paper);border:1.5px solid var(--orange-soft);border-radius:50%;width:34px;height:34px;line-height:31px;display:inline-block;transition:all .18s}
+.map-item:hover .map-num{background:var(--orange);color:#fff;border-color:var(--orange)}
+.map-body{flex:1;padding-top:2px}
+.map-t{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.map-d{font-size:11.5px;color:var(--muted);margin-top:1px;line-height:1.35}
+.map-chev{flex:none;align-self:center;color:var(--faint);font-size:20px;opacity:0;transition:opacity .18s,transform .18s;font-family:var(--sans)}
+.map-item:hover .map-chev{opacity:1;transform:translateX(4px);color:var(--orange)}
+.map-story{flex:1;background:var(--warm);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:22px 24px;align-self:flex-start}
+.map-story h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-deep);font-weight:700;margin-bottom:13px}
+.map-story p{font-size:12.5px;line-height:1.6;color:var(--ink-soft);font-weight:500}
+.map-story p+p{margin-top:11px}
+.map-story b{color:var(--ink);font-weight:700}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- SLIDE 1 — COVER -->
+  <section class="slide cover active">
+    <svg class="bgline" id="coverBg" viewBox="0 0 1280 720" preserveAspectRatio="none"></svg>
+    <div class="wm">Multiplier<span>.</span></div>
+    <div class="reveal" style="--d:.05s"><div class="cover-eyebrow">Marketing Review</div></div>
+    <h1 class="reveal" style="--d:.15s">Q2 2026<br>Marketing QBR</h1>
+    <div class="month reveal" style="--d:.3s">GTM Analytics</div>
+    <div class="meta reveal" style="--d:.42s">Reporting period: January to June 2026&nbsp;&nbsp;·&nbsp;&nbsp;Confidential&nbsp;&nbsp;·&nbsp;&nbsp;Multiplier · Marketing</div>
+    <div class="foot">Multiplier · Marketing QBR · Q2 FY26</div>
+    <div class="pg">01</div>
+  </section>
+
+  <!-- SLIDE 2 — SEGMENTED OVERVIEW -->
+  <section class="slide s2">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Segmented Overview</div></div>
+    <h2 class="title reveal" style="--d:.06s">Marketing and Referrals: Q1 to Q2 attainment</h2>
+    <p class="dek reveal" style="--d:.12s">Both engines grew into Q2. Marketing <b>beats plan on demand and lands near plan on revenue</b>. Referrals is <b>small and lead-light but well over its revenue target</b>.</p>
+
+    <!-- MARKETING -->
+    <div class="ov-panel reveal" style="--d:.2s">
+      <div class="ov-head">
+        <div class="ov-name"><span class="sq" style="background:var(--orange)"></span>Marketing</div>
+        <div class="ov-take">Demand runs well ahead of plan. <b>Revenue lands near plan at 98%</b>, but the pipeline surplus isn't converting proportionally, with SQL to Win at 16%.</div>
+      </div>
+      <table class="ov">
+        <thead>
+          <tr>
+            <th class="m" rowspan="2">Metric</th>
+            <th class="gh gh-q1" colspan="3">Q1</th>
+            <th class="gh gh-q2" colspan="3">Q2</th>
+            <th class="gh gh-qoq" colspan="2">QoQ</th>
+          </tr>
+          <tr>
+            <th class="sub sub-q1">Tgt</th><th class="sub sub-q1">Act</th><th class="sub sub-q1">Att</th>
+            <th class="sub sub-q2">Tgt</th><th class="sub sub-q2">Act</th><th class="sub sub-q2">Att</th>
+            <th class="sub">&#916; Act</th><th class="sub">&#916; Act %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="m">MQL</td><td class="grp-q1">1,618</td><td class="grp-q1">1,785</td><td class="grp-q1"><span class="att g">110%</span></td><td>1,700</td><td class="q2v">2,043</td><td><span class="att g">120%</span></td><td class="up qoq-l">+258</td><td class="up qoq-r">+14%</td></tr>
+          <tr><td class="m">SQL</td><td class="grp-q1">812</td><td class="grp-q1">881</td><td class="grp-q1"><span class="att g">108%</span></td><td>852</td><td class="q2v">1,118</td><td><span class="att g">131%</span></td><td class="up qoq-l">+237</td><td class="up qoq-r">+27%</td></tr>
+          <tr><td class="m">Pipeline</td><td class="grp-q1">$967K</td><td class="grp-q1">$958K</td><td class="grp-q1"><span class="att a">99%</span></td><td>$1.02M</td><td class="q2v">$1.32M</td><td><span class="att g">130%</span></td><td class="up qoq-l">+$362K</td><td class="up qoq-r">+38%</td></tr>
+          <tr><td class="m">Revenue</td><td class="grp-q1">$223K</td><td class="grp-q1">$184K</td><td class="grp-q1"><span class="att a">83%</span></td><td>$234K</td><td class="q2v">$229K</td><td><span class="att a">98%</span></td><td class="up qoq-l">+$45K</td><td class="up qoq-r">+24%</td></tr>
+          <tr class="conv conv-first"><td class="m">MQL &#8594; SQL</td><td class="grp-q1"></td><td class="grp-q1">49.4%</td><td class="grp-q1"></td><td></td><td class="q2v">54.7%</td><td></td><td class="up qoq-l">+5.4 pts</td><td class="qoq-r"></td></tr>
+          <tr class="conv"><td class="m">SQL &#8594; Win</td><td class="grp-q1"></td><td class="grp-q1">16.2%</td><td class="grp-q1"></td><td></td><td class="q2v">16.5%</td><td></td><td class="up qoq-l">+0.2 pts</td><td class="qoq-r"></td></tr>
+          <tr class="conv"><td class="m">Pipe &#8594; Revenue</td><td class="grp-q1"></td><td class="grp-q1">19.2%</td><td class="grp-q1"></td><td></td><td class="q2v">17.4%</td><td></td><td class="dn qoq-l">&#8722;1.9 pts</td><td class="qoq-r"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ov-sep"></div>
+
+    <!-- REFERRALS -->
+    <div class="ov-panel reveal" style="--d:.3s">
+      <div class="ov-head">
+        <div class="ov-name"><span class="sq" style="background:var(--ink-soft)"></span>Referrals</div>
+        <div class="ov-take">Lead-light at 70% of MQL plan, yet <b>Q2 revenue hit 200% of target</b>. Win count fell 30 to 22, so the beat rides on bigger deals, not more of them.</div>
+      </div>
+      <table class="ov">
+        <thead>
+          <tr>
+            <th class="m" rowspan="2">Metric</th>
+            <th class="gh gh-q1" colspan="3">Q1</th>
+            <th class="gh gh-q2" colspan="3">Q2</th>
+            <th class="gh gh-qoq" colspan="2">QoQ</th>
+          </tr>
+          <tr>
+            <th class="sub sub-q1">Tgt</th><th class="sub sub-q1">Act</th><th class="sub sub-q1">Att</th>
+            <th class="sub sub-q2">Tgt</th><th class="sub sub-q2">Act</th><th class="sub sub-q2">Att</th>
+            <th class="sub">&#916; Act</th><th class="sub">&#916; Act %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="m">MQL</td><td class="grp-q1">170</td><td class="grp-q1">123</td><td class="grp-q1"><span class="att r">72%</span></td><td>207</td><td class="q2v">145</td><td><span class="att r">70%</span></td><td class="up qoq-l">+22</td><td class="up qoq-r">+18%</td></tr>
+          <tr><td class="m">SQL</td><td class="grp-q1">103</td><td class="grp-q1">80</td><td class="grp-q1"><span class="att r">78%</span></td><td>124</td><td class="q2v">102</td><td><span class="att a">82%</span></td><td class="up qoq-l">+22</td><td class="up qoq-r">+28%</td></tr>
+          <tr><td class="m">Pipeline</td><td class="grp-q1">$102K</td><td class="grp-q1">$126K</td><td class="grp-q1"><span class="att g">124%</span></td><td>$131K</td><td class="q2v">$184K</td><td><span class="att g">140%</span></td><td class="up qoq-l">+$58K</td><td class="up qoq-r">+46%</td></tr>
+          <tr><td class="m">Revenue</td><td class="grp-q1">$31K</td><td class="grp-q1">$19K</td><td class="grp-q1"><span class="att r">61%</span></td><td>$39K</td><td class="q2v">$79K</td><td><span class="att g">200%</span></td><td class="up qoq-l">+$60K</td><td class="up qoq-r">+324%</td></tr>
+          <tr class="conv conv-first"><td class="m">MQL &#8594; SQL</td><td class="grp-q1"></td><td class="grp-q1">65.0%</td><td class="grp-q1"></td><td></td><td class="q2v">70.3%</td><td></td><td class="up qoq-l">+5.3 pts</td><td class="qoq-r"></td></tr>
+          <tr class="conv"><td class="m">SQL &#8594; Win</td><td class="grp-q1"></td><td class="grp-q1">37.5%</td><td class="grp-q1"></td><td></td><td class="q2v">21.6%</td><td></td><td class="dn qoq-l">&#8722;15.9 pts</td><td class="qoq-r"></td></tr>
+          <tr class="conv"><td class="m">Pipe &#8594; Revenue</td><td class="grp-q1"></td><td class="grp-q1">14.7%</td><td class="grp-q1"></td><td></td><td class="q2v">42.8%</td><td></td><td class="up qoq-l">+28.1 pts</td><td class="qoq-r"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26</div>
+    <div class="pg">02</div>
+  </section>
+
+  <!-- SLIDE 3 — CONTENTS / NAVIGATOR -->
+  <!-- NOTE: when building a section, tag its first slide with data-section="KEY"
+       keys: cac | sem | seo | events | referrals | brand | appendix
+       the navigator below auto-links to it. -->
+  <section class="slide s-map" data-section="contents">
+    <div class="accent"></div>
+    <div class="reveal"><div class="eyebrow">Contents</div></div>
+    <h2 class="title reveal" style="--d:.06s">How to read Q2</h2>
+    <p class="dek reveal" style="--d:.12s">Seven stops, in the order the quarter makes sense. Click any stop to jump to its section.</p>
+
+    <div class="map-wrap">
+      <div class="map-spine reveal" style="--d:.2s">
+        <div class="map-line"></div>
+        <div class="map-item" data-target="cac">
+          <div class="map-node"><span class="map-num">01</span></div>
+          <div class="map-body"><div class="map-t">Marketing Spend & CAC</div><div class="map-d">What we spent this quarter and what it cost to win a customer</div></div>
+          <div class="map-chev">&#8250;</div>
+        </div>
+        <div class="map-item" data-target="sem">
+          <div class="map-node"><span class="map-num">02</span></div>
+          <div class="map-body"><div class="map-t">SEM</div><div class="map-d">Paid search: spend, clicks, and what it returned</div></div>
+          <div class="map-chev">&#8250;</div>
+        </div>
+        <div class="map-item" data-target="seo">
+          <div class="map-node"><span class="map-num">03</span></div>
+          <div class="map-body"><div class="map-t">SEO</div><div class="map-d">Organic and non-paid: traffic, rankings, and pipeline</div></div>
+          <div class="map-chev">&#8250;</div>
+        </div>
+        <div class="map-item" data-target="events">
+          <div class="map-node"><span class="map-num">04</span></div>
+          <div class="map-body"><div class="map-t">Events</div><div class="map-d">Field and events: pipeline created on the ground</div></div>
+          <div class="map-chev">&#8250;</div>
+        </div>
+        <div class="map-item" data-target="referrals">
+          <div class="map-node"><span class="map-num">05</span></div>
+          <div class="map-body"><div class="map-t">Referrals</div><div class="map-d">Affiliate and referral partners: small base, outsized deals</div></div>
+          <div class="map-chev">&#8250;</div>
+        </div>
+        <div class="map-item" data-target="brand">
+          <div class="map-node"><span class="map-num">06</span></div>
+          <div class="map-body"><div class="map-t">Brand</div><div class="map-d">Awareness, share of voice, and visibility in AI answers</div></div>
+          <div class="map-chev">&#8250;</div>
+        </div>
+        <div class="map-item" data-target="appendix">
+          <div class="map-node"><span class="map-num">07</span></div>
+          <div class="map-body"><div class="map-t">Appendix</div><div class="map-d">Definitions, data sources, and the fine print</div></div>
+          <div class="map-chev">&#8250;</div>
+        </div>
+      </div>
+
+      <div class="map-story reveal" style="--d:.34s">
+        <h3>The thread</h3>
+        <p>Start with the money. <b>What we spent and what a customer cost</b> sets the frame for everything after.</p>
+        <p>Then walk the engines one at a time, <b>SEM, SEO, Events, and Referrals</b>, to see where growth came from and where it leaked.</p>
+        <p><b>Brand</b> closes the picture with reach and how often we surface in AI answers. The <b>appendix</b> holds the definitions and sources.</p>
+      </div>
+    </div>
+
+    <div class="foot">Multiplier &middot; Marketing QBR &middot; Q2 FY26</div>
+    <div class="pg">03</div>
+  </section>
+  <!-- @@INSERT_SLIDES_HERE@@ -->
+
+</div>
+<div class="hint">← → to navigate</div>
+<script>
+const C = { orange:'#ff5c35' };
+function buildCoverBg(){
+  const pts=[[0,560],[160,520],[320,540],[480,470],[640,500],[800,420],[960,300],[1120,260],[1280,180]];
+  const line=pts.map((p,i)=>(i?'L':'M')+p[0]+' '+p[1]).join(' ');
+  const area=line+` L1280 720 L0 720 Z`;
+  const el=document.getElementById('coverBg');
+  if(el) el.innerHTML=`<path d="${area}" fill="${C.orange}" opacity=".05"/><path d="${line}" fill="none" stroke="${C.orange}" stroke-width="2" opacity=".22"/>`;
+}
+buildCoverBg();
+
+/* slide navigation */
+let cur=0;
+const slides=[...document.querySelectorAll('.slide')];
+// auto page numbers (keeps numbering correct as slides are added/reordered)
+slides.forEach((s,i)=>{const p=s.querySelector('.pg'); if(p) p.textContent=String(i+1).padStart(2,'0');});
+// contents navigator: jump to a section once its slide exists (tagged data-section)
+document.querySelectorAll('.map-item').forEach(it=>{
+  it.addEventListener('click',()=>{
+    const tgt=document.querySelector('.slide[data-section="'+it.dataset.target+'"]');
+    if(tgt){show(slides.indexOf(tgt));}
+    else{it.classList.add('pending');setTimeout(()=>it.classList.remove('pending'),450);}
+  });
+});
+function show(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,n)=>s.classList.toggle('active',n===cur));
+}
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ') show(cur+1);
+  if(e.key==='ArrowLeft') show(cur-1);
+});
+
+/* fit-to-viewport scaling */
+function fit(){
+  const s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+  document.getElementById('stage').style.transform=`translate(-50%,-50%) scale(${s})`;
+}
+window.addEventListener('resize',fit); fit();
+</script>
+</body>
+</html>
