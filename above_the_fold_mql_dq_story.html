@@ -287,6 +287,7 @@ function renderTab2(panel){
 function segbar(card, segs, total){
   const H=64, pT=6, barY=14, barH=26, pL=0, pR=0, plotW=W;
   const COL={'Genuine':'#111','Borderline':'#bdbdbd','Not genuine':'#c00000'};
+  const DISP={'Not genuine':'Weak Cases'}, disp=v=>DISP[v]||v;
   let x=0, s=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">`;
   segs.forEach((g,i)=>{
     const w=plotW*g.count/total;
@@ -296,13 +297,13 @@ function segbar(card, segs, total){
   });
   // legend
   let lx=0; s+=`<g font-size="11" fill="${MUT}">`;
-  segs.forEach(g=>{const t=`${g.label} ${g.count}`;s+=`<rect x="${lx}" y="${H-14}" width="10" height="10" fill="${COL[g.label]}"/>`;s+=`<text x="${lx+15}" y="${H-5}">${t}</text>`;lx+=t.length*6.6+34;});
+  segs.forEach(g=>{const t=`${disp(g.label)} ${g.count}`;s+=`<rect x="${lx}" y="${H-14}" width="10" height="10" fill="${COL[g.label]}"/>`;s+=`<text x="${lx+15}" y="${H-5}">${t}</text>`;lx+=t.length*6.6+34;});
   s+=`</g></svg>`;
   card.insertAdjacentHTML('beforeend',s);
   const svg=card.querySelector('svg'),tip=makeTip(card);
   svg.querySelectorAll('.seg').forEach(el=>{
     const g=segs[+el.dataset.i];
-    const html=`<div class="td">${g.label}</div><div class="row"><span class="k">Opps</span><b>${g.count}</b> <span class="k">${(100*g.count/total).toFixed(0)}%</span></div><div class="row"><span class="k">${g.note}</span></div>`;
+    const html=`<div class="td">${disp(g.label)}</div><div class="row"><span class="k">Opps</span><b>${g.count}</b> <span class="k">${(100*g.count/total).toFixed(0)}%</span></div><div class="row"><span class="k">${g.note}</span></div>`;
     el.style.cursor='pointer';
     el.addEventListener('mousemove',e=>moveTip(tip,card,e.clientX,e.clientY,html));
     el.addEventListener('mouseleave',()=>tip.style.opacity='0');
@@ -311,6 +312,7 @@ function segbar(card, segs, total){
 function renderTab3(panel){
   const t=T3, N=t.total;
   const catColor={'Genuine discovery':'#0a7d3f','Likely genuine':'#3b7a57','Borderline':'#8a8a8a','Not genuine':'#c00000'};
+  const catDisp={'Not genuine':'Weak Cases'}, cdisp=v=>catDisp[v]||v;
   const detRows=t.rows.slice().sort((a,b)=>{
     const ord={'Genuine discovery':0,'Likely genuine':1,'Borderline':2,'Not genuine':3};
     return ord[a.cat]-ord[b.cat] || a.region.localeCompare(b.region);
@@ -326,16 +328,16 @@ function renderTab3(panel){
       <td style="text-align:right">${amt}</td>
       <td class="wrapnote">${r.desc||'<span style=\'color:#bbb\'>&mdash;</span>'}</td>
       <td>${r.demo}</td><td style="text-align:right">${call}</td>
-      <td><span style="color:${catColor[r.cat]};font-weight:600">${r.cat}</span></td>
+      <td><span style="color:${catColor[r.cat]};font-weight:600">${cdisp(r.cat)}</span></td>
       <td style="text-align:center">${link}</td></tr>`;
   }).join('');
   panel.innerHTML=`
     <div class="steptitle">03 &middot; Genuine vs Hygiene</div>
     <p class="stepsub">The 20 SQLs that moved Q2, checked against Gong. Did a real demo actually happen behind the delivered-demo date? Hover the bar, and open any call to verify.</p>
     <div class="tiles">
-      <div class="tile"><div class="tl">Genuine SQL</div><div class="tb">7</div><div class="ts">real discovery calls, 15 to 54 min</div></div>
-      <div class="tile"><div class="tl">Borderline</div><div class="tb">3</div><div class="ts">short calls, 8 to 9 min</div></div>
-      <div class="tile"><div class="tl">Not genuine</div><div class="tb">10</div><div class="ts">9 no recording, 1 too short</div></div>
+      <div class="tile"><div class="tl">Genuine Cases</div><div class="tb">7</div><div class="ts">real discovery calls, 15 to 54 min</div></div>
+      <div class="tile"><div class="tl">Borderline Cases</div><div class="tb">3</div><div class="ts">short calls, 8 to 9 min</div></div>
+      <div class="tile"><div class="tl">Weak Cases</div><div class="tb">10</div><div class="ts">9 no recording, 1 too short</div></div>
     </div>
     <div class="readbox">
       <b>Gong reframes the SQL loss.</b>
