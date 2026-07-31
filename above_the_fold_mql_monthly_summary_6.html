@@ -437,16 +437,17 @@ tbody tr:last-child td{color:var(--blk);}
     <tr><td>NS Share of Lost</td><td>No Show Lost ÷ Total Lost. Of all MQL-stage losses, what share is attributable to no-shows specifically. Consistently 40–50% across months.</td></tr>
   </table>
 
-  <h2>Booking Gap</h2>
-  <p>The gap in days between <strong>demo_booked_date</strong> (when the lead confirmed their demo slot) and <strong>demo_scheduled_date</strong> (the actual date the demo is calendared for). This measures how far in advance the demo was booked.</p>
+    <h2>Booking Gap</h2>
+  <p>The gap in days between <strong>demo_booked_date</strong> (<code>Demo_Booked_Date__c</code> — when the demo slot was confirmed in Salesforce) and <strong>demo_scheduled_date</strong> (<code>Demo_Happening_Date__c</code> — the actual date the demo is calendared for). This measures how far ahead the demo was scheduled from the booking confirmation.</p>
+  <div class="note">Example: demo confirmed on Jul 7, scheduled for Jul 9 → gap = 2 days → "2-7 Days" bucket.</div>
   <table>
-    <tr><th>Bucket</th><th>Meaning</th><th>NS Rate</th></tr>
-    <tr><td>0 — Same Day</td><td>Demo is scheduled for the same day as the booking. 37% of MQLs — the most urgent intent signal.</td><td style="color:var(--ns);font-weight:600;">—</td></tr>
-    <tr><td>1 — Next Day</td><td>Demo slot confirmed the day after the form fill.</td><td>13.9%</td></tr>
-    <tr><td>2-7 Days</td><td>Deliberate booker — took a few days to select a slot.</td><td>16.2%</td></tr>
-    <tr><td>7+ Days</td><td>Planned ahead. Lowest no-show rate among form-based leads.</td><td>16.8%</td></tr>
-    <tr><td>No date</td><td>demo_happening_date_c or demo_booked_date is NULL — usually AE-created opps or returning contacts without a tracked booking event.</td><td>—</td></tr>
-    <tr><td>Negative (DQ)</td><td>Data quality flag: demo_booked_date is earlier than form_filled_date. Usually caused by manual date edits in Salesforce. Excluded from booking gap analysis.</td><td>—</td></tr>
+    <tr><th>Bucket</th><th>Meaning</th><th>NS Rate</th><th>SQL Rate</th></tr>
+    <tr><td>0 — Same Day</td><td>Demo happens the same day the slot was confirmed. 37% of all MQLs — the most common pattern and the most urgent intent signal.</td><td>18.2%</td><td>55.3%</td></tr>
+    <tr><td>1 — Next Day</td><td>Demo happens the day after confirmation. Similar profile to Same Day.</td><td>20.2%</td><td>56.4%</td></tr>
+    <tr><td>2-7 Days</td><td>Demo scheduled 2–7 days after the slot was confirmed. <strong>Highest no-show rate and lowest SQL rate</strong> — enough time to reconsider or find alternatives.</td><td style="color:var(--ns);font-weight:600;">24.1%</td><td style="color:var(--red);">47.6%</td></tr>
+    <tr><td>7+ Days</td><td>Demo scheduled more than a week out. Lowest NS rate but also lowest SQL rate — many July demos booked far out are still open pipeline, suppressing SQL.</td><td>15.4%</td><td>26.3%</td></tr>
+    <tr><td>No date</td><td>demo_happening_date_c or demo_booked_date_c is NULL — usually AE-created opps or returning contacts without a tracked booking event.</td><td>—</td><td>—</td></tr>
+    <tr><td>Negative (DQ)</td><td>Data quality flag: demo_scheduled_date is earlier than demo_booked_date. Caused by manual date edits in Salesforce. Only 5 records — excluded from analysis.</td><td>—</td><td>—</td></tr>
   </table>
 
   <h2>Demo Date Fields</h2>
