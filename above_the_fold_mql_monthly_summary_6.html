@@ -26,19 +26,11 @@ body{font-family:var(--sans);background:#fff;color:var(--blk);font-size:13px;lin
 .hdr-date{font-size:10px;color:var(--g3);white-space:nowrap;}
 
 /* ── Filters ── */
-.filters{padding:10px 28px 12px;background:var(--g6);border-bottom:1px solid var(--g5);display:flex;flex-direction:row;flex-wrap:wrap;gap:8px 14px;align-items:flex-end;}
-.filter-group{display:inline-flex;flex-direction:column;gap:3px;flex:0 0 auto;}
+
+
 .filter-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g3);}
-.ms-wrap{position:relative;}
-.ms-trigger{
-  font-family:var(--sans);font-size:11px;font-weight:500;color:var(--blk);
-  background:#fff;border:1px solid var(--g4);border-radius:3px;
-  padding:5px 24px 5px 9px;cursor:pointer;text-align:left;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  display:block;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5 4.5-5z' fill='%23888'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 7px center;
-}
+
+
 .ms-trigger.has-selection{color:var(--red);border-color:var(--red);}
 .ms-panel{
   display:none;position:absolute;top:calc(100% + 2px);left:0;
@@ -195,6 +187,44 @@ tbody tr:last-child td{color:var(--blk);}
 .htr .note{background:var(--g6);border-left:3px solid var(--g4);padding:10px 14px;font-size:12px;color:var(--g2);margin:12px 0;line-height:1.55;}
 .htr .note.red{border-left-color:var(--red);background:#fff8f8;}
 .htr .note.grn{border-left-color:var(--green);background:#f0fdf4;color:#166534;}
+
+/* ── Filters ── */
+.filters{
+  padding:10px 28px 12px;
+  background:var(--g6);
+  border-bottom:1px solid var(--g5);
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:flex-end;
+}
+.filter-group{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.ms-wrap{
+  position:relative;
+}
+.ms-trigger{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:500;
+  color:var(--blk);
+  background:#fff;
+  border:1px solid var(--g4);
+  border-radius:3px;
+  padding:5px 22px 5px 8px;
+  cursor:pointer;
+  text-align:left;
+  white-space:nowrap;
+  display:block;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5 4.5-5z' fill='%23888'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 6px center;
+}
+.ms-trigger.has-selection{color:var(--red);border-color:var(--red);}
 </style>
 </head>
 <body>
@@ -215,7 +245,7 @@ tbody tr:last-child td{color:var(--blk);}
 
 <div id="tab-summary" class="tab-pane active">
 <div class="filters">
-  <div class="filter-group" style="width:118px;">
+  <div class="filter-group">
     <span class="filter-label">Month</span>
     <div class="ms-wrap" id="ms-month">
       <button class="ms-trigger" style="width:118px;" onclick="togglePanel('month')">All months</button>
@@ -231,7 +261,7 @@ tbody tr:last-child td{color:var(--blk);}
       </div>
     </div>
   </div>
-  <div class="filter-group" style="width:112px;">
+  <div class="filter-group">
     <span class="filter-label">Source Group</span>
     <div class="ms-wrap" id="ms-gsource">
       <button class="ms-trigger" style="width:112px;" onclick="togglePanel('gsource')">All</button>
@@ -242,19 +272,19 @@ tbody tr:last-child td{color:var(--blk);}
       </div>
     </div>
   </div>
-  <div class="filter-group" style="width:155px;">
+  <div class="filter-group">
     <span class="filter-label">Source</span>
     <div class="ms-wrap" id="ms-source">
-      <button class="ms-trigger" style="width:155px;" onclick="togglePanel('source')">All</button>
+      <button class="ms-trigger" style="width:150px;" onclick="togglePanel('source')">All</button>
       <div class="ms-panel" id="panel-source">
         <div class="ms-search"><input type="text" placeholder="Search…" oninput="searchPanel('source',this.value)"></div>
       </div>
     </div>
   </div>
-  <div class="filter-group" style="width:102px;">
+  <div class="filter-group">
     <span class="filter-label">Region</span>
     <div class="ms-wrap" id="ms-region">
-      <button class="ms-trigger" style="width:102px;" onclick="togglePanel('region')">All</button>
+      <button class="ms-trigger" style="width:100px;" onclick="togglePanel('region')">All</button>
       <div class="ms-panel" id="panel-region">
         <label class="ms-item all-item"><input type="checkbox" id="all-region" checked onchange="toggleAll('region')"> All</label>
         <label class="ms-item"><input type="checkbox" value="APAC" checked onchange="onCheck('region')"> APAC</label>
@@ -264,10 +294,10 @@ tbody tr:last-child td{color:var(--blk);}
       </div>
     </div>
   </div>
-  <div class="filter-group" style="width:98px;">
+  <div class="filter-group">
     <span class="filter-label">Product</span>
     <div class="ms-wrap" id="ms-product">
-      <button class="ms-trigger" style="width:98px;" onclick="togglePanel('product')">All</button>
+      <button class="ms-trigger" style="width:95px;" onclick="togglePanel('product')">All</button>
       <div class="ms-panel" id="panel-product">
         <label class="ms-item all-item"><input type="checkbox" id="all-product" checked onchange="toggleAll('product')"> All</label>
         <label class="ms-item"><input type="checkbox" value="EOR" checked onchange="onCheck('product')"> EOR</label>
@@ -277,7 +307,7 @@ tbody tr:last-child td{color:var(--blk);}
       </div>
     </div>
   </div>
-  <div class="filter-group" style="min-width:105px;">
+  <div class="filter-group">
     <span class="filter-label">Device</span>
     <div class="ms-wrap" id="ms-device">
       <button class="ms-trigger" style="width:105px;" onclick="togglePanel('device')">All</button>
@@ -290,10 +320,10 @@ tbody tr:last-child td{color:var(--blk);}
       </div>
     </div>
   </div>
-  <div class="filter-group" style="width:113px;">
+  <div class="filter-group">
     <span class="filter-label">Booking Gap</span>
     <div class="ms-wrap" id="ms-gap">
-      <button class="ms-trigger" style="width:113px;" onclick="togglePanel('gap')">All</button>
+      <button class="ms-trigger" style="width:115px;" onclick="togglePanel('gap')">All</button>
       <div class="ms-panel" id="panel-gap">
         <label class="ms-item all-item"><input type="checkbox" id="all-gap" checked onchange="toggleAll('gap')"> All</label>
         <label class="ms-item"><input type="checkbox" value="0 — Same Day" checked onchange="onCheck('gap')"> 0 — Same Day</label>
@@ -306,10 +336,10 @@ tbody tr:last-child td{color:var(--blk);}
     </div>
   </div>
 
-  <div class="filter-group" style="width:130px;">
+  <div class="filter-group">
     <span class="filter-label">Emp Range</span>
     <div class="ms-wrap" id="ms-emp">
-      <button class="ms-trigger" style="width:130px;" onclick="togglePanel('emp')">All</button>
+      <button class="ms-trigger" style="width:128px;" onclick="togglePanel('emp')">All</button>
       <div class="ms-panel" id="panel-emp">
         <label class="ms-item all-item"><input type="checkbox" id="all-emp" checked onchange="toggleAll('emp')"> All</label>
       </div>
@@ -323,7 +353,7 @@ tbody tr:last-child td{color:var(--blk);}
       <button class="bdr-btn" id="bdr-no"  onclick="setBDR('no')">Non-SDR</button>
     </div>
   </div>
-  <div class="filter-group" style="min-width:180px;">
+  <div class="filter-group">
     <span class="filter-label">Campaign <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--g3)">(Paid Search)</span></span>
     <div class="ms-wrap" id="ms-campaign">
       <button class="ms-trigger" style="width:182px;" onclick="togglePanel('campaign')">All campaigns</button>
