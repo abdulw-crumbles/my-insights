@@ -944,7 +944,7 @@ function renderCrm() {
   const body = el("div");
   const cube = DATA.crmCube;
 
-  const fSource = makeFilter("Lead source", cube.map(r => r.source), () => paint());
+  const fSource = makeFilter("Channel", cube.map(r => r.source), () => paint());
   const fProduct = makeFilter("Product", cube.map(r => r.product), () => paint());
   const fCountry = makeFilter("Country", cube.map(r => r.country), () => paint());
   const fLeadType = makeFilter("Lead type", ["Chat Leads", "Other Leads"], () => paint());
