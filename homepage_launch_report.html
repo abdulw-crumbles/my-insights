@@ -997,17 +997,17 @@ function renderCrm() {
       ? "all lead types"
       : describe("Lead type", fLeadType.get(), fLeadType.all);
 
-    scopeNote.innerHTML = `Active segment: ${describe("Lead source", fSource.get(), fSource.all)} &middot;
+    scopeNote.innerHTML = `Active segment: ${describe("Channel", fSource.get(), fSource.all)} &middot;
       ${describe("Product", fProduct.get(), fProduct.all)} &middot;
       ${describe("Country", fCountry.get(), fCountry.all)} &middot;
-      ${describe("Lead type", fLeadType.get(), fLeadType.all)}. Every table, average,
+      ${describe("Lead Source", fLeadType.get(), fLeadType.all)}. Every table, average,
       significance indicator and single-line Lead, MQL and SQL chart recomputes from the selection.`;
 
     const label = [
-      fSource.get().length === fSource.all.length ? null : describe("Lead source", fSource.get(), fSource.all),
+      fSource.get().length === fSource.all.length ? null : describe("Channel", fSource.get(), fSource.all),
       fProduct.get().length === fProduct.all.length ? null : describe("Product", fProduct.get(), fProduct.all),
       fCountry.get().length === fCountry.all.length ? null : describe("Country", fCountry.get(), fCountry.all),
-      fLeadType.get().length === fLeadType.all.length ? null : describe("Lead type", fLeadType.get(), fLeadType.all),
+      fLeadType.get().length === fLeadType.all.length ? null : describe("Lead Source", fLeadType.get(), fLeadType.all),
     ].filter(Boolean).join(" \u00b7 ") || "all conversion traffic";
 
     body.innerHTML = "";
@@ -1025,15 +1025,15 @@ function renderCrm() {
       ["", "n", "n", "n", ""],
       [selected.Leads, selected.MQL, selected.SQL].map(m => m.sig ? "sig" : "ns"),
     );
-    body.appendChild(section(`Selected lead types — ${label}`, selectedTable,
+    body.appendChild(section(`All Lead Sources — ${label}`, selectedTable,
       `Window totals: ${selected.Leads.preTotal} / ${selected.MQL.preTotal} / ${selected.SQL.preTotal} pre; ` +
       `${selected.Leads.postTotal} / ${selected.MQL.postTotal} / ${selected.SQL.postTotal} post.`));
 
-    body.appendChild(section(`Other Leads within selection — ${label}`,
+    body.appendChild(section(`Non Chat Lead Sources — ${label}`,
       kpiTable([{ label: "Leads", m: other.Leads }, { label: "MQLs", m: other.MQL }, { label: "SQLs", m: other.SQL }]),
       `Non-Chat post totals: ${other.Leads.postTotal} leads, ${other.MQL.postTotal} MQLs, ${other.SQL.postTotal} SQLs.`));
 
-    body.appendChild(section(`Chat Leads within selection — ${label}`, table(
+    body.appendChild(section(`Chat Leads — ${label}`, table(
       ["KPI", "Pre / wk", "Post / wk", "Share of post volume"],
       [
         ["Leads", d1(chat.Leads.pre), d1(chat.Leads.post), `${chat.Leads.postTotal} of ${selected.Leads.postTotal} (${ratio(chat.Leads.postTotal, selected.Leads.postTotal)})`],
